@@ -15,11 +15,29 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         $user = new User();
-        $user->name = 'Josh';
+        $user->first_name = 'Josh';
+        $user->surname = "Codd";
         $user->email = 'jjc21@live.co.uk';
         $user->password = 'password123';
+        $user->remember_token = "AHEY4NSH47DHS7G";
         $user->save();
 
-        $users = User::factory()->count(10)->create();
+        $user_two = new User();
+        $user_two->first_name = 'Avril';
+        $user_two->surname = "Lavigne";
+        $user_two->email = 'avril@lavigne.com';
+        $user_two->password = '1234';
+        $user_two->remember_token = "HEUDNDGFHHHHH33";
+        $user_two->save();
+
+        $user_three = new User();
+        $user_three->first_name = 'Jeff';
+        $user_three->surname = "Davies";
+        $user_three->email = 'fejj@google.com';
+        $user_three->password = 'jeffiscool';
+        $user_three->remember_token = "8375HDNJFHYRH3H";
+        $user_three->save();
+
+        $users = User::factory()->count(20)->create();
     }
 }
