@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 class CreatePostsTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Run the post table migrations.
      *
      * @return void
      */
@@ -20,12 +20,13 @@ class CreatePostsTable extends Migration
             $table->longText('content');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('users')
+            ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
     /**
-     * Reverse the migrations.
+     * Reverse the post table migrations.
      *
      * @return void
      */

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class PostFactory extends Factory
 {    
     /**
-     * Define the model's default state.
+     * Define the post model's default state.
      *
      * @return array
      */
@@ -17,7 +17,7 @@ class PostFactory extends Factory
         return [
             'user_id' => User::inRandomOrder()->first()->id,
             'title' => $this->faker->realText(50),
-            'content' => $this->faker->realText(),
+            'content' => $this->faker->realText(300),
         ];
     }
 }
