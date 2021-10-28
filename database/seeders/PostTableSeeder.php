@@ -8,7 +8,7 @@ use Illuminate\Database\Seeder;
 class PostTableSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Seed the post table of the database.
      *
      * @return void
      */

@@ -8,7 +8,7 @@ use Illuminate\Database\Seeder;
 class UserTableSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Seed the user table of the database.
      *
      * @return void
      */
