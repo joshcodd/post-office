@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class CommentFactory extends Factory
 {
     /**
-     * Define the model's default state.
+     * Define the comment model's default state.
      *
      * @return array
      */
@@ -18,7 +18,7 @@ class CommentFactory extends Factory
         return [
             'post_id' => Post::inRandomOrder()->first()->id,
             'user_id' => User::inRandomOrder()->first()->id,
-            'content' => $this->faker->realText(),
+            'content' => $this->faker->realText(200),
         ];
     }
 }

@@ -9,11 +9,13 @@ class Comment extends Model
 {
     use HasFactory;
 
-    public function post()
+    // Gets the post that the comment is about.
+    public function post() 
     {
         return $this->belongsTo(Post::class);   
     }
 
+    // Gets the user, that is the author of the comment.
     public function user()
     {
         return $this->belongsTo(User::class);   
