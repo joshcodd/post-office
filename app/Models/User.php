@@ -15,13 +15,13 @@ class User extends Authenticatable
     // Gets all the posts this user has posted.
     public function posts()
     {
-        return $this->hasMany(Post::class);   
+        return $this->hasMany(Post::class);
     }
 
     // Gets the comments this user has left.
     public function comments()
     {
-        return $this->hasMany(Comment::class);   
+        return $this->hasMany(Comment::class);
     }
 
     /**

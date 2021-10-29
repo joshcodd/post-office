@@ -34,7 +34,7 @@ class PostTableSeeder extends Seeder
         $post_three::factory()->has(Comment::factory()->count(10))
             ->create(); // Seed 10 random comments for this post.
         $post_three->save();
-        
+
         $posts = Post::factory()->count(35)->create();
     }
 }
