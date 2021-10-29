@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -36,6 +37,8 @@ class UserTableSeeder extends Seeder
         $user_three->email = 'fejj@google.com';
         $user_three->password = 'jeffiscool';
         $user_three->remember_token = "8375HDNJFHYRH3H";
+        $user_three::factory()->has(Post::factory()->count(5))
+            ->create(); // Seed 5 random posts for this user.
         $user_three->save();
 
         $users = User::factory()->count(20)->create();

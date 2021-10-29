@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Database\Seeder;
 
@@ -30,6 +31,8 @@ class PostTableSeeder extends Seeder
         $post_three->user_id = 2;
         $post_three->title = 'The UK cat population';
         $post_three->content = 'There are actually 12.2 million cats in the UK! WOW';
+        $post_three::factory()->has(Comment::factory()->count(10))
+            ->create(); // Seed 10 random comments for this post.
         $post_three->save();
         
         $posts = Post::factory()->count(35)->create();
