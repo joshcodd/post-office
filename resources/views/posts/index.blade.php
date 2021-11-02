@@ -3,7 +3,6 @@
 @section('title', 'Posts')
 
 @section('content')
-    <p> Posts: </p>
     <div class="grid justify-items-center">
         @foreach ($posts as $post)
             <div class="w-2/4 p-0.5 m-5 rounded-xl shadow-md">
