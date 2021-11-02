@@ -1,6 +1,7 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
+    important: true,
     purge: [
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './storage/framework/views/*.php',
@@ -13,6 +14,12 @@ module.exports = {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
                 garamond: ['"EB Garamond"', 'serif'],
                 nunito: ['Nunito', 'sans-serif'],
+            },
+
+            colors: {
+                spotify: {
+                    DEFAULT: '#01D260',
+                }  ,
             },
         },
     },
