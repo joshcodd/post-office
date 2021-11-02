@@ -11,6 +11,8 @@ module.exports = {
         extend: {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+                garamond: ['"EB Garamond"', 'serif'],
+                nunito: ['Nunito', 'sans-serif'],
             },
         },
     },

@@ -22553,6 +22553,14 @@ select {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
+.font-garamond {
+  font-family: "EB Garamond", serif;
+}
+
+.font-nunito {
+  font-family: Nunito, sans-serif;
+}
+
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
@@ -53853,6 +53861,14 @@ select {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   }
 
+  .sm\:font-garamond {
+    font-family: "EB Garamond", serif;
+  }
+
+  .sm\:font-nunito {
+    font-family: Nunito, sans-serif;
+  }
+
   .sm\:text-xs {
     font-size: 0.75rem;
     line-height: 1rem;
@@ -85139,6 +85155,14 @@ select {
 
   .md\:font-mono {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  }
+
+  .md\:font-garamond {
+    font-family: "EB Garamond", serif;
+  }
+
+  .md\:font-nunito {
+    font-family: Nunito, sans-serif;
   }
 
   .md\:text-xs {
@@ -116429,6 +116453,14 @@ select {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   }
 
+  .lg\:font-garamond {
+    font-family: "EB Garamond", serif;
+  }
+
+  .lg\:font-nunito {
+    font-family: Nunito, sans-serif;
+  }
+
   .lg\:text-xs {
     font-size: 0.75rem;
     line-height: 1rem;
@@ -147717,6 +147749,14 @@ select {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   }
 
+  .xl\:font-garamond {
+    font-family: "EB Garamond", serif;
+  }
+
+  .xl\:font-nunito {
+    font-family: Nunito, sans-serif;
+  }
+
   .xl\:text-xs {
     font-size: 0.75rem;
     line-height: 1rem;
@@ -179003,6 +179043,14 @@ select {
 
   .\32xl\:font-mono {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  }
+
+  .\32xl\:font-garamond {
+    font-family: "EB Garamond", serif;
+  }
+
+  .\32xl\:font-nunito {
+    font-family: Nunito, sans-serif;
   }
 
   .\32xl\:text-xs {
