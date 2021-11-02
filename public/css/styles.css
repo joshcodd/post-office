@@ -1,0 +1,29 @@
+.hoverSplitContainer {
+    cursor: pointer;
+}
+
+.topHalf {
+    position: absolute;
+    clip-path: inset(0% 0% 50% 0px);
+}
+
+.hoverSplitContainer.active {
+    font-weight: 600;
+}
+
+.bottomHalf {
+    position: relative;
+    clip-path: inset(50% 0px 0px 0px);
+}
+
+.hoverSplitContainer:hover > .bottomHalf {
+    left: -7px;
+}
+
+.hoverSplitContainer:hover > .topHalf {
+    transform: translate(7px, 0px);
+}
+
+.m-50-important {
+    margin-left: 50px !important;
+}
