@@ -12,15 +12,15 @@
         href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
 
-    <title>SPLIT - @yield('title')</title>
+    <title>PostOffice🏣 - @yield('title')</title>
 </head>
 
 <body class="font-sans antialiased">
     <nav class="bg-white shadow-lg sticky top-0">
         <div class="flex px-4">
             <div class="container mx-auto md:flex p-3 items-center">
-                <div href="#" class="flex py-4 px-2 font-garamond text-2xl">
-                    SPLIT
+                <div href="#" id="title" class="flex py-4 px-2 font-garamond text-2xl">
+                    PostOffice🏣
                 </div>
                 <div class="hidden md:flex  font-light text-md md:ml-auto">
                     <div
@@ -94,7 +94,6 @@
         </script>
     </nav>
 
-
     <div class="min-h-screen">
         <div>
             @yield('content')
@@ -102,5 +101,43 @@
 
     </div>
 </body>
+
+<script>
+    const title = document.querySelector("#title");
+    const titles = [
+        "postoffice",
+        "postOffice",
+        "Yūbinkyoku",
+        "yūBiNkyOku",
+        "pOStOffic3",
+        "postoffice",
+        "PostOffice",
+    ]
+
+    let date = new Date();
+    let previous_time;
+    let current_time;
+    const glitch_length = 2000;
+    const pause_length = 10000;
+    glitchTitle();
+    setInterval(glitchTitle, glitch_length + pause_length);
+
+    function glitchTitle() {
+        date = new Date();
+        previous_time = date.getTime();
+
+        let intervalID = setInterval(() => {
+            const random = Math.floor(Math.random() * ((titles.length - 1) - 0 + 1) + 0);
+            title.innerHTML = titles[random];
+
+            date = new Date();
+            current_time = date.getTime();
+            if ((current_time - previous_time) > glitch_length) {
+                clearInterval(intervalID);
+                title.innerHTML = "PostOffice🏣";
+            }
+        }, 50 + Math.random() * 150);
+    }
+</script>
 
 </html>
