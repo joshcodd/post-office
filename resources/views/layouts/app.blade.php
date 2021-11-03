@@ -12,6 +12,9 @@
         href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
 
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
     <title>PostOffice🏣 - @yield('title')</title>
 </head>
 
@@ -83,8 +86,7 @@
                 <a href="" class="bottomHalf font-nunito">Profile</a>
             </div>
         </div>
-
-        <script>
+        <script type="application/javascript">
             const ham_burger = document.querySelector("button.ham-burger");
             const mobile_menu = document.querySelector(".mobile-menu");
 
@@ -94,7 +96,7 @@
         </script>
     </nav>
 
-    <div class="min-h-screen">
+    <div class="min-h-screen" id="root">
         <div>
             @yield('content')
         </div>
@@ -102,7 +104,7 @@
     </div>
 </body>
 
-<script>
+<script type="application/javascript">
     const title = document.querySelector("#title");
     const titles = [
         "postoffice",
@@ -138,6 +140,31 @@
             }
         }, 50 + Math.random() * 150);
     }
+</script>
+
+<script type="application/javascript">
+    let app = new Vue({
+        el: "#root",
+        data: {
+            commentList: [],
+            commentContentText: '',
+        },
+
+        methods: {
+            addComment: function(post_id) {
+                axios.post("{{ route('api.comments.store') }}", {
+                    user_id: 1, //TODO
+                    post_id: post_id,
+                    content: this.commentContentText,
+                }).then(response => {
+                    this.commentList.push(response.data);
+                    this.commentContentText = "";
+                }).catch(response => {
+                    console.log(response);
+                })
+            }
+        }
+    });
 </script>
 
 </html>

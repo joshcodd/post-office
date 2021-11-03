@@ -66,16 +66,15 @@
                 <div class="bg-white items-center">
                     <textarea
                         class="form-textarea md:w-3/4 lg:w-4/5 mt-2.5 ml-4 border border-gray-400 outline-none rounded resize-none focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
-                        rows="1" placeholder="Write a comment ..."></textarea>
+                        rows="1" placeholder="Write a comment ..." v-model="commentContentText"></textarea>
 
                     <span
                         class="border  block  ml-4 md:ml-0 sm:inline sm:float-right rounded px-3 py-1 text-sm font-semibold text-black border-black my-4 mr-4 hover:bg-black hover:text-white"><a
-                            href="{{ $post->link }}">Post</a>
-
+                            @click="addComment({{ $post->id }})">Post</a>
                     </span>
                 </div>
 
-                <script>
+                <script type="application/javascript">
                     function handleCommentBtnClick(id) {
                         // Hide and Show comments.
                         const comments_id = id.substring('comment_btn_'.length);
