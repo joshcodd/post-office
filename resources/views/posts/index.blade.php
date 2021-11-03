@@ -5,7 +5,7 @@
 @section('content')
     <div class="grid justify-items-center">
         @foreach ($posts as $post)
-            <div class="w-2/4 p-0.5 m-5 rounded-xl shadow-md">
+            <div class="w-2/4 m-5 rounded-xl shadow-md overflow-hidden">
                 <img class="" src={{ asset('placeholder.jpg') }} alt="">
                 <div class="py-4 px-6">
                     <div class="font-bold mb-2 text-xl">
