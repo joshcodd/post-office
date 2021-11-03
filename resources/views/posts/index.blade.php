@@ -17,12 +17,35 @@
                 </div>
 
 
-                <div class="px-6 pt-4 pb-2">
+                <div class="flow-root px-6 pt-4 pb-2">
                     <span
-                        class="inline-block bg-gray-400 rounded-full px-4 py-1.5 text-sm font-semibold text-gray-100 mr-2 mb-2"><a
+                        class="float-left bg-gray-400 rounded-full px-4 py-1.5 text-sm font-semibold text-gray-100 mr-2 mb-2"><a
                             href="{{ $post->link }}">View post</a>
                     </span>
+
+                    <img id={{ 'comment_btn_' . $post->id }} onclick="handleCommentBtnClick(this.id)"
+                        class="float-right mt-0.2 mr-2 mb-2"
+                        src="https://img.icons8.com/material-rounded/30/000000/quote.png" />
                 </div>
+
+                <div id={{ 'comments_' . $post->id }}
+                    class="transition-all duration-500 ease-in-out  overflow-auto max-h-0 bg-gray-400 pb-0 mb-0">
+                    @foreach ($post->comments as $comment)
+                        <div class="m-5 rounded-xl shadow-md overflow-hidden">
+                            {{ $comment->content }}
+                        </div>
+                    @endforeach
+                </div>
+
+                <script>
+                    function handleCommentBtnClick(id) {
+                        const comments_id = "#comments_" + id.substring('comment_btn_'.length);
+                        const comments = document.querySelector(comments_id);
+                        // comments.classList.toggle("hidden");
+                        comments.classList.toggle("max-h-80");
+                        comments.classList.toggle("max-h-0")
+                    }
+                </script>
             </div>
         @endforeach
     </div>

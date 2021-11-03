@@ -21,6 +21,9 @@ module.exports = {
                     DEFAULT: '#01D260',
                 }  ,
             },
+            transitionProperty: {
+                'height': 'height',
+            },
         },
     },
 
