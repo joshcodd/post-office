@@ -16,7 +16,6 @@
                     </p>
                 </div>
 
-
                 <div class="flow-root px-6 pt-4 pb-2">
                     <span
                         class="float-left bg-gray-400 rounded-full px-4 py-1.5 text-sm font-semibold text-gray-100 mr-2 mb-2"><a
@@ -29,21 +28,46 @@
                 </div>
 
                 <div id={{ 'comments_' . $post->id }}
-                    class="transition-all duration-500 ease-in-out  overflow-auto max-h-0 bg-gray-400 pb-0 mb-0">
+                    class="overflow-scroll transition-all duration-500 ease-in-out max-h-0 bg-gray-100 pb-0 mb-0">
                     @foreach ($post->comments as $comment)
-                        <div class="m-5 rounded-xl shadow-md overflow-hidden">
-                            {{ $comment->content }}
+
+                        <div class="m-5 rounded-xl shadow-md overflow-hidden bg-white px-5 py-2">
+                            <span class="block font-semibold border-b border-bg-gray-400 mb-1.5">
+                                {{ $comment->user->first_name }}
+                                {{ $comment->user->surname }}
+
+                                <span class="float-right font-thin">
+                                    {{ $comment->updated_at->format('Y-m-d') }}
+                                </span>
+                            </span>
+
+                            <span class="">
+                                {{ $comment->content }}
+                            </span>
+
                         </div>
                     @endforeach
+                </div>
+
+
+                <div class="bg-white items-center">
+                    <textarea
+                        class="form-textarea md:w-3/4 lg:w-4/5 mt-2.5 ml-4 border border-gray-400 outline-none rounded resize-none focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
+                        rows="1" placeholder="Write a comment ..."></textarea>
+
+                    <span
+                        class="border  block  ml-4 md:ml-0 sm:inline sm:float-right rounded px-3 py-1 text-sm font-semibold text-black border-black my-4 mr-4 hover:bg-black hover:text-white"><a
+                            href="{{ $post->link }}">Post</a>
+
+                    </span>
                 </div>
 
                 <script>
                     function handleCommentBtnClick(id) {
                         const comments_id = "#comments_" + id.substring('comment_btn_'.length);
-                        const comments = document.querySelector(comments_id);
-                        // comments.classList.toggle("hidden");
-                        comments.classList.toggle("max-h-80");
-                        comments.classList.toggle("max-h-0")
+                        const comments = document.querySelector(comments_id);;
+                        comments.classList.toggle("max-h-0");
+                        comments.classList.toggle("max-h-96")
                     }
                 </script>
             </div>
