@@ -42,24 +42,24 @@
 
                 <div id={{ 'comments_' . $post->id }}
                     class="overflow-scroll transition-all duration-500 ease-in-out max-h-0 bg-gray-100 pb-0 mb-0">
-                    @foreach ($post->comments as $comment)
 
-                        <div class="m-5 rounded-xl shadow-md overflow-hidden bg-white px-5 py-2">
-                            <span class="block font-semibold border-b border-bg-gray-400 mb-1.5">
-                                {{ $comment->user->first_name }}
-                                {{ $comment->user->surname }}
+                    <div v-for="comment in commentList[{{ $post->id }}]"
+                        class="m-5 rounded-xl shadow-md overflow-hidden bg-white px-5 py-2">
 
-                                <span class="float-right font-thin">
-                                    {{ $comment->updated_at->format('Y-m-d') }}
-                                </span>
+                        <span class="block font-semibold border-b border-bg-gray-400 mb-1.5">
+                            @{{ comment . user . first_name }}
+                            @{{ comment . user . surname }}
+                            <span class="float-right font-thin">
+                                @{{ comment . updated_at }}
                             </span>
+                        </span>
 
-                            <span class="">
-                                {{ $comment->content }}
-                            </span>
+                        <span class="">
+                            @{{ comment . content }}
+                        </span>
 
-                        </div>
-                    @endforeach
+                    </div>
+
                 </div>
 
 

@@ -150,6 +150,22 @@
             commentContentText: '',
         },
 
+        mounted() {
+            axios.get("{{ route('api.comments.index') }}").then(response => {
+                this.commentList = [];
+                for (let i = 0; i < response.data.length; i++) {
+                    const current_post_id = response.data[i].post_id;
+                    if (this.commentList[current_post_id] == undefined) {
+                        this.commentList[current_post_id] = response.data.filter(function(comment) {
+                            return comment.post_id === current_post_id;
+                        })
+                    }
+                }
+            }).catch(response => {
+                console.log(response);
+            })
+        },
+
         methods: {
             addComment: function(post_id) {
                 axios.post("{{ route('api.comments.store') }}", {
@@ -157,12 +173,12 @@
                     post_id: post_id,
                     content: this.commentContentText,
                 }).then(response => {
-                    this.commentList.push(response.data);
+                    this.commentList[response.data.post_id].push(response.data);
                     this.commentContentText = "";
                 }).catch(response => {
                     console.log(response);
                 })
-            }
+            },
         }
     });
 </script>

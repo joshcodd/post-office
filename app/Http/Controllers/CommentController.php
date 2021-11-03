@@ -16,7 +16,13 @@ class CommentController extends Controller
         $comment->user_id = $request['user_id'];
         $comment->content = $request['content'];
         $comment->save();
-        return $comment;
+        return $comment->load('user');
+    }
+
+    public function apiIndex()
+    {
+        $comments = Comment::get()->load('user');
+        return $comments;
     }
 
     /**
