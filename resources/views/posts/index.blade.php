@@ -14,9 +14,7 @@
                     <div class="font-bold mb-2 text-xl">
                         {{ $post->title }}
                     </div>
-                    <p class="text-base text-gray-600">
-                        {{ $post->content }}
-                    </p>
+                    <p class="text-base text-gray-600 whitespace-pre-line">{{ $post->content }}</p>
                 </div>
 
                 <div class="flow-root px-6 pt-4 pb-2">
@@ -64,9 +62,7 @@
                             </span>
                         </span>
 
-                        <span class="">
-                            @{{ comment . content }}
-                        </span>
+                        <p class="whitespace-pre-line">@{{ comment . content }}</p>
 
                     </div>
 

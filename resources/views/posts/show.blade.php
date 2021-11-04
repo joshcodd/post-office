@@ -19,9 +19,7 @@
 
             <img class="" src={{ asset(rand(0, 3) . '.jpg') }} alt="">
             <div class="py-5">
-                <p class="text-xl text-gray-600">
-                    {{ $post->content }}
-                </p>
+                <p class="text-xl text-gray-600 whitespace-pre-line">{{ $post->content }}</p>
             </div>
 
             <div class="flow-root  pt-4 pb-2">
@@ -64,12 +62,8 @@
                         </span>
                     </span>
 
-                    <span class="">
-                        @{{ comment . content }}
-                    </span>
-
+                    <p class="whitespace-pre-line">@{{ comment . content }}</p>
                 </div>
-
             </div>
 
 
