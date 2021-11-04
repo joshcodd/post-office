@@ -73,7 +73,7 @@
             </div>
 
 
-            <div class="bg-white items-center mt-5">
+            <div class="bg-white items-center mt-5 mb-20">
                 <textarea oninput='this.style.height = this.scrollHeight + "px"'
                     class=" form-textarea w-full sm:w-3/4 lg:w-4/5  border border-gray-400 outline-none rounded  focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
                     rows="1" placeholder="Write a comment ..." v-model="commentContentText"></textarea>
