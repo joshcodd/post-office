@@ -20,7 +20,7 @@
                     <span
                         class="float-left rounded-full px-4 py-2 text-sm font-semibold mr-2 mb-2 border  text-black border-black  hover:bg-black hover:text-white
                         "><a
-                            href="{{ $post->link }}">View post</a>
+                            href="{{ route('posts.show', ['id' => $post->id]) }}">View post</a>
                     </span>
 
                     <div id={{ 'comment_btn_' . $post->id }} onclick="handleCommentBtnClick(this.id)"
