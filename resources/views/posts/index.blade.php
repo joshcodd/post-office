@@ -97,5 +97,10 @@
                 </script>
             </div>
         @endforeach
+
+        <div class="m-10">
+            {{ $posts->links('vendor.pagination.tailwind') }}
+        </div>
+
     </div>
 @endsection
