@@ -14,7 +14,15 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate(10);
+        $posts_per_page = 10;
+        $posts = Post::paginate($posts_per_page);
+
+        $word_limit = 50;
+        foreach ($posts as $post) {
+            $words = explode(' ', $post->content);
+            $words_culled = array_slice($words, 0, $word_limit);
+            $post->content = implode(' ', $words_culled) . ".......";
+        }
         return view('posts.index', ['posts' => $posts]);
     }
 

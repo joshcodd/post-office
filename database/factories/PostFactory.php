@@ -16,8 +16,8 @@ class PostFactory extends Factory
     {
         return [
             'user_id' => User::inRandomOrder()->first()->id,
-            'title' => $this->faker->realText(50),
-            'content' => $this->faker->realText(300),
+            'title' => $this->faker->realText(70),
+            'content' => $this->faker->realText(800),
         ];
     }
 }
