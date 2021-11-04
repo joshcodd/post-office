@@ -6,7 +6,10 @@
     <div class="grid justify-items-center">
         @foreach ($posts as $post)
             <div class="w-2/4 m-5 rounded-xl shadow-md overflow-hidden">
-                <img class="" src={{ asset('placeholder.jpg') }} alt="">
+                <div class="w-100  h-96">
+                    <img class="w-full h-full  object-cover " src={{ asset(rand(0, 3) . '.jpg') }} alt="">
+                </div>
+
                 <div class="py-4 px-6">
                     <div class="font-bold mb-2 text-xl">
                         {{ $post->title }}
