@@ -61,27 +61,35 @@
         </div>
 
         <div class="hidden mobile-menu">
-            <div
-                class="hoverSplitContainer font-nunito hover:bg-spotify text-sm px-7 py-5 
+            <a href="{{ route('posts.index') }}">
+                <div
+                    class="hoverSplitContainer font-nunito hover:bg-spotify text-sm px-7 py-5 
                         {{ request()->is('posts') ? 'active' : '' }}">
-                <a href="" class="topHalf font-nunito">Home</a>
-                <a href="" class="bottomHalf font-nunito">Home</a>
-            </div>
+                    <div class="topHalf font-nunito">Home</div>
+                    <div class="bottomHalf font-nunito">Home</div>
+                </div>
+            </a>
 
-            <div class="hoverSplitContainer font-nunito hover:bg-spotify text-sm px-7 py-5">
-                <a href="" class="topHalf font-nunito">Notifications</a>
-                <a href="" class="bottomHalf font-nunito">Notifications</a>
-            </div>
+            <a href="">
+                <div class="hoverSplitContainer font-nunito hover:bg-spotify text-sm px-7 py-5">
+                    <div class="topHalf font-nunito">Notifications</div>
+                    <div class="bottomHalf font-nunito">Notifications</div>
+                </div>
+            </a>
 
-            <div class="hoverSplitContainer font-nunito hover:bg-spotify text-sm px-7 py-5">
-                <a href="" class="topHalf font-nunito">New Post</a>
-                <a href="" class="bottomHalf font-nunito">New Post</a>
-            </div>
+            <a href="">
+                <div class="hoverSplitContainer font-nunito hover:bg-spotify text-sm px-7 py-5">
+                    <div class="topHalf font-nunito">New Post</div>
+                    <div class="bottomHalf font-nunito">New Post</div>
+                </div>
+            </a>
 
-            <div class="hoverSplitContainer font-nunito hover:bg-spotify text-sm px-7 py-5">
-                <a href="" class="topHalf font-nunito">Profile</a>
-                <a href="" class="bottomHalf font-nunito">Profile</a>
-            </div>
+            <a href="">
+                <div class="hoverSplitContainer font-nunito hover:bg-spotify text-sm px-7 py-5">
+                    <div class="topHalf font-nunito">Profile</div>
+                    <div class="bottomHalf font-nunito">Profile</div>
+                </div>
+            </a>
         </div>
     </nav>
 

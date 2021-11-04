@@ -21,7 +21,7 @@ module.exports = {
 
             colors: {
                 spotify: {
-                    DEFAULT: '#01D260',
+                    DEFAULT: '#FF4C65',
                 },
                 transparent: 'transparent',
                 current: 'currentColor',
