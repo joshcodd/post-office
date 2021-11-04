@@ -18,12 +18,13 @@
 
                 <div class="flow-root px-6 pt-4 pb-2">
                     <span
-                        class="float-left bg-gray-400 rounded-full px-4 py-1.5 text-sm font-semibold text-gray-100 mr-2 mb-2"><a
+                        class="float-left rounded-full px-4 py-2 text-sm font-semibold mr-2 mb-2 border  text-black border-black  hover:bg-black hover:text-white
+                        "><a
                             href="{{ $post->link }}">View post</a>
                     </span>
 
                     <div id={{ 'comment_btn_' . $post->id }} onclick="handleCommentBtnClick(this.id)"
-                        class="group float-right mt-0.5 mb-2">
+                        class="group float-right mt-1 mb-2">
                         <div id={{ 'comment_btn_clear_' . $post->id }}
                             class=" invisible  group-hover:visible absolute inline-block">
                             <svg xmlns=" http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
