@@ -73,10 +73,11 @@
                         class="form-textarea md:w-3/4 lg:w-4/5 mt-2.5 ml-4 border border-gray-400 outline-none rounded resize-none focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
                         rows="1" placeholder="Write a comment ..." v-model="commentContentText"></textarea>
 
-                    <span
-                        class="border  block  ml-4 md:ml-0 sm:inline sm:float-right rounded px-3 py-1 text-sm font-semibold text-black border-black my-4 mr-4 hover:bg-black hover:text-white"><a
-                            @click="addComment({{ $post->id }})">Post</a>
-                    </span>
+                    <button
+                        class="border  block  ml-4 md:ml-0 sm:inline sm:float-right rounded px-3 py-1 text-sm font-semibold text-black border-black my-4 mr-4 hover:bg-black hover:text-white"
+                        @click="addComment({{ $post->id }})">
+                        Post
+                    </button>
                 </div>
             </div>
         @endforeach
