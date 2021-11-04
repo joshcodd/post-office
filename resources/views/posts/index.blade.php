@@ -40,7 +40,7 @@
                     </div>
                 </div>
 
-                <div id={{ 'comments_' . $post->id }}
+                <div id={{ 'comments_' . $post->id }} name="scrollable_comments"
                     class="overflow-scroll transition-all duration-500 ease-in-out max-h-0 bg-gray-100 pb-0 mb-0">
 
                     <div v-for="comment in commentList[{{ $post->id }}]"
