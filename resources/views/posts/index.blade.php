@@ -72,7 +72,6 @@
 
                 </div>
 
-
                 <div class="bg-white items-center">
                     <textarea
                         class="form-textarea md:w-3/4 lg:w-4/5 mt-2.5 ml-4 border border-gray-400 outline-none rounded resize-none focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
@@ -83,22 +82,6 @@
                             @click="addComment({{ $post->id }})">Post</a>
                     </span>
                 </div>
-
-                <script type="application/javascript">
-                    function handleCommentBtnClick(id) {
-                        // Hide and Show comments.
-                        const comments_id = id.substring('comment_btn_'.length);
-                        const comments = document.querySelector("#comments_" + comments_id);
-                        comments.classList.toggle("max-h-0");
-                        comments.classList.toggle("max-h-96")
-
-                        // Fill icon on click.
-                        const comment_btn_clear = document.querySelector("#comment_btn_clear_" + comments_id);
-                        const comment_btn_fill = document.querySelector("#comment_btn_fill_" + comments_id);
-                        comment_btn_clear.classList.toggle("invisible");
-                        comment_btn_fill.classList.toggle("invisible");
-                    }
-                </script>
             </div>
         @endforeach
 

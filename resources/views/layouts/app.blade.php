@@ -12,9 +12,6 @@
         href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
 
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
     <title>PostOffice🏣 - @yield('title')</title>
 </head>
 
@@ -86,14 +83,6 @@
                 <a href="" class="bottomHalf font-nunito">Profile</a>
             </div>
         </div>
-        <script type="application/javascript">
-            const ham_burger = document.querySelector("button.ham-burger");
-            const mobile_menu = document.querySelector(".mobile-menu");
-
-            ham_burger.addEventListener("click", () => {
-                mobile_menu.classList.toggle("hidden");
-            });
-        </script>
     </nav>
 
     <div class="min-h-screen" id="root">
@@ -104,92 +93,18 @@
     </div>
 </body>
 
-<script type="application/javascript">
-    const title = document.querySelector("#title");
-    const titles = [
-        "postoffice",
-        "postOffice",
-        "Yūbinkyoku",
-        "yūBiNkyOku",
-        "pOStOffic3",
-        "postoffice",
-        "PostOffice",
-    ]
-
-    let date = new Date();
-    let previous_time;
-    let current_time;
-    const glitch_length = 2000;
-    const pause_length = 10000;
-    glitchTitle();
-    setInterval(glitchTitle, glitch_length + pause_length);
-
-    function glitchTitle() {
-        date = new Date();
-        previous_time = date.getTime();
-
-        let intervalID = setInterval(() => {
-            const random = Math.floor(Math.random() * ((titles.length - 1) - 0 + 1) + 0);
-            title.innerHTML = titles[random];
-
-            date = new Date();
-            current_time = date.getTime();
-            if ((current_time - previous_time) > glitch_length) {
-                clearInterval(intervalID);
-                title.innerHTML = "PostOffice🏣";
-            }
-        }, 50 + Math.random() * 150);
-    }
-</script>
-
-<script type="application/javascript">
-    let app = new Vue({
-        el: "#root",
-        data: {
-            commentList: [],
-            commentContentText: '',
-        },
-
-        mounted() {
-            axios.get("{{ route('api.comments.index') }}").then(response => {
-                this.commentList = [];
-                for (let i = 0; i < response.data.length; i++) {
-                    const current_post_id = response.data[i].post_id;
-                    if (this.commentList[current_post_id] == undefined) {
-                        this.commentList[current_post_id] = response.data.filter(function(comment) {
-                            return comment.post_id === current_post_id;
-                        })
-                    }
-                }
-            }).catch(response => {
-                console.log(response);
-            })
-        },
-
-        updated() {
-            this.$nextTick(function() {
-                const comment_scrolls = document.getElementsByName("scrollable_comments");
-                for (let i = 0; i < comment_scrolls.length; i++) {
-                    comment_scrolls[i].scrollTop = comment_scrolls[i].scrollHeight
-                }
-            })
-        },
-
-        methods: {
-            addComment: function(post_id) {
-                axios.post("{{ route('api.comments.store') }}", {
-                    user_id: 1, //TODO
-                    post_id: post_id,
-                    content: this.commentContentText,
-                }).then(response => {
-                    this.commentList[response.data.post_id].push(response.data);
-                    this.commentContentText = "";
-                }).catch(response => {
-                    console.log(response);
-                })
-            },
+<script>
+    // Routes for client side js.
+    var config = {
+        routes: {
+            comments_index: "{{ route('api.comments.index') }}",
+            comments_store: "{{ route('api.comments.store') }}"
         }
-    });
+    };
 </script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="{{ asset('js/script.js') }}"></script>
+<script src="{{ asset('js/vue.js') }}"></script>
 
 </html>
