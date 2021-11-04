@@ -20,4 +20,9 @@ class Post extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d',
+        'updated_at' => 'datetime:Y-m-d'
+    ];
 }

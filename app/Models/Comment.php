@@ -20,4 +20,9 @@ class Comment extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d',
+        'updated_at' => 'datetime:Y-m-d'
+    ];
 }
