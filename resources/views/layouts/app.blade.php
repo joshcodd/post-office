@@ -22,31 +22,31 @@
     <nav class="bg-white shadow-lg sticky top-0">
         <div class="flex px-4">
             <div class="container mx-auto md:flex p-3 items-center">
-                <div href="#" id="title" class="flex py-4 px-2 font-garamond text-2xl">
+                <a href="{{ route('posts.index') }}" id="title" class="flex py-4 px-2 font-garamond text-2xl">
                     PostOffice🏣
-                </div>
+                </a>
                 <div class="hidden md:flex  font-light text-md md:ml-auto">
-                    <div
-                        class="hoverSplitContainer font-nunito m-50-important
-                    {{ request()->is('posts') ? 'active' : '' }}">
-                        <a href="" class="topHalf font-nunito">Home</a>
-                        <a href="" class="bottomHalf font-nunito">Home</a>
-                    </div>
+                    <a class="hoverSplitContainer font-nunito m-50-important
+                    {{ request()->is('posts') ? 'active' : '' }}"
+                        href="{{ route('posts.index') }}">
+                        <div class=" topHalf font-nunito">Home</div>
+                        <div class="bottomHalf font-nunito">Home</div>
+                    </a>
 
-                    <div class="hoverSplitContainer font-nunito m-50-important">
-                        <a href="" class="topHalf font-nunito">Notifications</a>
-                        <a href="" class="bottomHalf font-nunito">Notifications</a>
-                    </div>
+                    <a class="hoverSplitContainer font-nunito m-50-important">
+                        <div href="" class="topHalf font-nunito">Notifications</div>
+                        <div href="" class="bottomHalf font-nunito">Notifications</div>
+                    </a>
 
-                    <div class="hoverSplitContainer font-nunito m-50-important">
-                        <a href="" class="topHalf font-nunito">New Post</a>
-                        <a href="" class="bottomHalf font-nunito">New Post</a>
-                    </div>
+                    <a class="hoverSplitContainer font-nunito m-50-important">
+                        <div href="" class="topHalf font-nunito">New Post</div>
+                        <div href="" class="bottomHalf font-nunito">New Post</div>
+                    </a>
 
-                    <div class="hoverSplitContainer font-nunito m-50-important">
-                        <a href="" class="topHalf font-nunito">Profile</a>
-                        <a href="" class="bottomHalf font-nunito">Profile</a>
-                    </div>
+                    <a class="hoverSplitContainer font-nunito m-50-important">
+                        <div href="" class="topHalf font-nunito">Profile</div>
+                        <div href="" class="bottomHalf font-nunito">Profile</div>
+                    </a>
                 </div>
             </div>
 
