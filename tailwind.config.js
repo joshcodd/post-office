@@ -1,5 +1,8 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
+const colors = require('tailwindcss/colors');
+
+
 module.exports = {
     important: true,
     purge: [
@@ -19,7 +22,13 @@ module.exports = {
             colors: {
                 spotify: {
                     DEFAULT: '#01D260',
-                }  ,
+                },
+                transparent: 'transparent',
+                current: 'currentColor',
+                gray: colors.trueGray,
+                red: colors.red,
+                blue: colors.sky,
+                yellow: colors.amber,
             },
             transitionProperty: {
                 'height': 'height',
