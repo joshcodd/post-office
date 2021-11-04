@@ -91,6 +91,20 @@
         </div>
 
     </div>
+
+    <div class="bg-gray-100 pt-5 pb-8" id="root">
+        <div class="text-center text-xl">
+            🏣
+        </div>
+        <div class="font-nunito  text-sm text-gray-500 font-light text-center">
+            POSTOFFICE
+        </div>
+
+        <div class="font-nunito  text-xs text-gray-500 font-light text-center">
+            Created by Josh Codd | {{ date('Y') }}
+        </div>
+
+    </div>
 </body>
 
 <script>
