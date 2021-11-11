@@ -33,6 +33,10 @@ let app = new Vue({
     methods: {
         addComment: function(post_id) {
             axios.post(config.routes.comments_store, {
+                headers: {
+                     "Content-type": "application/json",
+                     "Authorization": `Bearer ${config.token}`,
+                },
                 user_id: 1, //TODO
                 post_id: post_id,
                 content: this.commentContentText,
