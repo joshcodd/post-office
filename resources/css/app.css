@@ -1,3 +1,27 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* Reference:  https://blog.marclucraft.co.uk/masonry-layout-with-tailwindcss */
+@layer utilities {
+    @variants responsive {
+        .column-4 {
+            column-gap: 1.5em;
+            column-count: 4;
+        }
+
+        .column-3 {
+            column-gap: 1.5em;
+            column-count: 3;
+        }
+
+        .column-2 {
+            column-gap: 1.5em;
+            column-count: 2;
+        }
+
+        .break-inside {
+            break-inside: avoid;
+        }
+    }
+}
