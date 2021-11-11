@@ -24,7 +24,8 @@
                         <div href="" class="bottomHalf">New Post</div>
                     </a>
 
-                    <a class="hoverSplitContainer m-50-important">
+                    <a class="hoverSplitContainer m-50-important {{ request()->is('user/me') ? 'active' : '' }}"
+                        href="{{ route('users.show.me') }}">
                         <div href="" class="topHalf font-nunito">Profile</div>
                         <div href="" class="bottomHalf font-nunito">Profile</div>
                     </a>
@@ -78,7 +79,8 @@
         </a>
 
         <a href="">
-            <div class="hoverSplitContainer font-nunito hover:bg-spotify text-sm px-7 py-5">
+            <div class="hoverSplitContainer font-nunito hover:bg-spotify text-sm px-7 py-5 {{ request()->is('user/me') ? 'active' : '' }}""
+                href=" {{ route('users.show.me') }}">
                 <div class="topHalf font-nunito">Profile</div>
                 <div class="bottomHalf font-nunito">Profile</div>
             </div>

@@ -15,6 +15,12 @@ class UserController extends Controller
         return ['token' => $token->plainTextToken];
     }
 
+    public function showMyProfile()
+    {
+        $user = User::findOrFail(Auth::User()->id);
+        return view('users.show', ['user' => $user]);
+    }
+
     /**
      * Display a listing of the resource.
      *
