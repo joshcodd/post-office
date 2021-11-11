@@ -10,24 +10,32 @@
                     <a class="hoverSplitContainer font-nunito m-50-important
                 {{ request()->is('posts') ? 'active' : '' }}"
                         href="{{ route('posts.index') }}">
-                        <div class=" topHalf font-nunito">Home</div>
-                        <div class="bottomHalf font-nunito">Home</div>
+                        <div class=" topHalf">Home</div>
+                        <div class="bottomHalf">Home</div>
                     </a>
 
                     <a class="hoverSplitContainer font-nunito m-50-important">
-                        <div href="" class="topHalf font-nunito">Notifications</div>
+                        <div href="" class="topHalf">Notifications</div>
                         <div href="" class="bottomHalf font-nunito">Notifications</div>
                     </a>
 
                     <a class="hoverSplitContainer font-nunito m-50-important">
-                        <div href="" class="topHalf font-nunito">New Post</div>
-                        <div href="" class="bottomHalf font-nunito">New Post</div>
+                        <div href="" class="topHalf">New Post</div>
+                        <div href="" class="bottomHalf">New Post</div>
                     </a>
 
-                    <a class="hoverSplitContainer font-nunito m-50-important">
+                    <a class="hoverSplitContainer m-50-important">
                         <div href="" class="topHalf font-nunito">Profile</div>
                         <div href="" class="bottomHalf font-nunito">Profile</div>
                     </a>
+
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="hoverSplitContainer font-light font-nunito m-50-important">
+                            <div href="" class="topHalf">Log Out</div>
+                            <div href="" class="bottomHalf">Log Out</div>
+                        </button>
+                    </form>
                 </div>
             @endauth
         </div>
@@ -75,5 +83,13 @@
                 <div class="bottomHalf font-nunito">Profile</div>
             </div>
         </a>
+
+        <form method="POST" action="{{ route('logout') }}" class="min-w-full">
+            @csrf
+            <button class="hoverSplitContainer font-nunito hover:bg-spotify text-sm px-7 py-5 min-w-full text-left">
+                <div class="topHalf font-nunito">Log Out</div>
+                <div class="bottomHalf font-nunito">Log Out</div>
+            </button>
+        </form>
     </div>
 </nav>
