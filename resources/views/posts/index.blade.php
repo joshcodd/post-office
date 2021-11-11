@@ -30,7 +30,7 @@
                             href="{{ route('posts.show', ['id' => $post->id]) }}">View post</a>
                     </span>
 
-                    <div class=" float-right mt-1 ml-2 ">
+                    <div id={{ 'comment_count_' . $post->id }} class=" float-right mt-1 ml-2 ">
                         {{ $post->comments->count() }}
                     </div>
                     <button id={{ 'comment_btn_' . $post->id }} onclick="handleCommentBtnClick(this.id)"

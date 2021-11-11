@@ -24,7 +24,7 @@
             </div>
 
             <div class="flow-root  pt-4 pb-2">
-                <div class=" float-right mt-1 ml-2 ">
+                <div id={{ 'comment_count_' . $post->id }} class=" float-right mt-1 ml-2 ">
                     {{ $post->comments->count() }}
                 </div>
                 <button id={{ 'comment_btn_' . $post->id }} onclick="handleCommentBtnClick(this.id)"

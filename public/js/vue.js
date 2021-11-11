@@ -41,8 +41,11 @@ let app = new Vue({
                 post_id: post_id,
                 content: this.commentContentText,
             }).then(response => {
+                // Add to comment list and increase comment count.
                 this.commentList[response.data.post_id].push(response.data);
                 this.commentContentText = "";
+                let count = document.getElementById(`comment_count_${response.data.post_id}`);
+                count.innerHTML = parseInt(count.innerHTML) + 1;
             }).catch(response => {
                 console.log(response);
             });
