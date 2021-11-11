@@ -12,6 +12,7 @@
     <script src="{{ asset('js/log_in_script.js') }}" defer></script>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <title> PostOffice</title>
 </head>
 
 <body class="font-sans antialiased ">
