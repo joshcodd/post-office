@@ -10,8 +10,9 @@
             </div>
 
             <div class="font-semibold mb-2 text-xl inline-block">
-                {{ $post->user->first_name }}
-                {{ $post->user->surname }}
+                <a href="{{ route('users.show', ['id' => $post->user->id]) }}" class="hover:underline">
+                    {{ $post->user->first_name }}
+                    {{ $post->user->surname }}</a>
                 <div class="font-thin ml-5 text-base inline-block">
                     {{ $post->updated_at->format('Y-m-d') }}
                 </div>
