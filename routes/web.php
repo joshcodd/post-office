@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,5 +22,7 @@ Route::get('/', function () {
 Route::get('posts', [PostController::class, 'index'])->name('posts.index');
 
 Route::get('posts/{id}', [PostController::class, 'show'])->name('posts.show');
+
+Route::get('users/{id}', [UserController::class, 'show'])->name('users.show');
 
 require __DIR__ . '/auth.php';
