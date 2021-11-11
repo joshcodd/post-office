@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,13 +17,21 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', function () {
-    return view('layouts.app');
-});
+    if (Auth::check()) {
+        return redirect()->route('posts.index');
+    } else {
+        return view('welcome');
+    }
+})->name('home');
 
-Route::get('posts', [PostController::class, 'index'])->name('posts.index');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-Route::get('posts/{id}', [PostController::class, 'show'])->name('posts.show');
+Route::get('posts', [PostController::class, 'index'])->middleware(['auth'])->middleware(['auth'])->name('posts.index');
 
-Route::get('users/{id}', [UserController::class, 'show'])->name('users.show');
+Route::get('posts/{id}', [PostController::class, 'show'])->middleware(['auth'])->middleware(['auth'])->name('posts.show');
+
+Route::get('users/{id}', [UserController::class, 'show'])->middleware(['auth'])->middleware(['auth'])->name('users.show');
 
 require __DIR__ . '/auth.php';
