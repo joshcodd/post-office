@@ -34,4 +34,6 @@ Route::get('posts/{id}', [PostController::class, 'show'])->middleware(['auth'])-
 
 Route::get('users/{id}', [UserController::class, 'show'])->middleware(['auth'])->middleware(['auth'])->name('users.show');
 
+Route::get('user/create-token', [UserController::class, 'generateToken'])->middleware(['auth'])->name('users.create.token');
+
 require __DIR__ . '/auth.php';

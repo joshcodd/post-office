@@ -40,17 +40,24 @@
     </div>
 </body>
 
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
     // Routes for client side js.
     var config = {
+        token: "",
         routes: {
             comments_index: "{{ route('api.comments.index') }}",
-            comments_store: "{{ route('api.comments.store') }}"
+            comments_store: "{{ route('api.comments.store') }}",
+            create_token: "{{ route('users.create.token') }}"
         }
     };
+
+    // Create acces token for API.
+    axios.get(config.routes.create_token).then((response) => {
+        config.token = response.data.token.substring(3);
+    });
 </script>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="{{ asset('js/global_functions.js') }}"></script>
 <script src="{{ asset('js/app_script.js') }}"></script>
 <script src="{{ asset('js/vue.js') }}"></script>
