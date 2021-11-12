@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -44,7 +46,19 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated_post = $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+        ]);
+
+        $post = new Post();
+        $post->user_id = Auth::User()->id;
+        $post->title = $validated_post['title'];
+        $post->content = $validated_post['content'];
+        $post->save();
+
+        $request->session()->flash('message', 'Posted!');
+        return redirect()->route('posts.index');
     }
 
     /**
