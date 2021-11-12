@@ -53,10 +53,12 @@
         }
     };
 
-    // Create acces token for API.
-    axios.get(config.routes.create_token).then((response) => {
+    // Create accces token for API.
+    axios.post(config.routes.create_token).then((response) => {
         config.token = response.data.token.substring(3);
-    });
+    }).catch(response => {
+        console.log(response);
+    });;
 </script>
 <script src="{{ asset('js/global_functions.js') }}"></script>
 <script src="{{ asset('js/app_script.js') }}"></script>

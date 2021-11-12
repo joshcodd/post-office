@@ -36,6 +36,6 @@ Route::get('users/me', [UserController::class, 'showMyProfile'])->middleware(['a
 
 Route::get('users/{id}', [UserController::class, 'show'])->middleware(['auth'])->middleware(['auth'])->name('users.show');
 
-Route::get('user/create-token', [UserController::class, 'generateToken'])->middleware(['auth'])->name('users.create.token');
+Route::post('user/create-token', [UserController::class, 'generateToken'])->middleware(['auth'])->name('users.create.token');
 
 require __DIR__ . '/auth.php';
