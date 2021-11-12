@@ -66,3 +66,7 @@ function removeImage() {
     let remove_button = document.getElementById("create_remove_image");
     remove_button.classList.toggle("hidden");
 }
+
+function hideParent(element) {
+    element.parentElement.classList.toggle("hidden");
+}
