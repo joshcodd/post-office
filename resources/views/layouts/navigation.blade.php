@@ -19,7 +19,9 @@
                         <div href="" class="bottomHalf font-nunito">Notifications</div>
                     </a>
 
-                    <a class="hoverSplitContainer font-nunito m-50-important">
+                    <a class="hoverSplitContainer font-nunito m-50-important
+                    {{ request()->is('posts/create') ? 'active' : '' }}"
+                        href="{{ route('posts.create') }}">
                         <div href="" class="topHalf">New Post</div>
                         <div href="" class="bottomHalf">New Post</div>
                     </a>
@@ -71,15 +73,16 @@
             </div>
         </a>
 
-        <a href="">
-            <div class="hoverSplitContainer font-nunito hover:bg-spotify text-sm px-7 py-5">
+        <a href="{{ route('posts.create') }}">
+            <div
+                class="hoverSplitContainer font-nunito hover:bg-spotify text-sm px-7 py-5 {{ request()->is('posts/create') ? 'active' : '' }}">
                 <div class="topHalf font-nunito">New Post</div>
                 <div class="bottomHalf font-nunito">New Post</div>
             </div>
         </a>
 
         <a href="">
-            <div class="hoverSplitContainer font-nunito hover:bg-spotify text-sm px-7 py-5 {{ request()->is('users/me') ? 'active' : '' }}""
+            <div class="hoverSplitContainer font-nunito hover:bg-spotify text-sm px-7 py-5 {{ request()->is('users/me') ? 'active' : '' }}"
                 href=" {{ route('users.show.me') }}">
                 <div class="topHalf font-nunito">Profile</div>
                 <div class="bottomHalf font-nunito">Profile</div>
