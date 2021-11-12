@@ -37,3 +37,7 @@
     top: 50%;
     left: 50%;
 }
+
+.image_spacer {
+    min-height: 200px;
+}
