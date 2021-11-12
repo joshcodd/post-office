@@ -30,6 +30,8 @@ Route::get('/dashboard', function () {
 
 Route::get('posts', [PostController::class, 'index'])->middleware(['auth'])->middleware(['auth'])->name('posts.index');
 
+Route::get('posts/create', [PostController::class, 'create'])->middleware(['auth'])->middleware(['auth'])->name('posts.create');
+
 Route::get('posts/{id}', [PostController::class, 'show'])->middleware(['auth'])->middleware(['auth'])->name('posts.show');
 
 Route::get('users/me', [UserController::class, 'showMyProfile'])->middleware(['auth'])->name('users.show.me');
@@ -37,5 +39,7 @@ Route::get('users/me', [UserController::class, 'showMyProfile'])->middleware(['a
 Route::get('users/{id}', [UserController::class, 'show'])->middleware(['auth'])->middleware(['auth'])->name('users.show');
 
 Route::post('user/create-token', [UserController::class, 'generateToken'])->middleware(['auth'])->name('users.create.token');
+
+
 
 require __DIR__ . '/auth.php';
