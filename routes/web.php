@@ -30,6 +30,8 @@ Route::get('/dashboard', function () {
 
 Route::get('posts', [PostController::class, 'index'])->middleware(['auth'])->middleware(['auth'])->name('posts.index');
 
+Route::post('posts', [PostController::class, 'store'])->middleware(['auth'])->middleware(['auth'])->name('posts.store');
+
 Route::get('posts/create', [PostController::class, 'create'])->middleware(['auth'])->middleware(['auth'])->name('posts.create');
 
 Route::get('posts/{id}', [PostController::class, 'show'])->middleware(['auth'])->middleware(['auth'])->name('posts.show');
