@@ -20,7 +20,7 @@ Route::get('/', function () {
     if (Auth::check()) {
         return redirect()->route('posts.index');
     } else {
-        return view('welcome');
+        return view('auth.login');
     }
 })->name('home');
 
