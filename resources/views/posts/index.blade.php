@@ -24,11 +24,13 @@
                 </div>
 
                 <div class="flow-root px-6 pt-4 pb-2">
-                    <span
-                        class="float-left rounded-full px-4 py-2 text-sm font-semibold mr-2 mb-2 border  text-black border-black  hover:bg-gray-700 hover:text-white
-                        "><a
-                            href="{{ route('posts.show', ['id' => $post->id]) }}">View post</a>
-                    </span>
+                    <a class="float-left rounded-full px-4 py-2 text-sm font-semibold mr-2 mb-2 border  text-black border-black  hover:bg-gray-700 hover:text-white"
+                        href="{{ route('posts.show', ['id' => $post->id]) }}">View post</a>
+
+                    @if (Auth::User()->id == $post->user->id)
+                        <a class="float-left rounded-full px-4 py-2 text-sm font-semibold mr-2 mb-2 border  text-black border-black  hover:bg-gray-700 hover:text-white"
+                            href="{{ route('posts.edit', ['id' => $post->id]) }}">Edit post</a>
+                    @endif
 
                     <div id={{ 'comment_count_' . $post->id }} class=" float-right mt-1 ml-2 ">
                         {{ $post->comments->count() }}
