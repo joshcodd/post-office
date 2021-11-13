@@ -103,6 +103,8 @@ class PostController extends Controller
         $post->title = $validated_post['title'];
         $post->content = $validated_post['content'];
         $post->save();
+
+        $request->session()->flash('message', 'Post has been edited!');
         return view('posts.show', ['post' => $post]);
     }
 
