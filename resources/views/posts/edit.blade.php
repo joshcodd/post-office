@@ -48,7 +48,7 @@
                         class="border inline-block  ml-5 sm:inline sm:float-right rounded px-5 py-2.5 text-sm font-semibold text-black border-black  hover:bg-gray-700 hover:text-white">Post
                     </button>
 
-                    <a href="{{ route('posts.show', ['id' => $post->id]) }}"
+                    <a href="{{ url()->previous() }}"
                         class="border inline-block  md:ml-0 sm:inline sm:float-right rounded px-5 py-2.5 text-sm font-semibold text-black border-black  hover:bg-gray-700 hover:text-white">Cancel
                     </a>
                 </div>
