@@ -9,13 +9,18 @@
                 {{ $post->title }}
             </div>
 
-            <div class="font-semibold mb-2 text-xl inline-block">
+            <div class="w-full font-semibold mb-2 text-xl inline-block">
                 <a href="{{ route('users.show', ['id' => $post->user->id]) }}" class="hover:underline">
                     {{ $post->user->first_name }}
                     {{ $post->user->surname }}</a>
                 <div class="font-thin ml-5 text-base inline-block">
                     {{ $post->updated_at->format('Y-m-d') }}
                 </div>
+
+                @if (Auth::User()->id == $post->user->id)
+                    <a class="mt-0.5 float-right rounded-full px-3 py-1 text-xs font-semibold border text-black border-black  hover:bg-gray-700 hover:text-white"
+                        href="{{ route('posts.edit', ['id' => $post->id]) }}">Edit post</a>
+                @endif
             </div>
 
             <img class="" src={{ asset(rand(0, 3) . '.jpg') }} alt="">
