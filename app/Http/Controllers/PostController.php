@@ -94,7 +94,16 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $validated_post = $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+        ]);
+
+        $post->title = $validated_post['title'];
+        $post->content = $validated_post['content'];
+        $post->save();
+        return view('posts.show', ['post' => $post]);
     }
 
     /**
