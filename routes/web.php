@@ -36,6 +36,8 @@ Route::get('posts/create', [PostController::class, 'create'])->middleware(['auth
 
 Route::get('posts/{id}', [PostController::class, 'show'])->middleware(['auth'])->middleware(['auth'])->name('posts.show');
 
+Route::get('posts/{id}/edit', [PostController::class, 'edit'])->middleware(['auth'])->middleware(['auth'])->name('posts.edit');
+
 Route::get('users/me', [UserController::class, 'showMyProfile'])->middleware(['auth'])->name('users.show.me');
 
 Route::get('users/{id}', [UserController::class, 'show'])->middleware(['auth'])->middleware(['auth'])->name('users.show');
