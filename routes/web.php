@@ -34,6 +34,8 @@ Route::get('posts/{id}', [PostController::class, 'show'])->middleware(['auth'])-
 
 Route::put('posts/{id}', [PostController::class, 'update'])->middleware(['auth', 'post.owner'])->name('posts.update');
 
+Route::delete('posts/{id}', [PostController::class, 'destroy'])->middleware(['auth', 'post.owner'])->name('posts.destroy');
+
 Route::get('posts/{id}/edit', [PostController::class, 'edit'])->middleware(['auth', 'post.owner'])->name('posts.edit');
 
 Route::get('users/me', [UserController::class, 'showMyProfile'])->middleware(['auth'])->name('users.show.me');
