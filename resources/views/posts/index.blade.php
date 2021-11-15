@@ -50,25 +50,7 @@
                     </button>
                 </div>
 
-                <div id={{ 'comments_' . $post->id }} name="scrollable_comments"
-                    class="overflow-scroll transition-all duration-500 ease-in-out max-h-0 bg-gray-100 pb-0 mb-0">
-
-                    <div v-for="comment in commentList[{{ $post->id }}]"
-                        class="m-5 rounded-xl shadow-md overflow-hidden bg-white px-5 py-2">
-
-                        <span class="block font-semibold border-b border-bg-gray-400 mb-1.5">
-                            @{{ comment . user . first_name }}
-                            @{{ comment . user . surname }}
-                            <span class="float-right font-thin">
-                                @{{ comment . updated_at }}
-                            </span>
-                        </span>
-
-                        <p class="whitespace-pre-line">@{{ comment . content }}</p>
-
-                    </div>
-
-                </div>
+                <x-comment-section :post="$post"></x-comment-section>
 
                 <div class="bg-white items-center">
                     <textarea
