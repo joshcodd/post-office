@@ -81,9 +81,9 @@
             </div>
         </a>
 
-        <a href="">
-            <div class="hoverSplitContainer font-nunito hover:bg-spotify text-sm px-7 py-5 {{ request()->is('users/me') ? 'active' : '' }}"
-                href=" {{ route('users.show.me') }}">
+        <a href="{{ route('users.show.me') }}">
+            <div
+                class="hoverSplitContainer font-nunito hover:bg-spotify text-sm px-7 py-5 {{ request()->is('users/me') ? 'active' : '' }}">
                 <div class="topHalf font-nunito">Profile</div>
                 <div class="bottomHalf font-nunito">Profile</div>
             </div>
