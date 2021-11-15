@@ -17,12 +17,8 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    if (Auth::check()) {
-        return redirect()->route('posts.index');
-    } else {
-        return view('auth.login');
-    }
-})->name('home');
+    return view('auth.login');
+})->middleware(['guest'])->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
