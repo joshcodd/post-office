@@ -32,9 +32,9 @@ Route::get('posts/create', [PostController::class, 'create'])->middleware(['auth
 
 Route::get('posts/{id}', [PostController::class, 'show'])->middleware(['auth'])->name('posts.show');
 
-Route::put('posts/{id}', [PostController::class, 'update'])->middleware(['auth', 'owner'])->name('posts.update');
+Route::put('posts/{id}', [PostController::class, 'update'])->middleware(['auth', 'post.owner'])->name('posts.update');
 
-Route::get('posts/{id}/edit', [PostController::class, 'edit'])->middleware(['auth', 'owner'])->name('posts.edit');
+Route::get('posts/{id}/edit', [PostController::class, 'edit'])->middleware(['auth', 'post.owner'])->name('posts.edit');
 
 Route::get('users/me', [UserController::class, 'showMyProfile'])->middleware(['auth'])->name('users.show.me');
 
