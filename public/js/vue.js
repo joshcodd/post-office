@@ -57,6 +57,30 @@ let app = new Vue({
             input_area.value = comment_content.innerHTML;
         },
 
+        handleCommentDeleteClick: function (comment_id) {
+            axios
+                .delete(`${config.routes.comments_delete}/${comment_id}`, {
+                    headers: {
+                        "Content-type": "application/json",
+                        Authorization: `Bearer ${config.token}`,
+                    },
+                })
+                .then((response) => {
+                    const post_id = response.data.post_id;
+                    const filtered_post = this.commentList[post_id].filter(
+                        (comment) => {
+                            return comment.id !== comment_id;
+                        }
+                    );
+                    this.$set(this.commentList, post_id, filtered_post);
+                })
+                .catch((error) => {
+                    if (error.response) {
+                        console.log(error.response);
+                    }
+                });
+        },
+
         addComment: function (post_id) {
             axios
                 .post(config.routes.comments_store, {
@@ -75,7 +99,10 @@ let app = new Vue({
                         `comment_count_${response.data.post_id}`
                     );
                     count.innerHTML = parseInt(count.innerHTML) + 1;
-                    this.scrollCommentsBottom();
+
+                    this.$nextTick(function () {
+                        this.scrollCommentsBottom();
+                    });
                 })
                 .catch((response) => {
                     console.log(response);
@@ -112,6 +139,24 @@ let app = new Vue({
                         alert(response.message);
                     }
                 });
+        },
+
+        handleCommentBtnClick: function (id) {
+            // Hide and Show comments.
+            const comments = document.querySelector("#comments_" + id);
+            comments.classList.toggle("max-h-0");
+            comments.classList.toggle("max-h-96");
+
+            // Fill icon on click.
+            const comment_btn_clear = document.querySelector(
+                "#comment_btn_clear_" + id
+            );
+            const comment_btn_fill = document.querySelector(
+                "#comment_btn_fill_" + id
+            );
+            comment_btn_clear.classList.toggle("invisible");
+            comment_btn_fill.classList.toggle("invisible");
+            this.scrollCommentsBottom();
         },
     },
 });
