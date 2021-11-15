@@ -20,8 +20,7 @@
                     </span>
 
                     <div class="inline relative bottom-0.5">
-                        <button v-if="comment.user.id == {{ Auth::User()->id }}"
-                            @click="handleCommentEditClick(comment . id)"
+                        <button @click="handleCommentEditClick(comment . id)"
                             class="rounded-full ml-2 px-1.5 py-0.1  text-xs font-semibold  border  text-black border-black top-0 hover:bg-gray-700 hover:text-white">Edit
                         </button>
                     </div>
@@ -33,8 +32,7 @@
                 @{{ comment . user . surname }}
 
                 <div class="float-right inline relative bottom-0.5">
-                    <button v-if="comment.user.id == {{ Auth::User()->id }}"
-                        @click="handleCommentEditClick(comment . id)"
+                    <button @click="handleCommentEditClick(comment . id)"
                         class="rounded-full ml-2 px-1.5 py-0.1  text-xs font-semibold  border  text-black border-black top-0 hover:bg-gray-700 hover:text-white">Edit
                     </button>
                 </div>
@@ -46,8 +44,7 @@
         @endif
 
         <p :id="'comments_content_'+comment.id" class="w-full
-        break-all whitespace-pre-line">
-            @{{ comment . content }}</p>
+        break-all whitespace-pre-line">@{{ comment . content }}</p>
 
         <div :id="'comments_edit_containter_' + comment.id" class="hidden">
             <textarea :id="'comments_edit_text_' + comment.id"
@@ -63,4 +60,16 @@
         </div>
 
     </div>
+</div>
+
+<div class="flex items-center {{ $isbubblestyle ? 'px-4 py-4' : ' py-5' }}">
+    <textarea
+        class="form-textarea flex-grow border border-gray-400 outline-none rounded resize-none focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
+        rows="1" placeholder="Write a comment ..." v-model="commentContentText"></textarea>
+
+    <button
+        class="border rounded px-3 py-1 ml-3 text-sm font-semibold text-black border-black hover:bg-gray-700 hover:text-white"
+        @click="addComment({{ $post->id }})">
+        Post
+    </button>
 </div>

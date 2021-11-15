@@ -48,16 +48,6 @@
 
             <x-comment-section :post="$post" :isclosed="false" :isbubblestyle="false"></x-comment-section>
 
-            <div class="bg-white items-center mt-5 mb-20">
-                <textarea oninput='this.style.height = this.scrollHeight + "px"'
-                    class=" form-textarea w-full sm:w-3/4 lg:w-4/5  border border-gray-400 outline-none rounded  focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
-                    rows="1" placeholder="Write a comment ..." v-model="commentContentText"></textarea>
-
-                <button
-                    class="border  block   md:ml-0 sm:inline sm:float-right rounded px-5 py-2.5 text-sm font-semibold text-black border-black  hover:bg-gray-700 hover:text-white"
-                    @click="addComment({{ $post->id }})">Post
-                </button>
-            </div>
         </div>
 
     </div>
