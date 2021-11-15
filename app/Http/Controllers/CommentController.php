@@ -24,7 +24,6 @@ class CommentController extends Controller
         return $comment;
     }
 
-
     public function apiStore(Request $request)
     {
         $validator = Validator::make([$request['content']], ['required']);
@@ -46,6 +45,13 @@ class CommentController extends Controller
     {
         $comments = Comment::get()->load('user');
         return $comments;
+    }
+
+    public function apiDestroy($id)
+    {
+        $comment = Comment::findOrFail($id);
+        $comment->delete();
+        return $comment->load('user');
     }
 
     /**

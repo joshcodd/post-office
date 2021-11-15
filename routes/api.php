@@ -23,4 +23,6 @@ Route::middleware('auth:sanctum')->post('comments', [CommentController::class, '
 
 Route::middleware('auth:sanctum', 'comment.owner')->put('comments/{id}', [CommentController::class, 'apiUpdate'])->name('api.comments.update');
 
+Route::middleware('auth:sanctum', 'comment.owner')->delete('comments/{id}', [CommentController::class, 'apiDestroy'])->name('api.comments.destroy');
+
 Route::get('comments', [CommentController::class, 'apiIndex'])->name('api.comments.index');
