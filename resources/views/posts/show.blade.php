@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="grid justify-items-center">
-        <div class="w-2/4 m-5 rounded-xl ">
+        <div class="sm:w-2/3 md:w-1/2 m-5 rounded-xl ">
             <div class="font-garamond font-bold mb-2 text-5xl">
                 {{ $post->title }}
             </div>

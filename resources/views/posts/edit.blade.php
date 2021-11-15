@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="grid justify-items-center">
-        <div class=" md:w-1/2 m-5 rounded-xl ">
+        <div class="sm:w-2/3 md:w-1/2 m-5 rounded-xl ">
             <form method="POST" action="{{ route('posts.update', ['id' => $post->id]) }}">
                 @method('PUT')
                 @csrf
@@ -43,13 +43,13 @@
                     form-textarea w-full border border-gray-400 outline-none rounded  focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
                     rows="5" placeholder="Write post content ..." name="content">{{ $post->content }}</textarea>
 
-                <div class="bg-white  items-center mt-5 mb-20">
+                <div class="bg-white inline items-center mt-5 mb-20 float-right">
                     <button type="submit" value="submit"
-                        class="border inline-block  ml-5 sm:inline sm:float-right rounded px-5 py-2.5 text-sm font-semibold text-black border-black  hover:bg-gray-700 hover:text-white">Post
+                        class="border  ml-5 rounded px-5 py-2.5 text-sm font-semibold text-black border-black  hover:bg-gray-700 hover:text-white">Post
                     </button>
 
                     <a href="{{ url()->previous() }}"
-                        class="border inline-block  md:ml-0 sm:inline sm:float-right rounded px-5 py-2.5 text-sm font-semibold text-black border-black  hover:bg-gray-700 hover:text-white">Cancel
+                        class="border rounded ml-2 px-5 py-2.5 text-sm font-semibold text-black border-black  hover:bg-gray-700 hover:text-white">Cancel
                     </a>
                 </div>
 
