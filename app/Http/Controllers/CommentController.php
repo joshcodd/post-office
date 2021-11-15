@@ -10,7 +10,7 @@ class CommentController extends Controller
 {
     public function apiUpdate(Request $request, $id)
     {
-        $comment = Comment::findOrFail($request['id']);
+        $comment = Comment::findOrFail($id);
         $comment->content = $request['content'];
         $comment->save();
         return $comment;
@@ -24,12 +24,12 @@ class CommentController extends Controller
         $comment->user_id = Auth::User()->id;
         $comment->content = $request['content'];
         $comment->save();
-        return $comment;
+        return $comment->load('user');
     }
 
     public function apiIndex()
     {
-        $comments = Comment::get();
+        $comments = Comment::get()->load('user');
         return $comments;
     }
 
