@@ -102,8 +102,13 @@ let app = new Vue({
                         this.commentEditText[comment_id];
                     this.handleCommentEditClick(comment_id);
                 })
-                .catch((response) => {
-                    console.log(response);
+                .catch((error) => {
+                    // Last resort -> should never run.
+                    if (error.response) {
+                        const response = error.response.data;
+                        window.location.href = response.redirect;
+                        alert(response.message);
+                    }
                 });
         },
     },
