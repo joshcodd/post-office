@@ -63,6 +63,7 @@
         routes: {
             comments_index: "{{ route('api.comments.index') }}",
             comments_store: "{{ route('api.comments.store') }}",
+            comments_update: "{{ route('api.comments.update', ['']) }}",
             create_token: "{{ route('users.create.token') }}"
         }
     };
