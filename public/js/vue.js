@@ -24,20 +24,21 @@ let app = new Vue({
             .catch((response) => {
                 console.log(response);
             });
-    },
 
-    updated() {
-        this.$nextTick(function () {
-            const comment_scrolls = document.getElementsByName(
-                "scrollable_comments"
-            );
-            for (let i = 0; i < comment_scrolls.length; i++) {
-                comment_scrolls[i].scrollTop = comment_scrolls[i].scrollHeight;
-            }
-        });
+        this.scrollCommentsBottom();
     },
 
     methods: {
+        scrollCommentsBottom: function () {
+            const comment_scrolls = document.getElementsByName(
+                "scrollable_comments"
+            );
+
+            for (let i = 0; i < comment_scrolls.length; i++) {
+                comment_scrolls[i].scrollTop = comment_scrolls[i].scrollHeight;
+            }
+        },
+
         handleCommentEditClick: function (comment_id) {
             let input_area = document.getElementById(
                 "comments_edit_text_" + comment_id
@@ -74,6 +75,7 @@ let app = new Vue({
                         `comment_count_${response.data.post_id}`
                     );
                     count.innerHTML = parseInt(count.innerHTML) + 1;
+                    this.scrollCommentsBottom();
                 })
                 .catch((response) => {
                     console.log(response);
