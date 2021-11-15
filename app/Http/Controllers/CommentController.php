@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
+    public function apiUpdate(Request $request, $id)
+    {
+        $comment = Comment::findOrFail($request['id']);
+        $comment->content = $request['content'];
+        $comment->save();
+        return $comment;
+    }
 
 
     public function apiStore(Request $request)
@@ -17,12 +24,12 @@ class CommentController extends Controller
         $comment->user_id = Auth::User()->id;
         $comment->content = $request['content'];
         $comment->save();
-        return $comment->load('user');
+        return $comment;
     }
 
     public function apiIndex()
     {
-        $comments = Comment::get()->load('user');
+        $comments = Comment::get();
         return $comments;
     }
 
