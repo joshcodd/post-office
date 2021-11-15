@@ -18,8 +18,19 @@
                 </div>
 
                 @if (Auth::User()->id == $post->user->id)
-                    <a class="mt-0.5 float-right rounded-full px-3 py-1 text-xs font-semibold border text-black border-black  hover:bg-gray-700 hover:text-white"
-                        href="{{ route('posts.edit', ['id' => $post->id]) }}">Edit post</a>
+                    <div class="float-right mt-0.5 ">
+                        <button type="submit" value="submit"
+                            class="rounded-full px-3 py-1 text-xs font-semibold border text-spotify border-spotify  hover:bg-spotify hover:text-white inline-block"
+                            onclick="toggleHidden('del_confirm_post')">Delete
+                            post
+                        </button>
+
+                        <x-delete-confirm id="del_confirm_post" :route="route('posts.destroy', $post->id)">
+                        </x-delete-confirm>
+
+                        <a class="rounded-full px-3 py-1 text-xs font-semibold border text-black border-black hover:bg-gray-700 hover:text-white"
+                            href="{{ route('posts.edit', ['id' => $post->id]) }}">Edit post</a>
+                    </div>
                 @endif
             </div>
 
