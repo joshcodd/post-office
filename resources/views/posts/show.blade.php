@@ -43,7 +43,7 @@
                 <div id={{ 'comment_count_' . $post->id }} class=" float-right mt-1 ml-2 ">
                     {{ $post->comments->count() }}
                 </div>
-                <button id={{ 'comment_btn_' . $post->id }} @click="handleCommentBtnClick($post->id)"
+                <button id={{ 'comment_btn_' . $post->id }} v-on:click="handleCommentBtnClick({{ $post->id }})"
                     class="group  mt-1 mb-2 inline-block float-right">
                     <svg xmlns=" http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
                         <path fill="#404040"
