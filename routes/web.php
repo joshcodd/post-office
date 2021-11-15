@@ -24,21 +24,21 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('posts', [PostController::class, 'index'])->middleware(['auth'])->middleware(['auth'])->name('posts.index');
+Route::get('posts', [PostController::class, 'index'])->middleware(['auth'])->name('posts.index');
 
-Route::post('posts', [PostController::class, 'store'])->middleware(['auth'])->middleware(['auth'])->name('posts.store');
+Route::post('posts', [PostController::class, 'store'])->middleware(['auth'])->name('posts.store');
 
-Route::get('posts/create', [PostController::class, 'create'])->middleware(['auth'])->middleware(['auth'])->name('posts.create');
+Route::get('posts/create', [PostController::class, 'create'])->middleware(['auth'])->name('posts.create');
 
-Route::get('posts/{id}', [PostController::class, 'show'])->middleware(['auth'])->middleware(['auth'])->name('posts.show');
+Route::get('posts/{id}', [PostController::class, 'show'])->middleware(['auth'])->name('posts.show');
 
-Route::put('posts/{id}', [PostController::class, 'update'])->middleware(['auth'])->middleware(['auth', 'owner'])->name('posts.update');
+Route::put('posts/{id}', [PostController::class, 'update'])->middleware(['auth', 'owner'])->name('posts.update');
 
 Route::get('posts/{id}/edit', [PostController::class, 'edit'])->middleware(['auth', 'owner'])->name('posts.edit');
 
 Route::get('users/me', [UserController::class, 'showMyProfile'])->middleware(['auth'])->name('users.show.me');
 
-Route::get('users/{id}', [UserController::class, 'show'])->middleware(['auth'])->middleware(['auth'])->name('users.show');
+Route::get('users/{id}', [UserController::class, 'show'])->middleware(['auth'])->name('users.show');
 
 Route::post('user/create-token', [UserController::class, 'generateToken'])->middleware(['auth'])->name('users.create.token');
 
