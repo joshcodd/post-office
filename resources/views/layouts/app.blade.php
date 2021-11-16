@@ -19,19 +19,21 @@
     <div id="app">
         @include('layouts.navigation')
 
-        @if (session('message'))
-            <div class="border-b border-gray-400 p-2 block text-center bg-gray-100 z-50">
-                <p class="inline text-center"> {{ session('message') }}</p>
-                <button class=" relative right-5 float-right inline" onclick="hideParent(this)">x</button>
-            </div>
-        @endif
+        <div class="fixed top-20 pt-2 w-full z-30">
+            @if (session('message'))
+                <div class="border-b border-gray-400 p-2 block text-center bg-gray-100">
+                    <p class="inline text-center"> {{ session('message') }}</p>
+                    <button class=" relative right-5 float-right inline" onclick="hideParent(this)">x</button>
+                </div>
+            @endif
 
-        @foreach ($errors->all() as $error)
-            <div class="border-b border-gray-400 p-2 block text-center bg-gray-100 z-50">
-                <p class="inline text-center text-spotify"> {{ $error }}</p>
-                <button class="relative right-5 float-right inline" onclick="hideParent(this)">x</button>
-            </div>
-        @endforeach
+            @foreach ($errors->all() as $error)
+                <div class="border-b border-gray-400 p-2 block text-center bg-gray-100">
+                    <p class="inline text-center text-spotify"> {{ $error }}</p>
+                    <button class="relative right-5 float-right inline" onclick="hideParent(this)">x</button>
+                </div>
+            @endforeach
+        </div>
 
         <div class="min-h-screen" id="root">
             <div>
