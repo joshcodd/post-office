@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <div
-      :id="'comments_' + post.id"
+      :id="`comments_${post.id}`"
       name="scrollable_comments"
       class="
         overflow-scroll
@@ -15,9 +15,25 @@
         isBubbleStyle ? '' : 'border-t border-b border-bg-gray-400',
       ]"
     >
+      <div class="sticky top-0 z-50">
+        <div
+          v-for="(message, index) in errorMessages"
+          :key="`message_${index}`"
+          class="bg-gray-50 z-50 block p-2 text-center border-b border-gray-400"
+        >
+          <p class="text-spotify inline">{{ message }}</p>
+          <button
+            class="right-3 relative inline float-right"
+            onclick="hideParent(this)"
+          >
+            x
+          </button>
+        </div>
+      </div>
+
       <div
         v-for="comment in commentList[post.id]"
-        :key="comment.id"
+        :key="`cmnt_${comment.id}`"
         class="overflow-hidden bg-white"
         :class="[
           isBubbleStyle
@@ -41,7 +57,7 @@
             >
               <round-button
                 :click-func="() => handleCommentEditClick(comment.id)"
-                class="ml-2 px-1.5 py-0.1"
+                class="z-10 ml-2 px-1.5 py-0.1"
               >
                 Edit
               </round-button>
@@ -49,6 +65,7 @@
               <round-button
                 :click-func="() => toggleHidden(comment.id)"
                 class="
+                  z-10
                   ml-1
                   px-1.5
                   py-0.1
@@ -98,14 +115,14 @@
         </span>
 
         <p
-          :id="'comments_content_' + comment.id"
+          :id="`comments_content_${comment.id}`"
           class="w-full break-all whitespace-pre-line"
         >{{ comment.content }}
         </p>
 
-        <div :id="'comments_edit_containter_' + comment.id" class="hidden">
+        <div :id="`comments_edit_containter_${comment.id}`" class="hidden">
           <textarea
-            :id="'comments_edit_text_' + comment.id"
+            :id="`comments_edit_text_${comment.id}`"
             class="
               text-s
               w-full
@@ -206,6 +223,7 @@ export default {
       commentEditText: [],
       isConfirmOpen: false,
       openCommentID: 0,
+      errorMessages: [],
     };
   },
 
@@ -217,18 +235,17 @@ export default {
         for (let i = 0; i < response.data.length; i++) {
           const current_post_id = response.data[i].post_id;
           if (this.commentList[current_post_id] == undefined) {
-            this.commentList[current_post_id] = response.data.filter(function (
-              comment
-            ) {
-              return comment.post_id === current_post_id;
-            });
+            this.commentList[current_post_id] = response.data.filter(
+              (comment) => {
+                return comment.post_id === current_post_id;
+              }
+            );
           }
         }
       })
       .catch((response) => {
         console.log(response);
       });
-
     common.scrollCommentsBottom();
   },
 
@@ -239,18 +256,15 @@ export default {
     },
 
     handleCommentEditClick: function (comment_id) {
-      let input_area = document.getElementById(
+      const input_area = document.getElementById(
         "comments_edit_text_" + comment_id
       );
-
-      let comment_content = document.getElementById(
+      const comment_content = document.getElementById(
         "comments_content_" + comment_id
       );
-
-      let comment_edit_container = document.getElementById(
+      const comment_edit_container = document.getElementById(
         "comments_edit_containter_" + comment_id
       );
-
       comment_content.classList.toggle("hidden");
       comment_edit_container.classList.toggle("hidden");
       input_area.value = comment_content.innerHTML;
@@ -305,14 +319,21 @@ export default {
             `comment_count_${response.data.post_id}`
           );
           count.innerHTML = parseInt(count.innerHTML) + 1;
-
           this.$nextTick(function () {
             common.scrollCommentsBottom();
           });
         })
-        .catch((response) => {
-          console.log(response);
+        .catch((error) => {
+          if (error.response) {
+            this.flashMessages(error.response.data.messages);
+          }
         });
+    },
+
+    flashMessages: function (messages) {
+      messages.forEach((element) => {
+        this.errorMessages.push(element);
+      });
     },
 
     editComment: function (comment_id) {
@@ -339,9 +360,7 @@ export default {
         .catch((error) => {
           // Last resort -> should never run.
           if (error.response) {
-            const response = error.response.data;
-            window.location.href = response.redirect;
-            alert(response.message);
+            this.flashMessages(error.response.data.messages);
           }
         });
     },
