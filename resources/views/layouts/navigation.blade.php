@@ -45,7 +45,7 @@
 
         <!-- Ham burger menu button -->
         <div class="flex md:hidden">
-            <button class="ham-burger">
+            <button onclick="handleHamBurgerClick()" id="ham-burger" class="ham-burger">
                 {{-- reference: https://codepen.io/duaneblake/pen/bGEgJZL --}}
                 <svg x-show="!showMenu" class="w-7 h-7 text-gray-600 hover:text-spotify" fill="none"
                     stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
@@ -56,7 +56,7 @@
         </div>
     </div>
 
-    <div class="hidden mobile-menu">
+    <div id="mobile-menu" class="hidden mobile-menu">
         <a href="{{ route('posts.index') }}">
             <div
                 class="hoverSplitContainer font-nunito hover:bg-spotify text-sm px-7 py-5 

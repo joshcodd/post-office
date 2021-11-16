@@ -1,8 +1,9 @@
-const ham_burger = document.querySelector("button.ham-burger");
-const mobile_menu = document.querySelector(".mobile-menu");
-ham_burger.addEventListener("click", () => {
+
+function handleHamBurgerClick() {
+    let mobile_menu = document.getElementById("mobile-menu");
+    console.log(mobile_menu);
     mobile_menu.classList.toggle("hidden");
-});
+}
 
 const titles = [
     "postoffice",
