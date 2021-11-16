@@ -4530,9 +4530,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -23027,7 +23024,7 @@ var render = function () {
     "div",
     {
       staticClass:
-        "\n    bg-opacity-70\n    fixed\n    top-0\n    bottom-0\n    left-0\n    right-0\n    z-50\n    w-full\n    h-full\n    bg-white\n  ",
+        "\n    bg-opacity-70fixed\n    top-0\n    bottom-0\n    left-0\n    right-0\n    z-50\n    w-full\n    h-full\n    bg-white\n  ",
       class: _vm.isVisible ? "" : "hidden",
     },
     [
@@ -23035,7 +23032,7 @@ var render = function () {
         "div",
         {
           staticClass:
-            "\n      fixed\n      left-1/2\n      transform\n      -translate-x-1/2\n      top-1/2\n      transform\n      -translate-y-1/2\n      rounded-2xl\n      shadow-md\n      overflow-hidden\n      p-7\n      text-center\n      bg-white\n      opacity-100\n    ",
+            "\n      left-1/2\n      top-1/2\n      rounded-2xl\n      p-7\n      fixed\n      overflow-hidden\n      text-center\n      transform\n      -translate-x-1/2 -translate-y-1/2\n      bg-white\n      shadow-md\n      opacity-100\n    ",
         },
         [
           _c("div", { staticClass: "block pb-3" }, [_vm._v("Are you sure?")]),

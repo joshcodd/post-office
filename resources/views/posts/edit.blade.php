@@ -5,7 +5,7 @@
 @section('content')
     <div class="grid justify-items-center">
         <div class="sm:w-2/3 md:w-1/2 m-5 rounded-xl ">
-            <form method="POST" action="{{ route('posts.update', ['id' => $post->id]) }}">
+            <form method="POST" action="{{ route('posts.update', ['post' => $post->id]) }}">
                 @method('PUT')
                 @csrf
 

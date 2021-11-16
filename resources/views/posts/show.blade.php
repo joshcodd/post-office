@@ -10,7 +10,7 @@
             </div>
 
             <div class="w-full font-semibold mb-2 text-xl inline-block">
-                <a href="{{ route('users.show', ['id' => $post->user->id]) }}" class="hover:underline">
+                <a href="{{ route('users.show', ['user' => $post->user->id]) }}" class="hover:underline">
                     {{ $post->user->first_name }}
                     {{ $post->user->surname }}</a>
                 <div class="font-thin ml-5 text-base inline-block">
@@ -24,7 +24,7 @@
                         </delete-confirm-state>
                         <a class="
                             rounded-full px-3 py-1 text-xs font-semibold border text-black border-black hover:bg-gray-700 hover:text-white"
-                            href="{{ route('posts.edit', ['id' => $post->id]) }}">Edit post</a>
+                            href="{{ route('posts.edit', ['post' => $post->id]) }}">Edit post</a>
                     </div>
                 @endif
             </div>

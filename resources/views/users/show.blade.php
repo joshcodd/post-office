@@ -31,13 +31,13 @@
                     <div class="flex px-4 pt-2 pb-2">
 
                         <div class="flex-grow">
-                            <a href="{{ route('posts.show', ['id' => $post->id]) }}"
+                            <a href="{{ route('posts.show', ['post' => $post->id]) }}"
                                 class="float-left rounded-full px-2 py-1 text-xs font-semibold mr-2 mb-2 border  text-black border-black  hover:bg-gray-700 hover:text-white">View
                                 post
                             </a>
 
                             @if (Auth::User()->id == $post->user->id)
-                                <a href="{{ route('posts.edit', ['id' => $post->id]) }}"
+                                <a href="{{ route('posts.edit', ['post' => $post->id]) }}"
                                     class="float-left rounded-full px-2 py-1 text-xs font-semibold mr-2 mb-2 border  text-black border-black  hover:bg-gray-700 hover:text-white">Edit
                                     post
                                 </a>

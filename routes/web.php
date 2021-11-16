@@ -30,20 +30,19 @@ Route::post('posts', [PostController::class, 'store'])->middleware(['auth'])->na
 
 Route::get('posts/create', [PostController::class, 'create'])->middleware(['auth'])->name('posts.create');
 
-Route::get('posts/{id}', [PostController::class, 'show'])->middleware(['auth'])->name('posts.show');
+Route::get('posts/{post}', [PostController::class, 'show'])->middleware(['auth'])->name('posts.show');
 
-Route::put('posts/{id}', [PostController::class, 'update'])->middleware(['auth', 'post.owner'])->name('posts.update');
+Route::put('posts/{post}', [PostController::class, 'update'])->middleware(['auth', 'post.owner'])->name('posts.update');
 
-Route::delete('posts/{id}', [PostController::class, 'destroy'])->middleware(['auth', 'post.owner'])->name('posts.destroy');
+Route::delete('posts/{post}', [PostController::class, 'destroy'])->middleware(['auth', 'post.owner'])->name('posts.destroy');
 
-Route::get('posts/{id}/edit', [PostController::class, 'edit'])->middleware(['auth', 'post.owner'])->name('posts.edit');
+Route::get('posts/{post}/edit', [PostController::class, 'edit'])->middleware(['auth', 'post.owner'])->name('posts.edit');
 
 Route::get('users/me', [UserController::class, 'showMyProfile'])->middleware(['auth'])->name('users.show.me');
 
-Route::get('users/{id}', [UserController::class, 'show'])->middleware(['auth'])->name('users.show');
+Route::get('users/{user}', [UserController::class, 'show'])->middleware(['auth'])->name('users.show');
 
 Route::post('user/create-token', [UserController::class, 'generateToken'])->middleware(['auth'])->name('users.create.token');
-
 
 
 require __DIR__ . '/auth.php';

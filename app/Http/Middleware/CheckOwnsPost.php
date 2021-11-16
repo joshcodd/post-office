@@ -19,8 +19,8 @@ class CheckOwnsPost
      */
     public function handle(Request $request, Closure $next)
     {
-        $post_author = Post::findOrFail($request->id)->user;
-        if (Auth::User()->id == $post_author->id) {
+        $post = $request->post;
+        if (Auth::User()->id == $post->user->id) {
             return $next($request);
         } else {
             $error_message = 'You do not have permission to perform this action.';

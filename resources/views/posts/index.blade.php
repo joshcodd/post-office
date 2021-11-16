@@ -14,7 +14,7 @@
                     <div class="font-bold mb-2 text-xl">
                         {{ $post->title }}
 
-                        <a href="{{ route('users.show', ['id' => $post->user->id]) }}"
+                        <a href="{{ route('users.show', ['user' => $post->user->id]) }}"
                             class="font-light mb-2 text-base whitespace-nowrap hover:underline">By
                             {{ $post->user->first_name }}
                             {{ $post->user->surname }}</a>
@@ -25,11 +25,11 @@
 
                 <div class="flow-root px-6 pt-4 pb-2">
                     <a class="float-left rounded-full px-4 py-2 text-sm font-semibold mr-2 mb-2 border  text-black border-black  hover:bg-gray-700 hover:text-white"
-                        href="{{ route('posts.show', ['id' => $post->id]) }}">View post</a>
+                        href="{{ route('posts.show', ['post' => $post->id]) }}">View post</a>
 
                     @if (Auth::User()->id == $post->user->id)
                         <a class="float-left rounded-full px-4 py-2 text-sm font-semibold mr-2 mb-2 border  text-black border-black  hover:bg-gray-700 hover:text-white"
-                            href="{{ route('posts.edit', ['id' => $post->id]) }}">Edit post</a>
+                            href="{{ route('posts.edit', ['post' => $post->id]) }}">Edit post</a>
                     @endif
 
                     <comment-button :post-id="{{ $post->id }}" :num-comments="{{ $post->comments->count() }}">
