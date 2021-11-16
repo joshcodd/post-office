@@ -14,7 +14,7 @@ class CommentController extends Controller
         $validator = Validator::make([$request['content']], ['required']);
         if ($validator->fails()) {
             return response()->json([
-                'messages' => $validator->errors,
+                'messages' => $validator->errors()->all(),
             ], 400);
         }
 
@@ -28,7 +28,7 @@ class CommentController extends Controller
         $validator = Validator::make([$request['content']], ['required']);
         if ($validator->fails()) {
             return response()->json([
-                'messages' => $validator->errors,
+                'messages' => $validator->errors()->all(),
             ], 400);
         }
 
