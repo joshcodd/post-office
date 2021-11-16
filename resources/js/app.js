@@ -15,6 +15,16 @@ Vue.component(
     require("./components/CommentSection.vue").default
 );
 
+Vue.component(
+    "round-button",
+    require("./components/RoundButton.vue").default
+);
+
+Vue.component(
+    "square-button",
+    require("./components/SquareButton.vue").default
+);
+
 const app = new Vue({
     el: "#app",
 });
