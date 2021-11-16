@@ -35,6 +35,11 @@ Vue.component(
     require("./components/SquareButton.vue").default
 );
 
+Vue.component(
+    "time-stamp",
+    require("./components/TimeStamp.vue").default
+);
+
 const app = new Vue({
     el: "#app",
 });
