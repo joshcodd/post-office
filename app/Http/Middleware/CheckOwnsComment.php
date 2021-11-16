@@ -19,7 +19,7 @@ class CheckOwnsComment
      */
     public function handle(Request $request, Closure $next)
     {
-        $comment_author = Comment::findOrFail($request->id)->user;
+        $comment_author = $request->comment->user;
         if (Auth::User()->id == $comment_author->id) {
             return $next($request);
         } else {

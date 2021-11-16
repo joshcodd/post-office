@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
 
 class CommentController extends Controller
 {
-    public function apiUpdate(Request $request, $id)
+    public function apiUpdate(Request $request, Comment $comment)
     {
         $validator = Validator::make([$request['content']], ['required']);
         if ($validator->fails()) {
@@ -18,7 +18,6 @@ class CommentController extends Controller
             ], 400);
         }
 
-        $comment = Comment::findOrFail($id);
         $comment->content = $request['content'];
         $comment->save();
         return $comment;
@@ -47,9 +46,8 @@ class CommentController extends Controller
         return $comments;
     }
 
-    public function apiDestroy($id)
+    public function apiDestroy(Comment $comment)
     {
-        $comment = Comment::findOrFail($id);
         $comment->delete();
         return $comment->load('user');
     }
