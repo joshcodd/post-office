@@ -16,45 +16,46 @@
 </head>
 
 <body class="font-sans antialiased">
-    @include('layouts.navigation')
+    <div id="app">
+        @include('layouts.navigation')
 
-    @if (session('message'))
-        <div class="border-b border-gray-400 p-2 block text-center bg-gray-100 z-50">
-            <p class="inline text-center"> {{ session('message') }}</p>
-            <button class=" relative right-5 float-right inline" onclick="hideParent(this)">x</button>
-        </div>
-    @endif
+        @if (session('message'))
+            <div class="border-b border-gray-400 p-2 block text-center bg-gray-100 z-50">
+                <p class="inline text-center"> {{ session('message') }}</p>
+                <button class=" relative right-5 float-right inline" onclick="hideParent(this)">x</button>
+            </div>
+        @endif
 
-    @foreach ($errors->all() as $error)
-        <div class="border-b border-gray-400 p-2 block text-center bg-gray-100 z-50">
-            <p class="inline text-center text-spotify"> {{ $error }}</p>
-            <button class=" relative right-5 float-right inline" onclick="hideParent(this)">x</button>
-        </div>
-    @endforeach
+        @foreach ($errors->all() as $error)
+            <div class="border-b border-gray-400 p-2 block text-center bg-gray-100 z-50">
+                <p class="inline text-center text-spotify"> {{ $error }}</p>
+                <button class="relative right-5 float-right inline" onclick="hideParent(this)">x</button>
+            </div>
+        @endforeach
 
-    <div class="min-h-screen" id="root">
-        <div>
-            @yield('content')
-        </div>
+        <div class="min-h-screen" id="root">
+            <div>
+                @yield('content')
+            </div>
 
-    </div>
-
-    <div class="bg-gray-100 pt-5 pb-8" id="root">
-        <div class="text-center text-xl">
-            🏣
-        </div>
-        <div class="font-nunito  text-sm text-gray-500 font-light text-center">
-            POSTOFFICE
         </div>
 
-        <div class="font-nunito  text-xs text-gray-500 font-light text-center">
-            Created by Josh Codd | {{ date('Y') }}
-        </div>
+        <div class="font-nunito text-gray-500 bg-gray-100 pt-5 pb-8 font-light " id="root">
+            <div class="text-center text-xl">
+                🏣
+            </div>
+            <div class="text-sm text-center">
+                POSTOFFICE
+            </div>
 
+            <div class="text-xs text-center">
+                Created by Josh Codd | {{ date('Y') }}
+            </div>
+
+        </div>
     </div>
 </body>
 
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
     // Routes for client side js.
@@ -78,6 +79,6 @@
 </script>
 <script src="{{ asset('js/global_functions.js') }}"></script>
 <script src="{{ asset('js/app_script.js') }}"></script>
-<script src="{{ asset('js/vue.js') }}"></script>
+<script src="{{ mix('/js/app.js') }}"></script>
 
 </html>
