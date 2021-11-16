@@ -14,12 +14,11 @@
                     <div class="font-bold mb-2 text-xl">
                         {{ $post->title }}
 
-                        <div class="block h-4">
-                            <a href="{{ route('users.show', ['user' => $post->user->id]) }}"
-                                class="inline font-light text-base whitespace-nowrap hover:underline leading-4">By
-                                {{ $post->user->first_name }}
-                                {{ $post->user->surname }}</a>
-                        </div>
+                        <a href="{{ route('users.show', ['user' => $post->user->id]) }}"
+                            class="block mt-1 font-normal text-base whitespace-nowrap hover:underline leading-4">By
+                            {{ $post->user->first_name }}
+                            {{ $post->user->surname }}</a>
+
                     </div>
 
                     <p class="text-base text-gray-600 whitespace-pre-line">{{ $post->content }}</p>
