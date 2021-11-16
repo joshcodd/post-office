@@ -17,7 +17,7 @@ class PostController extends Controller
     public function index()
     {
         $posts_per_page = 10;
-        $posts = Post::paginate($posts_per_page);
+        $posts = Post::orderBy('created_at', 'desc')->paginate($posts_per_page);
 
         $word_limit = 50;
         foreach ($posts as $post) {
