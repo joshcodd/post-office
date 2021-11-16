@@ -295,7 +295,11 @@ export default {
         })
         .then((response) => {
           // Add to comment list and increase comment count.
-          this.commentList[response.data.post_id].push(response.data);
+          if (this.commentList[response.data.post_id] == undefined) {
+            this.commentList[response.data.post_id] = [response.data];
+          } else {
+            this.commentList[response.data.post_id].push(response.data);
+          }
           this.commentContentText = "";
           let count = document.getElementById(
             `comment_count_${response.data.post_id}`

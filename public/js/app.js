@@ -4269,11 +4269,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -4383,7 +4378,11 @@ __webpack_require__.r(__webpack_exports__);
         content: this.commentContentText
       }).then(function (response) {
         // Add to comment list and increase comment count.
-        _this3.commentList[response.data.post_id].push(response.data);
+        if (_this3.commentList[response.data.post_id] == undefined) {
+          _this3.commentList[response.data.post_id] = [response.data];
+        } else {
+          _this3.commentList[response.data.post_id].push(response.data);
+        }
 
         _this3.commentContentText = "";
         var count = document.getElementById("comment_count_".concat(response.data.post_id));
@@ -22760,46 +22759,41 @@ var render = function () {
                           _vm._v(" " + _vm._s(comment.updated_at) + " "),
                         ]),
                         _vm._v(" "),
-                        comment.user.id == _vm.userId
-                          ? _c(
-                              "div",
+                        _c(
+                          "div",
+                          { staticClass: "inline relative bottom-0.5 text-xs" },
+                          [
+                            _c(
+                              "round-button",
+                              {
+                                staticClass: "ml-2 px-1.5 py-0.1",
+                                attrs: {
+                                  "click-func": function () {
+                                    return _vm.handleCommentEditClick(
+                                      comment.id
+                                    )
+                                  },
+                                },
+                              },
+                              [_vm._v("\n              Edit\n            ")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "round-button",
                               {
                                 staticClass:
-                                  "inline relative bottom-0.5 text-xs",
+                                  "\n                ml-1\n                px-1.5\n                py-0.1\n                text-spotify\n                border-spotify\n                hover:bg-spotify\n              ",
+                                attrs: {
+                                  "click-func": function () {
+                                    return _vm.toggleHidden(comment.id)
+                                  },
+                                },
                               },
-                              [
-                                _c(
-                                  "round-button",
-                                  {
-                                    staticClass: "ml-2 px-1.5 py-0.1",
-                                    attrs: {
-                                      "click-func": function () {
-                                        return _vm.handleCommentEditClick(
-                                          comment.id
-                                        )
-                                      },
-                                    },
-                                  },
-                                  [_vm._v("\n              Edit\n            ")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "round-button",
-                                  {
-                                    staticClass:
-                                      "\n                ml-1\n                px-1.5\n                py-0.1\n                text-spotify\n                border-spotify\n                hover:bg-spotify\n              ",
-                                    attrs: {
-                                      "click-func": function () {
-                                        return _vm.toggleHidden(comment.id)
-                                      },
-                                    },
-                                  },
-                                  [_vm._v("\n              X\n            ")]
-                                ),
-                              ],
-                              1
-                            )
-                          : _vm._e(),
+                              [_vm._v("\n              X\n            ")]
+                            ),
+                          ],
+                          1
+                        ),
                       ]),
                     ]
                   )
@@ -22811,46 +22805,39 @@ var render = function () {
                         _vm._s(comment.user.surname) +
                         "\n\n        "
                     ),
-                    comment.user.id == _vm.userId
-                      ? _c(
-                          "div",
+                    _c(
+                      "div",
+                      { staticClass: "float-right inline relative bottom-0.5" },
+                      [
+                        _c(
+                          "round-button",
+                          {
+                            staticClass: "mr-1 px-1.5 py-0.1 text-xs",
+                            attrs: {
+                              "click-func": function () {
+                                return _vm.handleCommentEditClick(comment.id)
+                              },
+                            },
+                          },
+                          [_vm._v("\n            Edit\n          ")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "round-button",
                           {
                             staticClass:
-                              "float-right inline relative bottom-0.5",
+                              "\n              px-1.5\n              py-0.1\n              text-spotify\n              border-spotify\n              hover:bg-spotify\n              text-xs\n            ",
+                            attrs: {
+                              "click-func": function () {
+                                return _vm.toggleHidden(comment.id)
+                              },
+                            },
                           },
-                          [
-                            _c(
-                              "round-button",
-                              {
-                                staticClass: "mr-1 px-1.5 py-0.1 text-xs",
-                                attrs: {
-                                  "click-func": function () {
-                                    return _vm.handleCommentEditClick(
-                                      comment.id
-                                    )
-                                  },
-                                },
-                              },
-                              [_vm._v("\n            Edit\n          ")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "round-button",
-                              {
-                                staticClass:
-                                  "\n              px-1.5\n              py-0.1\n              text-spotify\n              border-spotify\n              hover:bg-spotify\n              text-xs\n            ",
-                                attrs: {
-                                  "click-func": function () {
-                                    return _vm.toggleHidden(comment.id)
-                                  },
-                                },
-                              },
-                              [_vm._v("\n            X\n          ")]
-                            ),
-                          ],
-                          1
-                        )
-                      : _vm._e(),
+                          [_vm._v("\n            X\n          ")]
+                        ),
+                      ],
+                      1
+                    ),
                     _vm._v(" "),
                     _c("span", { staticClass: "block text-xs font-thin" }, [
                       _vm._v(
@@ -22867,7 +22854,7 @@ var render = function () {
                   staticClass: "w-full break-all whitespace-pre-line",
                   attrs: { id: "comments_content_" + comment.id },
                 },
-                [_vm._v(_vm._s(comment.content) + "\n      ")]
+                [_vm._v("\n        " + _vm._s(comment.content) + "\n      ")]
               ),
               _vm._v(" "),
               _c(
