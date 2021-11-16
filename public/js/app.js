@@ -4048,9 +4048,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["postId"],
+  props: {
+    postId: {
+      type: Number
+    },
+    numComments: {
+      type: Number
+    }
+  },
   methods: {
     handleCommentBtnClick: function handleCommentBtnClick(id) {
       // Hide and Show comments.
@@ -4081,6 +4094,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common */ "./resources/js/components/common.js");
+/* harmony import */ var _DeleteConfirm_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DeleteConfirm.vue */ "./resources/js/components/DeleteConfirm.vue");
+/* harmony import */ var _RoundButton_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./RoundButton.vue */ "./resources/js/components/RoundButton.vue");
+/* harmony import */ var _SquareButton_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SquareButton.vue */ "./resources/js/components/SquareButton.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4251,13 +4276,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
+
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["postobj", "userid", "isclosed"],
+  components: {
+    DeleteConfirm: _DeleteConfirm_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    RoundButton: _RoundButton_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    SquareButton: _SquareButton_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+  },
+  props: {
+    post: {
+      type: Object
+    },
+    userId: {
+      type: Number
+    },
+    isClosed: {
+      type: Boolean
+    },
+    isBubbleStyle: {
+      type: Boolean,
+      "default": true
+    }
+  },
   data: function data() {
     return {
       commentList: [],
       commentContentText: "",
-      commentEditText: []
+      commentEditText: [],
+      isConfirmOpen: false,
+      openCommentID: 0
     };
   },
   mounted: function mounted() {
@@ -4285,6 +4334,10 @@ __webpack_require__.r(__webpack_exports__);
     _common__WEBPACK_IMPORTED_MODULE_0__["default"].scrollCommentsBottom();
   },
   methods: {
+    toggleHidden: function toggleHidden(comment_id) {
+      this.openCommentID = comment_id;
+      this.isConfirmOpen = !this.isConfirmOpen;
+    },
     handleCommentEditClick: function handleCommentEditClick(comment_id) {
       var input_area = document.getElementById("comments_edit_text_" + comment_id);
       var comment_content = document.getElementById("comments_content_" + comment_id);
@@ -4309,6 +4362,10 @@ __webpack_require__.r(__webpack_exports__);
         });
 
         _this2.$set(_this2.commentList, post_id, filtered_post);
+
+        _this2.isConfirmOpen = false;
+        var count = document.getElementById("comment_count_".concat(response.data.post_id));
+        count.innerHTML = parseInt(count.innerHTML) - 1;
       })["catch"](function (error) {
         if (error.response) {
           console.log(error.response);
@@ -4373,6 +4430,290 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/DeleteConfirm.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/DeleteConfirm.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    isVisible: {
+      type: Boolean
+    },
+    route: {
+      type: String,
+      "default": ""
+    },
+    buttonLink: {
+      type: Function
+    },
+    toggleHidden: {
+      type: Function
+    },
+    token: {
+      type: String
+    }
+  },
+  data: function data() {
+    return {};
+  },
+  methods: {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/DeleteConfirmState.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/DeleteConfirmState.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    route: {
+      type: String,
+      "default": ""
+    },
+    token: {
+      type: String
+    }
+  },
+  data: function data() {
+    return {
+      isConfirmOpen: false
+    };
+  },
+  methods: {
+    toggleHidden: function toggleHidden() {
+      this.isConfirmOpen = !this.isConfirmOpen;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/RoundButton.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/RoundButton.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    clickFunc: {
+      type: Function
+    },
+    classStyle: {
+      type: String
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SquareButton.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SquareButton.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    clickFunc: {
+      type: Function
+    },
+    classStyle: {
+      type: String
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -4387,6 +4728,10 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js"
 
 Vue.component("comment-button", __webpack_require__(/*! ./components/CommentButton.vue */ "./resources/js/components/CommentButton.vue")["default"]);
 Vue.component("comment-section", __webpack_require__(/*! ./components/CommentSection.vue */ "./resources/js/components/CommentSection.vue")["default"]);
+Vue.component("delete-confirm", __webpack_require__(/*! ./components/DeleteConfirm.vue */ "./resources/js/components/DeleteConfirm.vue")["default"]);
+Vue.component("delete-confirm-state", __webpack_require__(/*! ./components/DeleteConfirmState.vue */ "./resources/js/components/DeleteConfirmState.vue")["default"]);
+Vue.component("round-button", __webpack_require__(/*! ./components/RoundButton.vue */ "./resources/js/components/RoundButton.vue")["default"]);
+Vue.component("square-button", __webpack_require__(/*! ./components/SquareButton.vue */ "./resources/js/components/SquareButton.vue")["default"]);
 var app = new Vue({
   el: "#app"
 });
@@ -21944,6 +22289,162 @@ component.options.__file = "resources/js/components/CommentSection.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/DeleteConfirm.vue":
+/*!***************************************************!*\
+  !*** ./resources/js/components/DeleteConfirm.vue ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _DeleteConfirm_vue_vue_type_template_id_0b091bba___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DeleteConfirm.vue?vue&type=template&id=0b091bba& */ "./resources/js/components/DeleteConfirm.vue?vue&type=template&id=0b091bba&");
+/* harmony import */ var _DeleteConfirm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DeleteConfirm.vue?vue&type=script&lang=js& */ "./resources/js/components/DeleteConfirm.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _DeleteConfirm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _DeleteConfirm_vue_vue_type_template_id_0b091bba___WEBPACK_IMPORTED_MODULE_0__.render,
+  _DeleteConfirm_vue_vue_type_template_id_0b091bba___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/DeleteConfirm.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/DeleteConfirmState.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/components/DeleteConfirmState.vue ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _DeleteConfirmState_vue_vue_type_template_id_5e38e2a7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DeleteConfirmState.vue?vue&type=template&id=5e38e2a7& */ "./resources/js/components/DeleteConfirmState.vue?vue&type=template&id=5e38e2a7&");
+/* harmony import */ var _DeleteConfirmState_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DeleteConfirmState.vue?vue&type=script&lang=js& */ "./resources/js/components/DeleteConfirmState.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _DeleteConfirmState_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _DeleteConfirmState_vue_vue_type_template_id_5e38e2a7___WEBPACK_IMPORTED_MODULE_0__.render,
+  _DeleteConfirmState_vue_vue_type_template_id_5e38e2a7___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/DeleteConfirmState.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/RoundButton.vue":
+/*!*************************************************!*\
+  !*** ./resources/js/components/RoundButton.vue ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _RoundButton_vue_vue_type_template_id_398ea576___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RoundButton.vue?vue&type=template&id=398ea576& */ "./resources/js/components/RoundButton.vue?vue&type=template&id=398ea576&");
+/* harmony import */ var _RoundButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RoundButton.vue?vue&type=script&lang=js& */ "./resources/js/components/RoundButton.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _RoundButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _RoundButton_vue_vue_type_template_id_398ea576___WEBPACK_IMPORTED_MODULE_0__.render,
+  _RoundButton_vue_vue_type_template_id_398ea576___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/RoundButton.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/SquareButton.vue":
+/*!**************************************************!*\
+  !*** ./resources/js/components/SquareButton.vue ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _SquareButton_vue_vue_type_template_id_8a9431cc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SquareButton.vue?vue&type=template&id=8a9431cc& */ "./resources/js/components/SquareButton.vue?vue&type=template&id=8a9431cc&");
+/* harmony import */ var _SquareButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SquareButton.vue?vue&type=script&lang=js& */ "./resources/js/components/SquareButton.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _SquareButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _SquareButton_vue_vue_type_template_id_8a9431cc___WEBPACK_IMPORTED_MODULE_0__.render,
+  _SquareButton_vue_vue_type_template_id_8a9431cc___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/SquareButton.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/CommentButton.vue?vue&type=script&lang=js&":
 /*!****************************************************************************!*\
   !*** ./resources/js/components/CommentButton.vue?vue&type=script&lang=js& ***!
@@ -21973,6 +22474,70 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CommentSection_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CommentSection.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CommentSection.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CommentSection_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/DeleteConfirm.vue?vue&type=script&lang=js&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/DeleteConfirm.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteConfirm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./DeleteConfirm.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/DeleteConfirm.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteConfirm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/DeleteConfirmState.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/DeleteConfirmState.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteConfirmState_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./DeleteConfirmState.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/DeleteConfirmState.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteConfirmState_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/RoundButton.vue?vue&type=script&lang=js&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/RoundButton.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RoundButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./RoundButton.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/RoundButton.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RoundButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/SquareButton.vue?vue&type=script&lang=js&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/SquareButton.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SquareButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./SquareButton.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SquareButton.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SquareButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -22010,6 +22575,74 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/DeleteConfirm.vue?vue&type=template&id=0b091bba&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/DeleteConfirm.vue?vue&type=template&id=0b091bba& ***!
+  \**********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteConfirm_vue_vue_type_template_id_0b091bba___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteConfirm_vue_vue_type_template_id_0b091bba___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteConfirm_vue_vue_type_template_id_0b091bba___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./DeleteConfirm.vue?vue&type=template&id=0b091bba& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/DeleteConfirm.vue?vue&type=template&id=0b091bba&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/DeleteConfirmState.vue?vue&type=template&id=5e38e2a7&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/DeleteConfirmState.vue?vue&type=template&id=5e38e2a7& ***!
+  \***************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteConfirmState_vue_vue_type_template_id_5e38e2a7___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteConfirmState_vue_vue_type_template_id_5e38e2a7___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteConfirmState_vue_vue_type_template_id_5e38e2a7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./DeleteConfirmState.vue?vue&type=template&id=5e38e2a7& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/DeleteConfirmState.vue?vue&type=template&id=5e38e2a7&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/RoundButton.vue?vue&type=template&id=398ea576&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/RoundButton.vue?vue&type=template&id=398ea576& ***!
+  \********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RoundButton_vue_vue_type_template_id_398ea576___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RoundButton_vue_vue_type_template_id_398ea576___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RoundButton_vue_vue_type_template_id_398ea576___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./RoundButton.vue?vue&type=template&id=398ea576& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/RoundButton.vue?vue&type=template&id=398ea576&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/SquareButton.vue?vue&type=template&id=8a9431cc&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/SquareButton.vue?vue&type=template&id=8a9431cc& ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SquareButton_vue_vue_type_template_id_8a9431cc___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SquareButton_vue_vue_type_template_id_8a9431cc___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SquareButton_vue_vue_type_template_id_8a9431cc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./SquareButton.vue?vue&type=template&id=8a9431cc& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SquareButton.vue?vue&type=template&id=8a9431cc&");
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CommentButton.vue?vue&type=template&id=6b640cd4&":
 /*!*************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CommentButton.vue?vue&type=template&id=6b640cd4& ***!
@@ -22026,46 +22659,57 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "button",
-    {
-      staticClass: "group mt-1 mb-2 inline-block float-right",
-      attrs: { id: "comment_btn_" + _vm.postId },
-      on: {
-        click: function ($event) {
-          return _vm.handleCommentBtnClick(_vm.postId)
+  return _c("div", [
+    _c(
+      "div",
+      {
+        staticClass: "float-right mt-1 ml-2",
+        attrs: { id: "comment_count_" + _vm.postId },
+      },
+      [_vm._v("\n    " + _vm._s(_vm.numComments) + "\n  ")]
+    ),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "group mt-1 mb-2 inline-block float-right",
+        attrs: { id: "comment_btn_" + _vm.postId },
+        on: {
+          click: function ($event) {
+            return _vm.handleCommentBtnClick(_vm.postId)
+          },
         },
       },
-    },
-    [
-      _c(
-        "svg",
-        {
-          staticClass: "text-gray-700",
-          attrs: { width: "30", height: "30", viewBox: "0 0 24 24" },
-        },
-        [
-          _c("path", {
-            staticClass: "invisible group-hover:visible",
-            attrs: {
-              fill: "#404040",
-              d: "M0 1v16.981h4v5.019l7-5.019h13v-16.981h-24zm13 12h-8v-1h8v1zm6-3h-14v-1h14v1zm0-3h-14v-1h14v1z",
-              id: "comment_btn_clear_" + _vm.postId,
-            },
-          }),
-          _vm._v(" "),
-          _c("path", {
-            staticClass: "visible group-hover:invisible",
-            attrs: {
-              fill: "#404040",
-              d: "M22 3v13h-11.643l-4.357 3.105v-3.105h-4v-13h20zm2-2h-24v16.981h4v5.019l7-5.019h13v-16.981zm-5 6h-14v-1h14v1zm0 2h-14v1h14v-1zm-6 3h-8v1h8v-1z",
-              id: "comment_btn_fill_" + _vm.postId,
-            },
-          }),
-        ]
-      ),
-    ]
-  )
+      [
+        _c(
+          "svg",
+          {
+            staticClass: "text-gray-700",
+            attrs: { width: "30", height: "30", viewBox: "0 0 24 24" },
+          },
+          [
+            _c("path", {
+              staticClass: "invisible group-hover:visible",
+              attrs: {
+                fill: "#404040",
+                d: "M0 1v16.981h4v5.019l7-5.019h13v-16.981h-24zm13 12h-8v-1h8v1zm6-3h-14v-1h14v1zm0-3h-14v-1h14v1z",
+                id: "comment_btn_clear_" + _vm.postId,
+              },
+            }),
+            _vm._v(" "),
+            _c("path", {
+              staticClass: "visible group-hover:invisible",
+              attrs: {
+                fill: "#404040",
+                d: "M22 3v13h-11.643l-4.357 3.105v-3.105h-4v-13h20zm2-2h-24v16.981h4v5.019l7-5.019h13v-16.981zm-5 6h-14v-1h14v1zm0 2h-14v1h14v-1zm-6 3h-8v1h8v-1z",
+                id: "comment_btn_fill_" + _vm.postId,
+              },
+            }),
+          ]
+        ),
+      ]
+    ),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -22090,188 +22734,515 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "div",
-      {
-        staticClass:
-          "\n      overflow-scroll\n      transition-all\n      duration-500\n      ease-in-out\n      bg-gray-100\n    ",
-        class: _vm.isclosed ? "max-h-0" : "max-h-96",
-        attrs: {
-          id: "comments_" + _vm.postobj.id,
-          name: "scrollable_comments",
+  return _c(
+    "div",
+    {},
+    [
+      _c(
+        "div",
+        {
+          staticClass:
+            "\n      overflow-scroll\n      transition-all\n      duration-500\n      ease-in-out\n      bg-gray-100\n    ",
+          class: [
+            _vm.isClosed ? "max-h-0" : "max-h-96",
+            _vm.isBubbleStyle ? "" : "border-t border-b border-bg-gray-400",
+          ],
+          attrs: { id: "comments_" + _vm.post.id, name: "scrollable_comments" },
         },
-      },
-      _vm._l(_vm.commentList[_vm.postobj.id], function (comment) {
-        return _c(
-          "div",
-          {
-            key: comment.id,
-            staticClass:
-              "overflow-hidden bg-white py-2 px-5 m-5 rounded-xl shadow-md",
-          },
-          [
-            _c(
-              "span",
-              {
-                staticClass:
-                  "block font-semibold border-b border-bg-gray-400 mb-1.5",
-              },
-              [
-                _vm._v(
-                  "\n        " +
-                    _vm._s(comment.user.first_name) +
-                    "\n        " +
-                    _vm._s(comment.user.surname) +
-                    "\n\n        "
-                ),
-                _c("div", { staticClass: "float-right" }, [
-                  _c("span", { staticClass: "inline font-thin" }, [
-                    _vm._v(" " + _vm._s(comment.updated_at) + " "),
-                  ]),
-                  _vm._v(" "),
-                  comment.user.id == _vm.userid
-                    ? _c("div", { staticClass: "inline relative bottom-0.5" }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass:
-                              "\n                rounded-full\n                ml-2\n                px-1.5\n                py-0.1\n                text-xs\n                font-semibold\n                border\n                text-black\n                border-black\n                top-0\n                hover:bg-gray-700 hover:text-white\n              ",
-                            on: {
-                              click: function ($event) {
-                                return _vm.handleCommentEditClick(comment.id)
-                              },
-                            },
-                          },
-                          [_vm._v("\n              Edit\n            ")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass:
-                              "\n                rounded-full\n                ml-1\n                px-1.5\n                py-0.1\n                text-xs\n                font-semibold\n                border\n                text-spotify\n                border-spotify\n                top-0\n                hover:bg-spotify hover:text-white\n              ",
-                            attrs: {
-                              onclick: "toggleHidden('del_confirm_comment')",
-                            },
-                          },
-                          [_vm._v("\n              X\n            ")]
-                        ),
-                      ])
-                    : _vm._e(),
-                ]),
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "p",
-              {
-                staticClass: "w-full break-all whitespace-pre-line",
-                attrs: { id: "comments_content_" + comment.id },
-              },
-              [_vm._v("\n        " + _vm._s(comment.content) + "\n      ")]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "hidden",
-                attrs: { id: "comments_edit_containter_" + comment.id },
-              },
-              [
-                _c("textarea", {
-                  directives: [
+        _vm._l(_vm.commentList[_vm.post.id], function (comment) {
+          return _c(
+            "div",
+            {
+              key: comment.id,
+              staticClass: "overflow-hidden bg-white",
+              class: [
+                _vm.isBubbleStyle
+                  ? "py-2 px-5 m-5 rounded-xl shadow-md"
+                  : "py-3 border-b border-bg-gray-400",
+              ],
+            },
+            [
+              _vm.isBubbleStyle
+                ? _c(
+                    "span",
                     {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.commentEditText[comment.id],
-                      expression: "commentEditText[comment.id]",
+                      staticClass:
+                        "block font-semibold border-b border-bg-gray-400 mb-1.5",
                     },
-                  ],
-                  staticClass:
-                    "\n            text-s\n            w-full\n            border border-gray-400\n            outline-none\n            rounded\n            resize-none\n            focus:outline-none\n            focus:ring-2\n            focus:ring-gray-400\n            focus:border-transparent\n            px-1.5\n            py-0.5\n          ",
-                  attrs: {
-                    id: "comments_edit_text_" + comment.id,
-                    oninput: "contentTextAreaResize(this)",
-                    rows: "1",
-                  },
-                  domProps: { value: _vm.commentEditText[comment.id] },
-                  on: {
-                    input: function ($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(
-                        _vm.commentEditText,
-                        comment.id,
-                        $event.target.value
-                      )
+                    [
+                      _vm._v(
+                        "\n        " +
+                          _vm._s(comment.user.first_name) +
+                          "\n        " +
+                          _vm._s(comment.user.surname) +
+                          "\n\n        "
+                      ),
+                      _c("div", { staticClass: "float-right" }, [
+                        _c("span", { staticClass: "inline font-thin" }, [
+                          _vm._v(" " + _vm._s(comment.updated_at) + " "),
+                        ]),
+                        _vm._v(" "),
+                        comment.user.id == _vm.userId
+                          ? _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "inline relative bottom-0.5 text-xs",
+                              },
+                              [
+                                _c(
+                                  "round-button",
+                                  {
+                                    staticClass: "ml-2 px-1.5 py-0.1",
+                                    attrs: {
+                                      "click-func": function () {
+                                        return _vm.handleCommentEditClick(
+                                          comment.id
+                                        )
+                                      },
+                                    },
+                                  },
+                                  [_vm._v("\n              Edit\n            ")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "round-button",
+                                  {
+                                    staticClass:
+                                      "\n                ml-1\n                px-1.5\n                py-0.1\n                text-spotify\n                border-spotify\n                hover:bg-spotify\n              ",
+                                    attrs: {
+                                      "click-func": function () {
+                                        return _vm.toggleHidden(comment.id)
+                                      },
+                                    },
+                                  },
+                                  [_vm._v("\n              X\n            ")]
+                                ),
+                              ],
+                              1
+                            )
+                          : _vm._e(),
+                      ]),
+                    ]
+                  )
+                : _c("span", { staticClass: "block font-semibold mb-1.5" }, [
+                    _vm._v(
+                      "\n        " +
+                        _vm._s(comment.user.first_name) +
+                        " " +
+                        _vm._s(comment.user.surname) +
+                        "\n\n        "
+                    ),
+                    comment.user.id == _vm.userId
+                      ? _c(
+                          "div",
+                          {
+                            staticClass:
+                              "float-right inline relative bottom-0.5",
+                          },
+                          [
+                            _c(
+                              "round-button",
+                              {
+                                staticClass: "mr-1 px-1.5 py-0.1 text-xs",
+                                attrs: {
+                                  "click-func": function () {
+                                    return _vm.handleCommentEditClick(
+                                      comment.id
+                                    )
+                                  },
+                                },
+                              },
+                              [_vm._v("\n            Edit\n          ")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "round-button",
+                              {
+                                staticClass:
+                                  "\n              px-1.5\n              py-0.1\n              text-spotify\n              border-spotify\n              hover:bg-spotify\n              text-xs\n            ",
+                                attrs: {
+                                  "click-func": function () {
+                                    return _vm.toggleHidden(comment.id)
+                                  },
+                                },
+                              },
+                              [_vm._v("\n            X\n          ")]
+                            ),
+                          ],
+                          1
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "block text-xs font-thin" }, [
+                      _vm._v(
+                        "\n          " +
+                          _vm._s(comment.updated_at) +
+                          "\n        "
+                      ),
+                    ]),
+                  ]),
+              _vm._v(" "),
+              _c(
+                "p",
+                {
+                  staticClass: "w-full break-all whitespace-pre-line",
+                  attrs: { id: "comments_content_" + comment.id },
+                },
+                [_vm._v("\n        " + _vm._s(comment.content) + "\n      ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "hidden",
+                  attrs: { id: "comments_edit_containter_" + comment.id },
+                },
+                [
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.commentEditText[comment.id],
+                        expression: "commentEditText[comment.id]",
+                      },
+                    ],
+                    staticClass:
+                      "\n            text-s\n            w-full\n            border border-gray-400\n            outline-none\n            rounded\n            resize-none\n            focus:outline-none\n            focus:ring-2\n            focus:ring-gray-400\n            focus:border-transparent\n            px-1.5\n            py-0.5\n          ",
+                    attrs: {
+                      id: "comments_edit_text_" + comment.id,
+                      oninput: "contentTextAreaResize(this)",
+                      rows: "1",
                     },
-                  },
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "float-right inline" }, [
+                    domProps: { value: _vm.commentEditText[comment.id] },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.commentEditText,
+                          comment.id,
+                          $event.target.value
+                        )
+                      },
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "inline float-right" },
+                    [
+                      _c(
+                        "square-button",
+                        {
+                          staticClass: "ml-2 px-1.5 py-0.3 text-sm",
+                          attrs: {
+                            "click-func": function () {
+                              return _vm.editComment(comment.id)
+                            },
+                          },
+                        },
+                        [_vm._v("\n            Save\n          ")]
+                      ),
+                    ],
+                    1
+                  ),
+                ]
+              ),
+            ]
+          )
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "flex items-center",
+          class: [_vm.isBubbleStyle ? "px-4 py-4" : " py-5"],
+        },
+        [
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.commentContentText,
+                expression: "commentContentText",
+              },
+            ],
+            staticClass:
+              "\n        form-textarea\n        focus:outline-none\n        focus:ring-2\n        focus:ring-gray-400\n        focus:border-transparent\n        flex-grow\n        border border-gray-400\n        rounded\n        outline-none\n        resize-none\n      ",
+            attrs: { rows: "1", placeholder: "Write a comment ..." },
+            domProps: { value: _vm.commentContentText },
+            on: {
+              input: function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.commentContentText = $event.target.value
+              },
+            },
+          }),
+          _vm._v(" "),
+          _c(
+            "square-button",
+            {
+              staticClass: "px-3 py-1 ml-3 text-sm",
+              attrs: {
+                "click-func": function () {
+                  return _vm.addComment(_vm.post.id)
+                },
+              },
+            },
+            [_vm._v("\n      Post\n    ")]
+          ),
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("delete-confirm", {
+        attrs: {
+          isVisible: _vm.isConfirmOpen,
+          buttonLink: function () {
+            return _vm.handleCommentDeleteClick(_vm.openCommentID)
+          },
+          toggleHidden: function () {
+            return _vm.toggleHidden(0)
+          },
+        },
+      }),
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/DeleteConfirm.vue?vue&type=template&id=0b091bba&":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/DeleteConfirm.vue?vue&type=template&id=0b091bba& ***!
+  \*************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass:
+        "\n    bg-opacity-70\n    fixed\n    top-0\n    bottom-0\n    left-0\n    right-0\n    z-50\n    w-full\n    h-full\n    bg-white\n  ",
+      class: _vm.isVisible ? "" : "hidden",
+    },
+    [
+      _c(
+        "div",
+        {
+          staticClass:
+            "\n      fixed\n      left-1/2\n      transform\n      -translate-x-1/2\n      top-1/2\n      transform\n      -translate-y-1/2\n      rounded-2xl\n      shadow-md\n      overflow-hidden\n      p-7\n      text-center\n      bg-white\n      opacity-100\n    ",
+        },
+        [
+          _c("div", { staticClass: "block pb-3" }, [_vm._v("Are you sure?")]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass:
+                "\n        mr-4\n        rounded-full\n        px-3.5\n        py-1\n        text-sm\n        font-semibold\n        border\n        text-black\n        border-black\n        hover:bg-black hover:text-white\n      ",
+              on: {
+                click: function ($event) {
+                  return _vm.toggleHidden()
+                },
+              },
+            },
+            [_vm._v("\n      Cancel\n    ")]
+          ),
+          _vm._v(" "),
+          _vm.route != ""
+            ? _c(
+                "form",
+                {
+                  staticClass: "inline-block",
+                  attrs: { method: "POST", action: "" + this.$props.route },
+                },
+                [
+                  _c("input", {
+                    attrs: { type: "hidden", name: "_token" },
+                    domProps: { value: _vm.token },
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: { type: "hidden", name: "_method", value: "DELETE" },
+                  }),
+                  _vm._v(" "),
                   _c(
                     "button",
                     {
                       staticClass:
-                        "\n              border\n              ml-2\n              rounded\n              px-1.5\n              py-0.3\n              text-sm\n              font-semibold\n              text-black\n              border-black\n              hover:bg-gray-700 hover:text-white\n            ",
-                      on: {
-                        click: function ($event) {
-                          return _vm.editComment(comment.id)
-                        },
-                      },
+                        "\n          rounded-full\n          px-3.5\n          py-1\n          text-sm\n          font-semibold\n          border\n          text-spotify\n          border-spotify\n          hover:bg-spotify hover:text-white\n        ",
+                      attrs: { type: "submit", value: "submit" },
                     },
-                    [_vm._v("\n            Save\n          ")]
+                    [_vm._v("\n        Delete\n      ")]
                   ),
-                ]),
-              ]
-            ),
-          ]
-        )
-      }),
-      0
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "flex items-center px-4 py-4" }, [
-      _c("textarea", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.commentContentText,
-            expression: "commentContentText",
-          },
-        ],
-        staticClass:
-          "\n        form-textarea\n        flex-grow\n        border border-gray-400\n        outline-none\n        rounded\n        resize-none\n        focus:outline-none\n        focus:ring-2\n        focus:ring-gray-400\n        focus:border-transparent\n      ",
-        attrs: { rows: "1", placeholder: "Write a comment ..." },
-        domProps: { value: _vm.commentContentText },
-        on: {
-          input: function ($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.commentContentText = $event.target.value
-          },
-        },
-      }),
-      _vm._v(" "),
+                ]
+              )
+            : _c(
+                "button",
+                {
+                  staticClass:
+                    "\n        rounded-full\n        px-3.5\n        py-1\n        text-sm\n        font-semibold\n        border\n        text-spotify\n        border-spotify\n        hover:bg-spotify hover:text-white\n      ",
+                  on: {
+                    click: function ($event) {
+                      return _vm.buttonLink()
+                    },
+                  },
+                },
+                [_vm._v("\n      Delete\n    ")]
+              ),
+        ]
+      ),
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/DeleteConfirmState.vue?vue&type=template&id=5e38e2a7&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/DeleteConfirmState.vue?vue&type=template&id=5e38e2a7& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "inline-block" },
+    [
       _c(
         "button",
         {
           staticClass:
-            "\n        border\n        rounded\n        px-3\n        py-1\n        ml-3\n        text-sm\n        font-semibold\n        text-black\n        border-black\n        hover:bg-gray-700 hover:text-white\n      ",
+            "\n      text-spotify\n      border-spotify\n      hover:bg-spotify hover:text-white\n      px-3\n      py-1\n      text-xs\n      font-semibold\n      border\n      rounded-full\n    ",
+          attrs: { type: "submit", value: "submit" },
           on: {
             click: function ($event) {
-              return _vm.addComment(_vm.postobj.id)
+              return _vm.toggleHidden()
             },
           },
         },
-        [_vm._v("\n      Post\n    ")]
+        [_vm._v("\n    Delete post\n  ")]
       ),
-    ]),
-  ])
+      _vm._v(" "),
+      _c("delete-confirm", {
+        attrs: {
+          isVisible: _vm.isConfirmOpen,
+          route: "" + this.$props.route,
+          toggleHidden: function () {
+            return _vm.toggleHidden()
+          },
+          token: _vm.token,
+        },
+      }),
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/RoundButton.vue?vue&type=template&id=398ea576&":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/RoundButton.vue?vue&type=template&id=398ea576& ***!
+  \***********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "button",
+    {
+      staticClass:
+        "\n    hover:bg-gray-700 hover:text-white\n    font-semibold\n    text-black\n    border border-black\n    rounded-full\n  ",
+      class: _vm.classStyle,
+      on: { click: _vm.clickFunc },
+    },
+    [_vm._t("default")],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SquareButton.vue?vue&type=template&id=8a9431cc&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SquareButton.vue?vue&type=template&id=8a9431cc& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "button",
+    {
+      staticClass:
+        "\n    hover:bg-gray-700 hover:text-white\n    font-semibold\n    text-black\n    border border-black\n    rounded\n  ",
+      class: _vm.classStyle,
+      on: { click: _vm.clickFunc },
+    },
+    [_vm._t("default")],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
