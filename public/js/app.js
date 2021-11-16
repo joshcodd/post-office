@@ -4274,7 +4274,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -22868,7 +22867,7 @@ var render = function () {
                   staticClass: "w-full break-all whitespace-pre-line",
                   attrs: { id: "comments_content_" + comment.id },
                 },
-                [_vm._v("\n        " + _vm._s(comment.content) + "\n      ")]
+                [_vm._v(_vm._s(comment.content) + "\n      ")]
               ),
               _vm._v(" "),
               _c(

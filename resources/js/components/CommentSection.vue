@@ -100,8 +100,7 @@
         <p
           :id="'comments_content_' + comment.id"
           class="w-full break-all whitespace-pre-line"
-        >
-          {{ comment.content }}
+        >{{ comment.content }}
         </p>
 
         <div :id="'comments_edit_containter_' + comment.id" class="hidden">
