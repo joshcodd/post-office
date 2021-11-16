@@ -4291,6 +4291,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4721,6 +4728,73 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/TimeStamp.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/TimeStamp.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    timestamp: {
+      type: String,
+      "default": "Just Now"
+    },
+    classStyle: {
+      type: String,
+      "default": ""
+    }
+  },
+  data: function data() {
+    return {
+      display_time: this.timestamp
+    };
+  },
+  mounted: function mounted() {
+    var milliseconds_diff = new Date() - Date.parse(this.display_time);
+    var minutes_since = milliseconds_diff / 60000;
+    var hours_since = minutes_since / 60;
+    var days_since = hours_since / 24;
+    var weeks_since = days_since / 7;
+    var months_since = days_since / 30.417;
+    var years_since = days_since / 12;
+    var plural = "";
+
+    if (minutes_since < 60) {
+      plural = minutes_since >= 2 ? "s" : "";
+      this.display_time = "".concat(Math.trunc(minutes_since), " minute").concat(plural, " ago");
+    } else if (hours_since < 24) {
+      plural = hours_since >= 2 ? "s" : "";
+      this.display_time = "".concat(Math.trunc(hours_since), " hour").concat(plural, " ago");
+    } else if (days_since < 7) {
+      plural = days_since >= 2 ? "s" : "";
+      this.display_time = "".concat(Math.trunc(days_since), " day").concat(plural, " ago");
+    } else if (weeks_since < 4) {
+      plural = weeks_since >= 2 ? "s" : "";
+      this.display_time = "".concat(Math.trunc(weeks_since), " week").concat(plural, " ago");
+    } else if (months_since < 12) {
+      plural = months_since >= 2 ? "s" : "";
+      this.display_time = "".concat(Math.trunc(months_since), " month").concat(plural, " ago");
+    } else if (years_since < 12) {
+      plural = years_since >= 2 ? "s" : "";
+      this.display_time = "".concat(Math.trunc(years_since), " year").concat(plural, " ago");
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -4739,6 +4813,7 @@ Vue.component("delete-confirm", __webpack_require__(/*! ./components/DeleteConfi
 Vue.component("delete-confirm-state", __webpack_require__(/*! ./components/DeleteConfirmState.vue */ "./resources/js/components/DeleteConfirmState.vue")["default"]);
 Vue.component("round-button", __webpack_require__(/*! ./components/RoundButton.vue */ "./resources/js/components/RoundButton.vue")["default"]);
 Vue.component("square-button", __webpack_require__(/*! ./components/SquareButton.vue */ "./resources/js/components/SquareButton.vue")["default"]);
+Vue.component("time-stamp", __webpack_require__(/*! ./components/TimeStamp.vue */ "./resources/js/components/TimeStamp.vue")["default"]);
 var app = new Vue({
   el: "#app"
 });
@@ -22452,6 +22527,45 @@ component.options.__file = "resources/js/components/SquareButton.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/TimeStamp.vue":
+/*!***********************************************!*\
+  !*** ./resources/js/components/TimeStamp.vue ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _TimeStamp_vue_vue_type_template_id_1f17781b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TimeStamp.vue?vue&type=template&id=1f17781b& */ "./resources/js/components/TimeStamp.vue?vue&type=template&id=1f17781b&");
+/* harmony import */ var _TimeStamp_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TimeStamp.vue?vue&type=script&lang=js& */ "./resources/js/components/TimeStamp.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _TimeStamp_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TimeStamp_vue_vue_type_template_id_1f17781b___WEBPACK_IMPORTED_MODULE_0__.render,
+  _TimeStamp_vue_vue_type_template_id_1f17781b___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/TimeStamp.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/CommentButton.vue?vue&type=script&lang=js&":
 /*!****************************************************************************!*\
   !*** ./resources/js/components/CommentButton.vue?vue&type=script&lang=js& ***!
@@ -22545,6 +22659,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SquareButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./SquareButton.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SquareButton.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SquareButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/TimeStamp.vue?vue&type=script&lang=js&":
+/*!************************************************************************!*\
+  !*** ./resources/js/components/TimeStamp.vue?vue&type=script&lang=js& ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TimeStamp_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TimeStamp.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/TimeStamp.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TimeStamp_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -22646,6 +22776,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SquareButton_vue_vue_type_template_id_8a9431cc___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SquareButton_vue_vue_type_template_id_8a9431cc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./SquareButton.vue?vue&type=template&id=8a9431cc& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SquareButton.vue?vue&type=template&id=8a9431cc&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/TimeStamp.vue?vue&type=template&id=1f17781b&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/TimeStamp.vue?vue&type=template&id=1f17781b& ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TimeStamp_vue_vue_type_template_id_1f17781b___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TimeStamp_vue_vue_type_template_id_1f17781b___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TimeStamp_vue_vue_type_template_id_1f17781b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TimeStamp.vue?vue&type=template&id=1f17781b& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/TimeStamp.vue?vue&type=template&id=1f17781b&");
 
 
 /***/ }),
@@ -22815,115 +22962,131 @@ var render = function () {
                             _vm._s(comment.user.surname) +
                             "\n\n        "
                         ),
-                        _c("div", { staticClass: "float-right" }, [
-                          _c("span", { staticClass: "inline font-thin" }, [
-                            _vm._v(" " + _vm._s(comment.updated_at) + " "),
-                          ]),
-                          _vm._v(" "),
-                          comment.user.id == _vm.userId
-                            ? _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "inline relative bottom-0.5 text-xs",
-                                },
-                                [
-                                  _c(
-                                    "round-button",
-                                    {
-                                      staticClass: "z-10 ml-2 px-1.5 py-0.1",
-                                      attrs: {
-                                        "click-func": function () {
-                                          return _vm.handleCommentEditClick(
-                                            comment.id
-                                          )
+                        _c(
+                          "div",
+                          { staticClass: "float-right" },
+                          [
+                            _c("time-stamp", {
+                              attrs: {
+                                timestamp: comment.updated_at,
+                                "class-style": "inline font-thin text-sm",
+                              },
+                            }),
+                            _vm._v(" "),
+                            comment.user.id == _vm.userId
+                              ? _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "inline relative bottom-0.5 text-xs",
+                                  },
+                                  [
+                                    _c(
+                                      "round-button",
+                                      {
+                                        staticClass: "z-10 ml-2 px-1.5 py-0.1",
+                                        attrs: {
+                                          "click-func": function () {
+                                            return _vm.handleCommentEditClick(
+                                              comment.id
+                                            )
+                                          },
                                         },
                                       },
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n              Edit\n            "
-                                      ),
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "round-button",
-                                    {
-                                      staticClass:
-                                        "\n                z-10\n                ml-1\n                px-1.5\n                py-0.1\n                text-spotify\n                border-spotify\n                hover:bg-spotify\n              ",
-                                      attrs: {
-                                        "click-func": function () {
-                                          return _vm.toggleHidden(comment.id)
+                                      [
+                                        _vm._v(
+                                          "\n              Edit\n            "
+                                        ),
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "round-button",
+                                      {
+                                        staticClass:
+                                          "\n                z-10\n                ml-1\n                px-1.5\n                py-0.1\n                text-spotify\n                border-spotify\n                hover:bg-spotify\n              ",
+                                        attrs: {
+                                          "click-func": function () {
+                                            return _vm.toggleHidden(comment.id)
+                                          },
                                         },
                                       },
-                                    },
-                                    [_vm._v("\n              X\n            ")]
-                                  ),
-                                ],
-                                1
-                              )
-                            : _vm._e(),
-                        ]),
+                                      [
+                                        _vm._v(
+                                          "\n              X\n            "
+                                        ),
+                                      ]
+                                    ),
+                                  ],
+                                  1
+                                )
+                              : _vm._e(),
+                          ],
+                          1
+                        ),
                       ]
                     )
-                  : _c("span", { staticClass: "block font-semibold mb-1.5" }, [
-                      _vm._v(
-                        "\n        " +
-                          _vm._s(comment.user.first_name) +
-                          " " +
-                          _vm._s(comment.user.surname) +
-                          "\n\n        "
-                      ),
-                      comment.user.id == _vm.userId
-                        ? _c(
-                            "div",
-                            {
-                              staticClass:
-                                "float-right inline relative bottom-0.5",
-                            },
-                            [
-                              _c(
-                                "round-button",
-                                {
-                                  staticClass: "mr-1 px-1.5 py-0.1 text-xs",
-                                  attrs: {
-                                    "click-func": function () {
-                                      return _vm.handleCommentEditClick(
-                                        comment.id
-                                      )
-                                    },
-                                  },
-                                },
-                                [_vm._v("\n            Edit\n          ")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "round-button",
-                                {
-                                  staticClass:
-                                    "\n              px-1.5\n              py-0.1\n              text-spotify\n              border-spotify\n              hover:bg-spotify\n              text-xs\n            ",
-                                  attrs: {
-                                    "click-func": function () {
-                                      return _vm.toggleHidden(comment.id)
-                                    },
-                                  },
-                                },
-                                [_vm._v("\n            X\n          ")]
-                              ),
-                            ],
-                            1
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "block text-xs font-thin" }, [
+                  : _c(
+                      "span",
+                      { staticClass: "block font-semibold mb-1.5" },
+                      [
                         _vm._v(
-                          "\n          " +
-                            _vm._s(comment.updated_at) +
-                            "\n        "
+                          "\n        " +
+                            _vm._s(comment.user.first_name) +
+                            " " +
+                            _vm._s(comment.user.surname) +
+                            "\n\n        "
                         ),
-                      ]),
-                    ]),
+                        comment.user.id == _vm.userId
+                          ? _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "float-right inline relative bottom-0.5",
+                              },
+                              [
+                                _c(
+                                  "round-button",
+                                  {
+                                    staticClass: "mr-1 px-1.5 py-0.1 text-xs",
+                                    attrs: {
+                                      "click-func": function () {
+                                        return _vm.handleCommentEditClick(
+                                          comment.id
+                                        )
+                                      },
+                                    },
+                                  },
+                                  [_vm._v("\n            Edit\n          ")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "round-button",
+                                  {
+                                    staticClass:
+                                      "\n              px-1.5\n              py-0.1\n              text-spotify\n              border-spotify\n              hover:bg-spotify\n              text-xs\n            ",
+                                    attrs: {
+                                      "click-func": function () {
+                                        return _vm.toggleHidden(comment.id)
+                                      },
+                                    },
+                                  },
+                                  [_vm._v("\n            X\n          ")]
+                                ),
+                              ],
+                              1
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c("time-stamp", {
+                          attrs: {
+                            timestamp: comment.updated_at,
+                            "class-style": "block text-xs font-thin",
+                          },
+                        }),
+                      ],
+                      1
+                    ),
                 _vm._v(" "),
                 _c(
                   "p",
@@ -22931,7 +23094,7 @@ var render = function () {
                     staticClass: "w-full break-all whitespace-pre-line",
                     attrs: { id: "comments_content_" + comment.id },
                   },
-                  [_vm._v(_vm._s(comment.content) + "\n      ")]
+                  [_vm._v("\n        " + _vm._s(comment.content) + "\n      ")]
                 ),
                 _vm._v(" "),
                 _c(
@@ -23004,7 +23167,7 @@ var render = function () {
         "div",
         {
           staticClass: "flex items-center",
-          class: [_vm.isBubbleStyle ? "px-4 py-4" : " py-5"],
+          class: [_vm.isBubbleStyle ? "px-4 pb-4 pt-3" : " py-5"],
         },
         [
           _c("textarea", {
@@ -23285,6 +23448,33 @@ var render = function () {
     [_vm._t("default")],
     2
   )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/TimeStamp.vue?vue&type=template&id=1f17781b&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/TimeStamp.vue?vue&type=template&id=1f17781b& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { class: _vm.classStyle }, [
+    _vm._v("\n  " + _vm._s(_vm.display_time) + "\n"),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

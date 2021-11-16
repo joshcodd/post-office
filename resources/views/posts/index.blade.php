@@ -14,16 +14,18 @@
                     <div class="font-bold mb-2 text-xl">
                         {{ $post->title }}
 
-                        <a href="{{ route('users.show', ['user' => $post->user->id]) }}"
-                            class="font-light mb-2 text-base whitespace-nowrap hover:underline">By
-                            {{ $post->user->first_name }}
-                            {{ $post->user->surname }}</a>
+                        <div class="block h-4">
+                            <a href="{{ route('users.show', ['user' => $post->user->id]) }}"
+                                class="inline font-light text-base whitespace-nowrap hover:underline leading-4">By
+                                {{ $post->user->first_name }}
+                                {{ $post->user->surname }}</a>
+                        </div>
                     </div>
 
                     <p class="text-base text-gray-600 whitespace-pre-line">{{ $post->content }}</p>
                 </div>
 
-                <div class="flow-root px-6 pt-4 pb-2">
+                <div class="flow-root px-6 pt-4 pb-3">
                     <a class="float-left rounded-full px-4 py-2 text-sm font-semibold mr-2 mb-2 border  text-black border-black  hover:bg-gray-700 hover:text-white"
                         href="{{ route('posts.show', ['post' => $post->id]) }}">View post</a>
 
@@ -35,6 +37,9 @@
                     <comment-button :post-id="{{ $post->id }}" :num-comments="{{ $post->comments->count() }}">
                     </comment-button>
                 </div>
+
+                <time-stamp timestamp="{{ $post->created_at }}" class-style="ml-6 block text-xs font-semibold leading-4">
+                </time-stamp>
 
                 <comment-section :post="{{ $post }}" :user-id={{ Auth::User()->id }} :is-closed="true">
                 </comment-section>

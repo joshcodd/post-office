@@ -49,7 +49,11 @@
           {{ comment.user.surname }}
 
           <div class="float-right">
-            <span class="inline font-thin"> {{ comment.updated_at }} </span>
+            <time-stamp
+              :timestamp="comment.updated_at"
+              class-style="inline font-thin text-sm"
+            >
+            </time-stamp>
 
             <div
               v-if="comment.user.id == userId"
@@ -109,9 +113,11 @@
             </round-button>
           </div>
 
-          <span class="block text-xs font-thin">
-            {{ comment.updated_at }}
-          </span>
+          <time-stamp
+            :timestamp="comment.updated_at"
+            class-style="block text-xs font-thin"
+          >
+          </time-stamp>
         </span>
 
         <p
@@ -156,7 +162,7 @@
 
     <div
       class="flex items-center"
-      :class="[isBubbleStyle ? 'px-4 py-4' : ' py-5']"
+      :class="[isBubbleStyle ? 'px-4 pb-4 pt-3' : ' py-5']"
     >
       <textarea
         class="
