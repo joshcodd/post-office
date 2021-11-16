@@ -4441,6 +4441,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _RoundButton_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RoundButton.vue */ "./resources/js/components/RoundButton.vue");
 //
 //
 //
@@ -4532,18 +4533,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    RoundButton: _RoundButton_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   props: {
     isVisible: {
       type: Boolean
@@ -4558,14 +4552,10 @@ __webpack_require__.r(__webpack_exports__);
     toggleHidden: {
       type: Function
     },
-    token: {
+    csfrToken: {
       type: String
     }
-  },
-  data: function data() {
-    return {};
-  },
-  methods: {}
+  }
 });
 
 /***/ }),
@@ -4581,6 +4571,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _RoundButton_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RoundButton.vue */ "./resources/js/components/RoundButton.vue");
 //
 //
 //
@@ -4597,26 +4588,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    RoundButton: _RoundButton_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   props: {
     route: {
       type: String,
       "default": ""
     },
-    token: {
+    csfrToken: {
       type: String
     }
   },
@@ -23059,14 +23041,13 @@ var render = function () {
           _c("div", { staticClass: "block pb-3" }, [_vm._v("Are you sure?")]),
           _vm._v(" "),
           _c(
-            "button",
+            "round-button",
             {
-              staticClass:
-                "\n        mr-4\n        rounded-full\n        px-3.5\n        py-1\n        text-sm\n        font-semibold\n        border\n        text-black\n        border-black\n        hover:bg-black hover:text-white\n      ",
-              on: {
-                click: function ($event) {
+              attrs: {
+                "click-func": function () {
                   return _vm.toggleHidden()
                 },
+                "class-style": "mr-4 px-3.5 py-1 text-sm",
               },
             },
             [_vm._v("\n      Cancel\n    ")]
@@ -23077,12 +23058,12 @@ var render = function () {
                 "form",
                 {
                   staticClass: "inline-block",
-                  attrs: { method: "POST", action: "" + this.$props.route },
+                  attrs: { method: "POST", action: _vm.route },
                 },
                 [
                   _c("input", {
                     attrs: { type: "hidden", name: "_token" },
-                    domProps: { value: _vm.token },
+                    domProps: { value: _vm.csfrToken },
                   }),
                   _vm._v(" "),
                   _c("input", {
@@ -23113,7 +23094,8 @@ var render = function () {
                 },
                 [_vm._v("\n      Delete\n    ")]
               ),
-        ]
+        ],
+        1
       ),
     ]
   )
@@ -23146,28 +23128,27 @@ var render = function () {
     { staticClass: "inline-block" },
     [
       _c(
-        "button",
+        "round-button",
         {
-          staticClass:
-            "\n      text-spotify\n      border-spotify\n      hover:bg-spotify hover:text-white\n      px-3\n      py-1\n      text-xs\n      font-semibold\n      border\n      rounded-full\n    ",
-          attrs: { type: "submit", value: "submit" },
-          on: {
-            click: function ($event) {
+          attrs: {
+            "click-func": function () {
               return _vm.toggleHidden()
             },
+            "class-style":
+              "text-spotify border-spotify hover:bg-spotify px-3 py-1 text-xs",
           },
         },
-        [_vm._v("\n    Delete post\n  ")]
+        [_vm._v("Delete post")]
       ),
       _vm._v(" "),
       _c("delete-confirm", {
         attrs: {
           isVisible: _vm.isConfirmOpen,
-          route: "" + this.$props.route,
+          route: _vm.route,
           toggleHidden: function () {
             return _vm.toggleHidden()
           },
-          token: _vm.token,
+          csfrToken: _vm.csfrToken,
         },
       }),
     ],

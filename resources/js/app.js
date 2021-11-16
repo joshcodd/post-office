@@ -16,6 +16,16 @@ Vue.component(
 );
 
 Vue.component(
+    "delete-confirm",
+    require("./components/DeleteConfirm.vue").default
+);
+
+Vue.component(
+    "delete-confirm-state",
+    require("./components/DeleteConfirmState.vue").default
+);
+
+Vue.component(
     "round-button",
     require("./components/RoundButton.vue").default
 );
