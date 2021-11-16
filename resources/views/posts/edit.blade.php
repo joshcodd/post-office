@@ -45,7 +45,7 @@
 
                 <div class="bg-white inline items-center mt-5 mb-20 float-right">
                     <button type="submit" value="submit"
-                        class="border  ml-5 rounded px-5 py-2.5 text-sm font-semibold text-black border-black  hover:bg-gray-700 hover:text-white">Post
+                        class="border  ml-5 rounded px-5 py-2.5 text-sm font-semibold text-black border-black  hover:bg-gray-700 hover:text-white">Save
                     </button>
 
                     <a href="{{ url()->previous() }}"
