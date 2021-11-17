@@ -11,7 +11,14 @@ class CommentController extends Controller
 {
     public function apiUpdate(Request $request, Comment $comment)
     {
-        $validator = Validator::make([$request['content']], ['required']);
+        $error_messages = ['content.required' => 'Comment cannot be empty.'];
+        $rules = ['content' => 'required'];
+        $validator = Validator::make(
+            $request->all(),
+            $rules,
+            $error_messages
+        );
+
         if ($validator->fails()) {
             return response()->json([
                 'messages' => $validator->errors()->all(),
@@ -25,7 +32,14 @@ class CommentController extends Controller
 
     public function apiStore(Request $request)
     {
-        $validator = Validator::make([$request['content']], ['required']);
+        $error_messages = ['content.required' => 'Comment cannot be empty.'];
+        $rules = ['content' => 'required'];
+        $validator = Validator::make(
+            $request->all(),
+            $rules,
+            $error_messages
+        );
+
         if ($validator->fails()) {
             return response()->json([
                 'messages' => $validator->errors()->all(),
