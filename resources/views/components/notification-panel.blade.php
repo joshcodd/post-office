@@ -16,6 +16,9 @@
             <a href="{{ $notification->data['post_link'] }}" class="font-bold hover:underline">
                 post
             </a>
+
+            <time-stamp :timestamp="'{{ $notification->created_at }}'" class-style="block text-xs font-thin">
+            </time-stamp>
         </div>
     </div>
 @endforeach
