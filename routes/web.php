@@ -40,6 +40,8 @@ Route::get('posts/{post}/edit', [PostController::class, 'edit'])->middleware(['a
 
 Route::get('users/me', [UserController::class, 'showMyProfile'])->middleware(['auth'])->name('users.show.me');
 
+Route::get('users/notifications', [UserController::class, 'notifications'])->middleware(['auth'])->name('users.notifications');
+
 Route::post('users/create-token', [UserController::class, 'generateToken'])->middleware(['auth'])->name('users.create.token');
 
 Route::get('users/{user}', [UserController::class, 'show'])->middleware(['auth'])->name('users.show');
