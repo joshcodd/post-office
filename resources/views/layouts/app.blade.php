@@ -16,8 +16,19 @@
 </head>
 
 <body class="font-sans antialiased">
+    @include('layouts.navigation')
     <div id="app">
-        @include('layouts.navigation')
+
+        <div class="fixed top-16 mt-4 z-50 w-full">
+            <div class="container mx-auto hidden md:flex font-light text-md ">
+                <div id="notification_popup" class="hidden mr-48 md:ml-auto">
+                    <div class="popup-tag"></div>
+                    <div class="py-2 w-96 max-h-96 rounded-xl overflow-scroll bg-gray-100 shadow-lg">
+                        @include('components.notification-panel')
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="fixed top-20 pt-2 w-full z-30">
             @if (session('message'))
@@ -68,6 +79,8 @@
             comments_store: "{{ route('api.comments.store') }}",
             comments_update: "{{ route('api.comments.update', ['']) }}",
             comments_delete: "{{ route('api.comments.destroy', ['']) }}",
+            clear_notifications: "{{ route('api.users.clear-notifictions') }}",
+            notifications: "{{ route('users.notifications') }}",
             profile_show: "{{ route('users.show', ['']) }}",
             create_token: "{{ route('users.create.token') }}"
         }

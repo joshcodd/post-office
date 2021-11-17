@@ -14,10 +14,18 @@
                         <div class="bottomHalf">Home</div>
                     </a>
 
-                    <a class="hoverSplitContainer font-nunito m-50-important">
-                        <div href="" class="topHalf">Notifications</div>
-                        <div href="" class="bottomHalf font-nunito">Notifications</div>
-                    </a>
+                    <button class="hoverSplitContainer font-nunito m-50-important" onclick="notificationsClick(false)">
+                        @if (Auth::User()->unreadNotifications()->count() > 0)
+                            <div name="notification_count"
+                                class="w-5 h-5 absolute circle bg-spotify pt-0.5 text-xs font-bold ">
+                                {{ Auth::User()->unreadNotifications()->count() }}
+                            </div>
+                        @endif
+                        <div class="topHalf">
+                            Notifications
+                        </div>
+                        <div class="bottomHalf">Notifications</div>
+                    </button>
 
                     <a class="hoverSplitContainer font-nunito m-50-important
                     {{ request()->is('posts/create') ? 'active' : '' }}"
@@ -52,6 +60,13 @@
                     stroke="currentColor">
                     <path d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
+
+                @if (Auth::User()->unreadNotifications()->count() > 0)
+                    <div name="notification_count"
+                        class="w-5 h-5 absolute circle-mobile bg-spotify pt-0.5 text-xs font-bold">
+                        {{ Auth::User()->unreadNotifications()->count() }}
+                    </div>
+                @endif
             </button>
         </div>
     </div>
@@ -66,12 +81,17 @@
             </div>
         </a>
 
-        <a href="">
-            <div class="hoverSplitContainer font-nunito hover:bg-spotify text-sm px-7 py-5">
-                <div class="topHalf font-nunito">Notifications</div>
-                <div class="bottomHalf font-nunito">Notifications</div>
-            </div>
-        </a>
+        <button onclick="notificationsClick(true)"
+            class="hoverSplitContainer font-nunito hover:bg-spotify text-sm px-7 py-5 text-left min-w-full">
+            <div class="topHalf font-nunito">Notifications</div>
+            <div class="bottomHalf font-nunito">Notifications</div>
+            @if (Auth::User()->unreadNotifications()->count() > 0)
+                <div name="notification_count"
+                    class="w-5 h-5 absolute circle-mobile-menu bg-spotify pt-0.5 text-xs font-bold text-center">
+                    {{ Auth::User()->unreadNotifications()->count() }}
+                </div>
+            @endif
+        </button>
 
         <a href="{{ route('posts.create') }}">
             <div
