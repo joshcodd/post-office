@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Notifications\RecievedComment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -51,6 +52,9 @@ class CommentController extends Controller
         $comment->user_id = Auth::User()->id;
         $comment->content = $request['content'];
         $comment->save();
+
+        $user = $comment->post->user;
+        $user->notify(new RecievedComment($comment));
         return $comment->load('user');
     }
 
