@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,3 +27,5 @@ Route::middleware('auth:sanctum')->post('comments', [CommentController::class, '
 Route::middleware('auth:sanctum', 'comment.owner')->put('comments/{comment}', [CommentController::class, 'apiUpdate'])->name('api.comments.update');
 
 Route::middleware('auth:sanctum', 'comment.owner')->delete('comments/{comment}', [CommentController::class, 'apiDestroy'])->name('api.comments.destroy');
+
+Route::middleware('auth:sanctum')->post('users/clear-notifications', [UserController::class, 'clearNotifications'])->name('api.users.clear-notifictions');
