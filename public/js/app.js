@@ -4297,6 +4297,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4432,6 +4443,9 @@ __webpack_require__.r(__webpack_exports__);
       messages.forEach(function (element) {
         _this4.errorMessages.push(element);
       });
+    },
+    handleUserNameClick: function handleUserNameClick(user_id) {
+      window.location.href = "".concat(config.routes.profile_show, "/").concat(user_id);
     },
     editComment: function editComment(comment_id) {
       var _this5 = this;
@@ -22954,13 +22968,27 @@ var render = function () {
                           "block font-semibold border-b border-bg-gray-400 mb-1.5",
                       },
                       [
-                        _vm._v(
-                          "\n        " +
-                            _vm._s(comment.user.first_name) +
-                            "\n        " +
-                            _vm._s(comment.user.surname) +
-                            "\n\n        "
+                        _c(
+                          "a",
+                          {
+                            staticClass: "hover:underline cursor-pointer",
+                            on: {
+                              click: function ($event) {
+                                return _vm.handleUserNameClick(comment.user_id)
+                              },
+                            },
+                          },
+                          [
+                            _vm._v(
+                              "\n          " +
+                                _vm._s(comment.user.first_name) +
+                                "\n          " +
+                                _vm._s(comment.user.surname) +
+                                "\n        "
+                            ),
+                          ]
                         ),
+                        _vm._v(" "),
                         _c(
                           "div",
                           { staticClass: "float-right" },
@@ -23029,13 +23057,27 @@ var render = function () {
                       "span",
                       { staticClass: "block font-semibold mb-1.5" },
                       [
-                        _vm._v(
-                          "\n        " +
-                            _vm._s(comment.user.first_name) +
-                            " " +
-                            _vm._s(comment.user.surname) +
-                            "\n\n        "
+                        _c(
+                          "a",
+                          {
+                            staticClass: "hover:underline cursor-pointer",
+                            on: {
+                              click: function ($event) {
+                                return _vm.handleUserNameClick(comment.user_id)
+                              },
+                            },
+                          },
+                          [
+                            _vm._v(
+                              "\n          " +
+                                _vm._s(comment.user.first_name) +
+                                "\n          " +
+                                _vm._s(comment.user.surname) +
+                                "\n        "
+                            ),
+                          ]
                         ),
+                        _vm._v(" "),
                         comment.user.id == _vm.userId
                           ? _c(
                               "div",

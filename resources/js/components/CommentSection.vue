@@ -45,8 +45,13 @@
           v-if="isBubbleStyle"
           class="block font-semibold border-b border-bg-gray-400 mb-1.5"
         >
-          {{ comment.user.first_name }}
-          {{ comment.user.surname }}
+          <a
+            v-on:click="handleUserNameClick(comment.user_id)"
+            class="hover:underline cursor-pointer"
+          >
+            {{ comment.user.first_name }}
+            {{ comment.user.surname }}
+          </a>
 
           <div class="float-right">
             <time-stamp
@@ -85,7 +90,13 @@
         </span>
 
         <span v-else class="block font-semibold mb-1.5">
-          {{ comment.user.first_name }} {{ comment.user.surname }}
+          <a
+            v-on:click="handleUserNameClick(comment.user_id)"
+            class="hover:underline cursor-pointer"
+          >
+            {{ comment.user.first_name }}
+            {{ comment.user.surname }}
+          </a>
 
           <div
             v-if="comment.user.id == userId"
@@ -340,6 +351,10 @@ export default {
       messages.forEach((element) => {
         this.errorMessages.push(element);
       });
+    },
+
+    handleUserNameClick: function (user_id) {
+      window.location.href = `${config.routes.profile_show}/${user_id}`;
     },
 
     editComment: function (comment_id) {

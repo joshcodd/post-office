@@ -68,6 +68,7 @@
             comments_store: "{{ route('api.comments.store') }}",
             comments_update: "{{ route('api.comments.update', ['']) }}",
             comments_delete: "{{ route('api.comments.destroy', ['']) }}",
+            profile_show: "{{ route('users.show', ['']) }}",
             create_token: "{{ route('users.create.token') }}"
         }
     };
