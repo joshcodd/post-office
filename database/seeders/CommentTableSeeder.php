@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Comment;
+use App\Models\User;
+use App\Notifications\RecievedComment;
 use Illuminate\Database\Seeder;
 
 class CommentTableSeeder extends Seeder
@@ -33,5 +35,12 @@ class CommentTableSeeder extends Seeder
         $comment_three->save();
 
         $comments = Comment::factory()->count(100)->create();
+
+        User::find($comment->user_id)->notify(new RecievedComment($comment));
+        User::find($comment_two->user_id)->notify(new RecievedComment($comment_two));
+        User::find($comment_three->user_id)->notify(new RecievedComment($comment_three));
+        $comments->each(function ($current_comment) {
+            User::find($current_comment->user_id)->notify(new RecievedComment($current_comment));
+        });
     }
 }
