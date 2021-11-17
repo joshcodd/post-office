@@ -36,11 +36,12 @@ class CommentTableSeeder extends Seeder
 
         $comments = Comment::factory()->count(100)->create();
 
-        User::find($comment->user_id)->notify(new RecievedComment($comment));
-        User::find($comment_two->user_id)->notify(new RecievedComment($comment_two));
-        User::find($comment_three->user_id)->notify(new RecievedComment($comment_three));
+        $comment->post->user->notify(new RecievedComment($comment));
+        $comment_two->post->user->notify(new RecievedComment($comment_two));
+        $comment_three->post->user->notify(new RecievedComment($comment_three));
+
         $comments->each(function ($current_comment) {
-            User::find($current_comment->user_id)->notify(new RecievedComment($current_comment));
+            $current_comment->post->user->notify(new RecievedComment($current_comment));
         });
     }
 }

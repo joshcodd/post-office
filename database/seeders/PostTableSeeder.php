@@ -37,12 +37,10 @@ class PostTableSeeder extends Seeder
             ->create(); // Seed 10 random comments for this post.
         $post_three->save();
 
-
-
         $posts->each(function ($post) {
-            $comments = Post::find($post->id)->comments;
+            $comments = $post->comments;
             $comments->each(function ($comment) {
-                User::find($comment->user_id)->notify(new RecievedComment($comment));
+                $comment->post->user->notify(new RecievedComment($comment));
             });
         });
         $posts = Post::factory()->count(35)->create();
