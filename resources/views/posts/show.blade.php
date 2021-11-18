@@ -34,7 +34,10 @@
 
             </div>
 
-            <img class="" src={{ asset(rand(0, 3) . '.jpg') }} alt="">
+            @if ($post->image_path)
+                <img class="" src="{{ asset('storage/images' . $post->image_path) }}" alt="post_image">
+            @endif
+
             <div class="py-5">
                 <p class="text-xl text-gray-600 whitespace-pre-line">{{ $post->content }}</p>
             </div>

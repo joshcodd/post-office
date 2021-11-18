@@ -5,7 +5,7 @@
 @section('content')
     <div class="grid justify-items-center">
         <div class="sm:w-2/3 md:w-1/2 m-5 rounded-xl ">
-            <form method="POST" action="{{ route('posts.update', ['post' => $post->id]) }}">
+            <form method="POST" enctype="multipart/form-data" action="{{ route('posts.update', ['post' => $post->id]) }}">
                 @method('PUT')
                 @csrf
 
@@ -22,7 +22,9 @@
                     <div class="flex items-center image_spacer border-gray-400 bg-gray-100 border-dashed border text-center">
                         <x-camera-icon>
                         </x-camera-icon>
-                        <img id="create_post_img" src="#" alt="" />
+
+                        <img id="create_post_img"
+                            src="{{ $post->image_path ? asset('storage/images' . $post->image_path) : '' }}" alt="">
                     </div>
 
                     <label for="create_img_upload"
@@ -30,11 +32,13 @@
                         Image</label>
 
                     <button type="button"
-                        class="mt-3 cursor-pointer border inline-block rounded px-5 py-2.5 text-sm font-semibold text-black border-black  hover:bg-gray-700 hover:text-white hidden"
+                        class="mt-3 cursor-pointer border inline-block rounded px-5 py-2.5 text-sm font-semibold text-black border-black  hover:bg-gray-700 hover:text-white 
+                        {{ $post->image_path ? '' : 'hidden' }}"
                         id="create_remove_image" onclick='removeImage()'>Remove Image
                     </button>
 
-                    <input type='file' onchange='previewImage(this)' id="create_img_upload" class="hidden" />
+                    <input type='file' name="image" onchange='previewImage(this)' id="create_img_upload"
+                        class="hidden" />
                 </div>
 
                 <textarea oninput='contentTextAreaResize(this)'

@@ -6,9 +6,12 @@
     <div class="grid justify-items-center">
         @foreach ($posts as $post)
             <div class="sm:w-2/3 md:w-1/2 m-5 rounded-xl shadow-md overflow-hidden">
-                <div class="w-100  h-96">
-                    <img class="w-full h-full  object-cover " src={{ asset(rand(0, 3) . '.jpg') }} alt="">
-                </div>
+                @if ($post->image_path)
+                    <div class="w-100  h-96">
+                        <img class="w-full h-full object-cover" src="{{ asset('storage/images' . $post->image_path) }}"
+                            alt="post_image">
+                    </div>
+                @endif
 
                 <div class="py-4 px-6">
                     <div class="font-bold mb-2 text-xl">

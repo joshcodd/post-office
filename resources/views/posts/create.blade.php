@@ -5,7 +5,7 @@
 @section('content')
     <div class="grid justify-items-center">
         <div class="sm:w-2/3 md:w-1/2 m-5 rounded-xl ">
-            <form method="POST" action="{{ route('posts.store') }}">
+            <form enctype="multipart/form-data" method="POST" action="{{ route('posts.store') }}">
                 @csrf
 
                 <div class="border-b border-gray-700 font-nunito font-light mb-5 text-xl p-2">
@@ -33,7 +33,8 @@
                         id="create_remove_image" onclick='removeImage()'>Remove Image
                     </button>
 
-                    <input type='file' onchange='previewImage(this)' id="create_img_upload" class="hidden" />
+                    <input type='file' name="image" onchange='previewImage(this)' id="create_img_upload"
+                        class="hidden" />
                 </div>
 
                 <textarea oninput='contentTextAreaResize(this)'

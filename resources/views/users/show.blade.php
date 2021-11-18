@@ -16,9 +16,12 @@
         @foreach ($user->posts as $post)
             <div class="break-inside pb-10">
                 <div class="break-inside mx-1 md:mx-5 rounded-xl shadow-md overflow-hidden">
-                    <div class="w-100  h-100">
-                        <img class="w-full h-full  object-cover " src={{ asset(rand(0, 3) . '.jpg') }} alt="">
-                    </div>
+                    @if ($post->image_path)
+                        <div class="w-100  h-100">
+                            <img class="w-full h-full  object-cover"
+                                src="{{ asset('storage/images' . $post->image_path) }}" alt="post_image">
+                        </div>
+                    @endif
 
                     <div class="py-3 px-4">
                         <div class="font-bold mb-1 text-md">
