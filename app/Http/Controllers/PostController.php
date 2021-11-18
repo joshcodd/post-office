@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -49,12 +48,22 @@ class PostController extends Controller
         $validated_post = $request->validate([
             'title' => 'required',
             'content' => 'required',
+            'image' => 'mimes:jpeg,png',
         ]);
+
+        $dir = 'public/images';
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store($dir);
+            $file_name = substr($path, strlen($dir));
+        } else {
+            $file_name = null;
+        }
 
         $post = new Post();
         $post->user_id = Auth::User()->id;
         $post->title = $validated_post['title'];
         $post->content = $validated_post['content'];
+        $post->image_path = $file_name;
         $post->save();
 
         $request->session()->flash('message', 'Posted!');
