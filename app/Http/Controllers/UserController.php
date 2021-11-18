@@ -11,7 +11,9 @@ class UserController extends Controller
 
     public function generateToken()
     {
-        $token = Auth::User()->createToken('api_token');
+        /** @var \App\Models\User $user **/
+        $user = Auth::User();
+        $token = $user->createToken('api_token');
         return ['token' => $token->plainTextToken];
     }
 
