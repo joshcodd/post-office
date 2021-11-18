@@ -14,10 +14,13 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $first_name = $this->faker->firstName();
+        $surname = $this->faker->lastName();
+        $email = $first_name . "_" . $surname . rand(0, 99999) . "@example.com";
         return [
-            'first_name' => $this->faker->firstName(),
-            'surname' => $this->faker->lastName(),
-            'email' => $this->faker->unique()->safeEmail(),
+            'first_name' => $first_name,
+            'surname' => $surname,
+            'email' => $email,
             'email_verified_at' => $this->faker->dateTimeThisMonth(),
             'password' => $this->faker->password(),
             'remember_token' => Str::random(15),

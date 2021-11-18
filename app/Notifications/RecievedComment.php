@@ -31,7 +31,7 @@ class RecievedComment extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return ['mail', 'database'];
     }
 
     public function toDatabase($notifiable)
@@ -47,10 +47,12 @@ class RecievedComment extends Notification
      */
     public function toMail($notifiable)
     {
+        $first_name = $this->comment_notification->user->first_name;
+        $surname = $this->comment_notification->user->surname;
         return (new MailMessage)
-            ->line('The introduction to the notification.')
-            ->action('Notification Action', url('/'))
-            ->line('Thank you for using our application!');
+            ->line(('You have recieved a comment on your post from ') . $first_name . " " . $surname . ".")
+            ->action('View post', route('posts.show', ['post' => $this->comment_notification->post_id]))
+            ->line('Thank you for using PostOffice!');
     }
 
     /**
