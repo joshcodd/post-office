@@ -19,11 +19,13 @@
 
 
                 <div class="float-right mt-0.5 ">
-                    @if (Auth::User()->user_role = 'admin')
+                    @if (Auth::User()->user_role == 'admin' || Auth::User()->id == $post->user->id)
                         <delete-confirm-state route="{{ route('posts.destroy', $post->id) }}"
                             csfr-token="{{ csrf_token() }}">
                         </delete-confirm-state>
-                    @elseif (Auth::User()->id == $post->user->id )
+                    @endif
+
+                    @if (Auth::User()->id == $post->user->id)
                         <a class="
                             rounded-full px-3 py-1 text-xs font-semibold border text-black border-black hover:bg-gray-700 hover:text-white"
                             href="{{ route('posts.edit', ['post' => $post->id]) }}">Edit post</a>
