@@ -32,11 +32,11 @@ Route::get('posts/create', [PostController::class, 'create'])->middleware(['auth
 
 Route::get('posts/{post}', [PostController::class, 'show'])->middleware(['auth'])->name('posts.show');
 
-Route::put('posts/{post}', [PostController::class, 'update'])->middleware(['auth', 'post.owner'])->name('posts.update');
+Route::put('posts/{post}', [PostController::class, 'update'])->middleware(['auth', 'item.owner'])->name('posts.update');
 
-Route::delete('posts/{post}', [PostController::class, 'destroy'])->middleware(['auth', 'post.owner'])->name('posts.destroy');
+Route::delete('posts/{post}', [PostController::class, 'destroy'])->middleware(['auth', 'item.owner'])->name('posts.destroy');
 
-Route::get('posts/{post}/edit', [PostController::class, 'edit'])->middleware(['auth', 'post.owner'])->name('posts.edit');
+Route::get('posts/{post}/edit', [PostController::class, 'edit'])->middleware(['auth', 'item.owner'])->name('posts.edit');
 
 Route::get('users/me', [UserController::class, 'showMyProfile'])->middleware(['auth'])->name('users.show.me');
 

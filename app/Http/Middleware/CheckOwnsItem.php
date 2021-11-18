@@ -2,13 +2,12 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Comment;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
-class CheckOwnsComment
+class CheckOwnsItem
 {
     /**
      * Handle an incoming request.
@@ -19,20 +18,24 @@ class CheckOwnsComment
      */
     public function handle(Request $request, Closure $next)
     {
-        $comment_author = $request->comment->user;
-        if (Auth::User()->id == $comment_author->id) {
+        if ($request->post) {
+            $request_id = $request->post->user->id;
+        } else if ($request->comment) {
+            $request_id = $request->comment->user->id;
+        }
+
+        if (Auth::User()->id == $request_id) {
             return $next($request);
         } else {
             $error_message = 'You do not have permission to perform this action.';
-            $redirect = 'home';
             if (request()->wantsJson()) {
                 return response()->json([
                     'message' => $error_message,
-                    'redirect' => route($redirect)
+                    'redirect' => back()->getTargetUrl(),
                 ], 401);
             }
             Session::flash('message', $error_message);
-            return redirect()->route($redirect);
+            return redirect()->back();
         }
     }
 }
