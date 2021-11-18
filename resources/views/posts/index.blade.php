@@ -28,7 +28,11 @@
                     <a class="float-left rounded-full px-4 py-2 text-sm font-semibold mr-2 mb-2 border  text-black border-black  hover:bg-gray-700 hover:text-white"
                         href="{{ route('posts.show', ['post' => $post->id]) }}">View post</a>
 
-                    @if (Auth::User()->id == $post->user->id)
+                    @if (Auth::User()->user_role == 'admin')
+                        <delete-confirm-state route="{{ route('posts.destroy', $post->id) }}"
+                            class-style="px-4 py-2 font-semibold text-sm" csfr-token="{{ csrf_token() }}">
+                        </delete-confirm-state>
+                    @elseif (Auth::User()->id == $post->user->id)
                         <a class="float-left rounded-full px-4 py-2 text-sm font-semibold mr-2 mb-2 border  text-black border-black  hover:bg-gray-700 hover:text-white"
                             href="{{ route('posts.edit', ['post' => $post->id]) }}">Edit post</a>
                     @endif
@@ -40,7 +44,8 @@
                 <time-stamp timestamp="{{ $post->created_at }}" class-style="ml-6 block text-xs font-semibold leading-4">
                 </time-stamp>
 
-                <comment-section :post="{{ $post }}" :user-id={{ Auth::User()->id }} :is-closed="true">
+                <comment-section :post="{{ $post }}" :user-id={{ Auth::User()->id }}
+                    user-role="{{ Auth::User()->user_role }}" :is-closed=" true">
                 </comment-section>
 
             </div>

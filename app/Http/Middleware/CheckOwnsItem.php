@@ -24,7 +24,7 @@ class CheckOwnsItem
             $request_id = $request->comment->user->id;
         }
 
-        if (Auth::User()->id == $request_id) {
+        if ((Auth::User()->id == $request_id) || Auth::User()->user_role == 'admin') {
             return $next($request);
         } else {
             $error_message = 'You do not have permission to perform this action.';

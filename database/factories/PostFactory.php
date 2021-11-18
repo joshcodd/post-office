@@ -15,7 +15,7 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::inRandomOrder()->first()->id,
+            'user_id' => User::where('user_role', '!=', 'admin')->inRandomOrder()->first()->id,
             'title' => $this->faker->realText(70),
             'content' => $this->faker->realText(800),
         ];

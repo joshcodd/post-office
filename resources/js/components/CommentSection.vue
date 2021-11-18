@@ -60,31 +60,32 @@
             >
             </time-stamp>
 
-            <div
-              v-if="comment.user.id == userId"
-              class="inline relative bottom-0.5 text-xs"
-            >
-              <round-button
-                :click-func="() => handleCommentEditClick(comment.id)"
-                class="z-10 ml-2 px-1.5 py-0.1"
-              >
-                Edit
-              </round-button>
+            <div class="inline relative bottom-0.5 text-xs">
+              <span v-if="comment.user.id == userId">
+                <round-button
+                  :click-func="() => handleCommentEditClick(comment.id)"
+                  class="z-10 ml-2 px-1.5 py-0.1"
+                >
+                  Edit
+                </round-button>
+              </span>
 
-              <round-button
-                :click-func="() => toggleHidden(comment.id)"
-                class="
-                  z-10
-                  ml-1
-                  px-1.5
-                  py-0.1
-                  text-spotify
-                  border-spotify
-                  hover:bg-spotify
-                "
-              >
-                X
-              </round-button>
+              <span v-if="comment.user.id == userId || userRole == 'admin'">
+                <round-button
+                  :click-func="() => toggleHidden(comment.id)"
+                  class="
+                    z-10
+                    ml-1
+                    px-1.5
+                    py-0.1
+                    text-spotify
+                    border-spotify
+                    hover:bg-spotify
+                  "
+                >
+                  X
+                </round-button>
+              </span>
             </div>
           </div>
         </span>
@@ -98,30 +99,31 @@
             {{ comment.user.surname }}
           </a>
 
-          <div
-            v-if="comment.user.id == userId"
-            class="float-right inline relative bottom-0.5"
-          >
-            <round-button
-              :click-func="() => handleCommentEditClick(comment.id)"
-              class="mr-1 px-1.5 py-0.1 text-xs"
-            >
-              Edit
-            </round-button>
+          <div class="float-right inline relative bottom-0.5">
+            <span v-if="comment.user.id == userId">
+              <round-button
+                :click-func="() => handleCommentEditClick(comment.id)"
+                class="mr-1 px-1.5 py-0.1 text-xs"
+              >
+                Edit
+              </round-button>
+            </span>
 
-            <round-button
-              :click-func="() => toggleHidden(comment.id)"
-              class="
-                px-1.5
-                py-0.1
-                text-spotify
-                border-spotify
-                hover:bg-spotify
-                text-xs
-              "
-            >
-              X
-            </round-button>
+            <span v-if="comment.user.id == userId || userRole == 'admin'">
+              <round-button
+                :click-func="() => toggleHidden(comment.id)"
+                class="
+                  px-1.5
+                  py-0.1
+                  text-spotify
+                  border-spotify
+                  hover:bg-spotify
+                  text-xs
+                "
+              >
+                X
+              </round-button>
+            </span>
           </div>
 
           <time-stamp
@@ -223,6 +225,9 @@ export default {
     },
     userId: {
       type: Number,
+    },
+    userRole: {
+      type: String,
     },
     isClosed: {
       type: Boolean,

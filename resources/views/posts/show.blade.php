@@ -17,16 +17,19 @@
                     {{ $post->updated_at->format('Y-m-d') }}
                 </div>
 
-                @if (Auth::User()->id == $post->user->id)
-                    <div class="float-right mt-0.5 ">
+
+                <div class="float-right mt-0.5 ">
+                    @if (Auth::User()->user_role = 'admin')
                         <delete-confirm-state route="{{ route('posts.destroy', $post->id) }}"
                             csfr-token="{{ csrf_token() }}">
                         </delete-confirm-state>
+                    @elseif (Auth::User()->id == $post->user->id )
                         <a class="
                             rounded-full px-3 py-1 text-xs font-semibold border text-black border-black hover:bg-gray-700 hover:text-white"
                             href="{{ route('posts.edit', ['post' => $post->id]) }}">Edit post</a>
-                    </div>
-                @endif
+                    @endif
+                </div>
+
             </div>
 
             <img class="" src={{ asset(rand(0, 3) . '.jpg') }} alt="">
@@ -39,8 +42,8 @@
                 </comment-button>
             </div>
 
-            <comment-section :post="{{ $post }}" :user-id={{ Auth::User()->id }} :is-closed="false"
-                :is-bubble-style="false">
+            <comment-section :post="{{ $post }}" :user-id={{ Auth::User()->id }}
+                user-role="{{ Auth::User()->user_role }}" :is-closed=" false" :is-bubble-style="false">
             </comment-section>
 
         </div>

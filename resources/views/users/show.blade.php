@@ -36,7 +36,11 @@
                                 post
                             </a>
 
-                            @if (Auth::User()->id == $post->user->id)
+                            @if (Auth::User()->user_role == 'admin')
+                                <delete-confirm-state route="{{ route('posts.destroy', $post->id) }}"
+                                    csfr-token="{{ csrf_token() }}" class-style="float-left">
+                                </delete-confirm-state>
+                            @elseif (Auth::User()->id == $post->user->id)
                                 <a href="{{ route('posts.edit', ['post' => $post->id]) }}"
                                     class="float-left rounded-full px-2 py-1 text-xs font-semibold mr-2 mb-2 border  text-black border-black  hover:bg-gray-700 hover:text-white">Edit
                                     post

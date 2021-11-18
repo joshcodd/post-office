@@ -42,6 +42,15 @@ class UserTableSeeder extends Seeder
             ->create(); // Seed 5 random posts for this user.
         $user_three->save();
 
+        $admin = new User();
+        $admin->first_name = 'James';
+        $admin->surname = "Manageer";
+        $admin->email = 'admin@postoffice.com';
+        $admin->password = Hash::make('password');
+        $admin->user_role = 'admin';
+        $admin->remember_token = "JBFJHWEBCFJH3";
+        $admin->save();
+
         $users = User::factory()->count(20)->create();
     }
 }

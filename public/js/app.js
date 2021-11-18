@@ -4308,6 +4308,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -4324,6 +4326,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     userId: {
       type: Number
+    },
+    userRole: {
+      type: String
     },
     isClosed: {
       type: Boolean
@@ -4633,6 +4638,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -4644,6 +4650,9 @@ __webpack_require__.r(__webpack_exports__);
       "default": ""
     },
     csfrToken: {
+      type: String
+    },
+    classStyle: {
       type: String
     }
   },
@@ -23000,54 +23009,71 @@ var render = function () {
                               },
                             }),
                             _vm._v(" "),
-                            comment.user.id == _vm.userId
-                              ? _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "inline relative bottom-0.5 text-xs",
-                                  },
-                                  [
-                                    _c(
-                                      "round-button",
-                                      {
-                                        staticClass: "z-10 ml-2 px-1.5 py-0.1",
-                                        attrs: {
-                                          "click-func": function () {
-                                            return _vm.handleCommentEditClick(
-                                              comment.id
-                                            )
-                                          },
-                                        },
-                                      },
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "inline relative bottom-0.5 text-xs",
+                              },
+                              [
+                                comment.user.id == _vm.userId
+                                  ? _c(
+                                      "span",
                                       [
-                                        _vm._v(
-                                          "\n              Edit\n            "
-                                        ),
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "round-button",
-                                      {
-                                        staticClass:
-                                          "\n                z-10\n                ml-1\n                px-1.5\n                py-0.1\n                text-spotify\n                border-spotify\n                hover:bg-spotify\n              ",
-                                        attrs: {
-                                          "click-func": function () {
-                                            return _vm.toggleHidden(comment.id)
+                                        _c(
+                                          "round-button",
+                                          {
+                                            staticClass:
+                                              "z-10 ml-2 px-1.5 py-0.1",
+                                            attrs: {
+                                              "click-func": function () {
+                                                return _vm.handleCommentEditClick(
+                                                  comment.id
+                                                )
+                                              },
+                                            },
                                           },
-                                        },
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n              X\n            "
+                                          [
+                                            _vm._v(
+                                              "\n                Edit\n              "
+                                            ),
+                                          ]
                                         ),
-                                      ]
-                                    ),
-                                  ],
-                                  1
-                                )
-                              : _vm._e(),
+                                      ],
+                                      1
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                comment.user.id == _vm.userId ||
+                                _vm.userRole == "admin"
+                                  ? _c(
+                                      "span",
+                                      [
+                                        _c(
+                                          "round-button",
+                                          {
+                                            staticClass:
+                                              "\n                  z-10\n                  ml-1\n                  px-1.5\n                  py-0.1\n                  text-spotify\n                  border-spotify\n                  hover:bg-spotify\n                ",
+                                            attrs: {
+                                              "click-func": function () {
+                                                return _vm.toggleHidden(
+                                                  comment.id
+                                                )
+                                              },
+                                            },
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                X\n              "
+                                            ),
+                                          ]
+                                        ),
+                                      ],
+                                      1
+                                    )
+                                  : _vm._e(),
+                              ]
+                            ),
                           ],
                           1
                         ),
@@ -23078,46 +23104,69 @@ var render = function () {
                           ]
                         ),
                         _vm._v(" "),
-                        comment.user.id == _vm.userId
-                          ? _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "float-right inline relative bottom-0.5",
-                              },
-                              [
-                                _c(
-                                  "round-button",
-                                  {
-                                    staticClass: "mr-1 px-1.5 py-0.1 text-xs",
-                                    attrs: {
-                                      "click-func": function () {
-                                        return _vm.handleCommentEditClick(
-                                          comment.id
-                                        )
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "float-right inline relative bottom-0.5",
+                          },
+                          [
+                            comment.user.id == _vm.userId
+                              ? _c(
+                                  "span",
+                                  [
+                                    _c(
+                                      "round-button",
+                                      {
+                                        staticClass:
+                                          "mr-1 px-1.5 py-0.1 text-xs",
+                                        attrs: {
+                                          "click-func": function () {
+                                            return _vm.handleCommentEditClick(
+                                              comment.id
+                                            )
+                                          },
+                                        },
                                       },
-                                    },
-                                  },
-                                  [_vm._v("\n            Edit\n          ")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "round-button",
-                                  {
-                                    staticClass:
-                                      "\n              px-1.5\n              py-0.1\n              text-spotify\n              border-spotify\n              hover:bg-spotify\n              text-xs\n            ",
-                                    attrs: {
-                                      "click-func": function () {
-                                        return _vm.toggleHidden(comment.id)
+                                      [
+                                        _vm._v(
+                                          "\n              Edit\n            "
+                                        ),
+                                      ]
+                                    ),
+                                  ],
+                                  1
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            comment.user.id == _vm.userId ||
+                            _vm.userRole == "admin"
+                              ? _c(
+                                  "span",
+                                  [
+                                    _c(
+                                      "round-button",
+                                      {
+                                        staticClass:
+                                          "\n                px-1.5\n                py-0.1\n                text-spotify\n                border-spotify\n                hover:bg-spotify\n                text-xs\n              ",
+                                        attrs: {
+                                          "click-func": function () {
+                                            return _vm.toggleHidden(comment.id)
+                                          },
+                                        },
                                       },
-                                    },
-                                  },
-                                  [_vm._v("\n            X\n          ")]
-                                ),
-                              ],
-                              1
-                            )
-                          : _vm._e(),
+                                      [
+                                        _vm._v(
+                                          "\n              X\n            "
+                                        ),
+                                      ]
+                                    ),
+                                  ],
+                                  1
+                                )
+                              : _vm._e(),
+                          ]
+                        ),
                         _vm._v(" "),
                         _c("time-stamp", {
                           attrs: {
@@ -23395,6 +23444,7 @@ var render = function () {
       _c(
         "round-button",
         {
+          class: _vm.classStyle,
           attrs: {
             "click-func": function () {
               return _vm.toggleHidden()

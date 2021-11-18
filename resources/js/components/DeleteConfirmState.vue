@@ -2,6 +2,7 @@
   <div class="inline-block">
     <round-button
       :click-func="() => toggleHidden()"
+      :class="classStyle"
       class-style="text-spotify border-spotify hover:bg-spotify px-3 py-1 text-xs"
       >Delete post</round-button
     >
@@ -25,6 +26,10 @@ export default {
     },
 
     csfrToken: {
+      type: String,
+    },
+
+    classStyle: {
       type: String,
     },
   },

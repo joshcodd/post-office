@@ -17,7 +17,7 @@ class CommentFactory extends Factory
     {
         return [
             'post_id' => Post::inRandomOrder()->first()->id,
-            'user_id' => User::inRandomOrder()->first()->id,
+            'user_id' => User::where('user_role', '!=', 'admin')->inRandomOrder()->first()->id,
             'content' => $this->faker->realText(200),
         ];
     }
