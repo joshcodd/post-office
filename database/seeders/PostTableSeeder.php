@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Comment;
 use App\Models\Post;
-use App\Models\User;
+use App\Models\Tag;
 use App\Notifications\RecievedComment;
 use Illuminate\Database\Seeder;
 
@@ -23,11 +23,16 @@ class PostTableSeeder extends Seeder
         $post->content = 'This is my first post here.';
         $post->save();
 
+        Tag::all()->each(function ($tag) use ($post) {
+            $post->tags()->attach($tag);
+        });
+
         $post_two = new Post();
         $post_two->user_id = 1;
         $post_two->title = 'How many times a week should you eat a salad?';
         $post_two->content = 'You should definitely eat salad 5 times a week!';
         $post_two->save();
+        $post_two->tags()->attach(Post::inRandomOrder()->first()->id);
 
         $post_three = new Post();
         $post_three->user_id = 2;
