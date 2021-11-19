@@ -40,6 +40,11 @@ Vue.component(
     require("./components/TimeStamp.vue").default
 );
 
+Vue.component(
+    "edit-tags",
+    require("./components/EditTags.vue").default
+);
+
 const app = new Vue({
     el: "#app",
 });
