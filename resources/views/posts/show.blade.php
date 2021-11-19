@@ -44,9 +44,10 @@
 
             <div class="mt-7">
                 @foreach ($post->tags as $tag)
-                    <div class="inline-block px-2.5 py-0.5 text-sm border rounded-xl bg-gray-100 mx-1 my-1">
+                    <a href="{{ route('tags.show', ['tag' => $tag->id]) }}"
+                        class="inline-block px-2.5 py-0.5 text-sm border rounded-xl bg-gray-100 m-1 hover:bg-gray-200">
                         {{ $tag->name }}
-                    </div>
+                    </a>
                 @endforeach
             </div>
 

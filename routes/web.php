@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Models\Post;
+use App\Models\Tag;
+use Facade\FlareClient\View;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -45,6 +48,10 @@ Route::get('users/notifications', [UserController::class, 'notifications'])->mid
 Route::post('users/create-token', [UserController::class, 'generateToken'])->middleware(['auth'])->name('users.create.token');
 
 Route::get('users/{user}', [UserController::class, 'show'])->middleware(['auth'])->name('users.show');
+
+Route::get('tags/{tag}', function (Tag $tag) {
+    return View('tags.show', ['tag' => $tag]);
+})->middleware(['auth'])->name('tags.show');
 
 
 require __DIR__ . '/auth.php';
