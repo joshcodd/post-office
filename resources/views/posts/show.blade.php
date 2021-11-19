@@ -42,6 +42,14 @@
                 <p class="text-xl text-gray-600 whitespace-pre-line">{{ $post->content }}</p>
             </div>
 
+            <div class="mt-7">
+                @foreach ($post->tags as $tag)
+                    <div class="inline-block px-2.5 py-0.5 text-sm border rounded-xl bg-gray-100 mx-1 my-1">
+                        {{ $tag->name }}
+                    </div>
+                @endforeach
+            </div>
+
             <div class="flow-root  pt-4 pb-2">
                 <comment-button :post-id="{{ $post->id }}" :num-comments="{{ $post->comments->count() }}">
                 </comment-button>
