@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Tag;
+use App\Rules\OneWord;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -129,5 +132,47 @@ class PostController extends Controller
         } else {
             return null;
         }
+    }
+
+    public function apiTagAdd(Request $request, Post $post)
+    {
+        $error_messages = ['name.required' => 'Tag cannot be empty.'];
+        $rules = ['name' => ["required", new OneWord]];
+        $validator = Validator::make(
+            $request->all(),
+            $rules,
+            $error_messages
+        );
+
+        if ($validator->fails()) {
+            return response()->json([
+                'messages' => $validator->errors()->all(),
+            ], 400);
+        }
+
+        $tag_name = trim($request['name']);
+        $existing_tag = Tag::firstWhere('name', $tag_name);
+        if ($existing_tag) {
+            if ($post->tags->contains($existing_tag->id)) {
+                return response()->json([
+                    'messages' => ["Already tagged!"],
+                ], 400);
+            }
+            $post->tags()->attach($existing_tag->id);
+            return $existing_tag;
+        } else {
+            $tag = new Tag();
+            $tag->name = $tag_name;
+            $tag->save();
+            $post->tags()->attach($tag->id);
+            return $tag;
+        }
+    }
+
+    public function apiTagRemove(Post $post, Tag $tag)
+    {
+        $tag->delete();
+        $post->tags()->detach($tag);
+        return $tag;
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -29,3 +30,7 @@ Route::middleware('auth:sanctum', 'write.access')->put('comments/{comment}', [Co
 Route::middleware('auth:sanctum', 'write.access')->delete('comments/{comment}', [CommentController::class, 'apiDestroy'])->name('api.comments.destroy');
 
 Route::middleware('auth:sanctum')->post('users/clear-notifications', [UserController::class, 'clearNotifications'])->name('api.users.clear-notifictions');
+
+Route::middleware('auth:sanctum', 'write.access')->post('posts/{post}/tags', [PostController::class, 'apiTagAdd'])->name('api.posts.tag.create');
+
+Route::middleware('auth:sanctum', 'write.access')->delete('posts/{post}/tags/{tag}', [PostController::class, 'apiTagRemove'])->name('api.posts.tag.delete');

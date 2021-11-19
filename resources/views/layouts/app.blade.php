@@ -82,7 +82,9 @@
             clear_notifications: "{{ route('api.users.clear-notifictions') }}",
             notifications: "{{ route('users.notifications') }}",
             profile_show: "{{ route('users.show', ['']) }}",
-            create_token: "{{ route('users.create.token') }}"
+            add_tag: "{{ route('api.posts.tag.create', ['post' => 'first']) }}",
+            delete_tag: "{{ route('api.posts.tag.delete', ['post' => 'first', 'tag' => 'second']) }}",
+            create_token: "{{ route('users.create.token') }}",
         }
     };
 
