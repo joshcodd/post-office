@@ -4384,6 +4384,7 @@ __webpack_require__.r(__webpack_exports__);
       comment_content.classList.toggle("hidden");
       comment_edit_container.classList.toggle("hidden");
       input_area.value = comment_content.innerHTML;
+      contentTextAreaResize(input_area); // input_area.style.height = `${input_area.scrollHeight}px`;
     },
     handleCommentDeleteClick: function handleCommentDeleteClick(comment_id) {
       var _this2 = this;

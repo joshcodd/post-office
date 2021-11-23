@@ -290,6 +290,7 @@ export default {
       comment_content.classList.toggle("hidden");
       comment_edit_container.classList.toggle("hidden");
       input_area.value = comment_content.innerHTML;
+      contentTextAreaResize(input_area);
     },
 
     handleCommentDeleteClick: function (comment_id) {
