@@ -26,6 +26,6 @@ class TagTableSeeder extends Seeder
         $tag_three->name = "memes";
         $tag_three->save();
 
-        $tags = Tag::factory()->count(15)->create();
+        $tags = Tag::factory()->count(100)->create();
     }
 }

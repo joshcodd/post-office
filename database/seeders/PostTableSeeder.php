@@ -23,10 +23,6 @@ class PostTableSeeder extends Seeder
         $post->content = 'This is my first post here.';
         $post->save();
 
-        Tag::all()->each(function ($tag) use ($post) {
-            $post->tags()->attach($tag);
-        });
-
         $post_two = new Post();
         $post_two->user_id = 1;
         $post_two->title = 'How many times a week should you eat a salad?';
@@ -49,5 +45,13 @@ class PostTableSeeder extends Seeder
             });
         });
         $posts = Post::factory()->count(35)->create();
+
+        $posts->each(function ($post) {
+            Tag::all()->each(function ($tag) use ($post) {
+                if (rand(0, 5) == 1) {
+                    $post->tags()->attach($tag);
+                }
+            });
+        });
     }
 }
