@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Header;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,6 +16,34 @@ class UserController extends Controller
         $user = Auth::User();
         $token = $user->createToken('api_token');
         return ['token' => $token->plainTextToken];
+    }
+
+    public function uploadHeader(Request $request, User $user)
+    {
+        $request->validate([
+            'image' => 'mimes:jpeg,png',
+        ]);
+
+        $header = $user->header;
+        if (!$header) {
+            $header = new Header();
+            $header->user_id = $user->id;
+        }
+
+        $dir = 'public/images';
+        $path = $request->file('image')->store($dir);
+        $header->image_path = substr($path, strlen($dir));
+        $header->save();
+
+        return redirect()->route('users.show.me');
+    }
+
+    public function destroyHeader(User $user)
+    {
+        if ($user->header) {
+            $user->header->delete();
+        }
+        return redirect()->route('users.show.me');
     }
 
     public function showMyProfile()

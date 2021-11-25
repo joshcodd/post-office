@@ -49,6 +49,12 @@ Route::post('users/create-token', [UserController::class, 'generateToken'])->mid
 
 Route::get('users/{user}', [UserController::class, 'show'])->middleware(['auth'])->name('users.show');
 
+Route::post('users/{user}/header', [UserController::class, 'uploadHeader'])->middleware(['auth', 'write.access'])
+    ->name('users.header.upload');
+
+Route::delete('users/{user}/header', [UserController::class, 'destroyHeader'])->middleware(['auth', 'write.access'])
+    ->name('users.header.destroy');
+
 Route::get('tags/{tag}', function (Tag $tag) {
     return View('tags.show', ['tag' => $tag]);
 })->middleware(['auth'])->name('tags.show');
