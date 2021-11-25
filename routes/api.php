@@ -34,3 +34,9 @@ Route::middleware('auth:sanctum')->post('users/clear-notifications', [UserContro
 Route::middleware('auth:sanctum', 'write.access')->post('posts/{post}/tags', [PostController::class, 'apiTagAdd'])->name('api.posts.tag.create');
 
 Route::middleware('auth:sanctum', 'write.access')->delete('posts/{post}/tags/{tag}', [PostController::class, 'apiTagRemove'])->name('api.posts.tag.delete');
+
+Route::middleware('auth:sanctum')->post('posts/{post}/like', [PostController::class, 'apiLike'])->name('api.posts.like');
+
+Route::middleware('auth:sanctum')->delete('posts/{post}/like', [PostController::class, 'apiUnlike'])->name('api.posts.unlike');
+
+Route::middleware('auth:sanctum')->get('posts/{post}/hasliked', [PostController::class, 'apiHasLiked'])->name('api.posts.hasLiked');
