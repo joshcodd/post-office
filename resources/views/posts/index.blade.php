@@ -44,7 +44,8 @@
                     </comment-button>
                 </div>
 
-                <time-stamp timestamp="{{ $post->created_at }}" class-style="ml-6 block text-xs font-semibold leading-4">
+                <time-stamp timestamp="{{ $post->created_at->format('c') }}"
+                    class-style="ml-6 block text-xs font-semibold leading-4">
                 </time-stamp>
 
                 <comment-section :post="{{ $post }}" :user-id={{ Auth::User()->id }}

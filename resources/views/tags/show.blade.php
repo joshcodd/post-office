@@ -55,7 +55,7 @@
                                 <div class="ml-0.3 text-sm inline-block">{{ $post->comments->count() }}</div>
                             </div>
                         </div>
-                        <time-stamp timestamp="{{ $post->created_at }}"
+                        <time-stamp timestamp="{{ $post->created_at->format('c') }}"
                             class-style=" relative  block text-xs font-semibold leading-4">
                         </time-stamp>
                     </div>

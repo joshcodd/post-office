@@ -17,7 +17,8 @@
                 post
             </a>
 
-            <time-stamp :timestamp="'{{ $notification->created_at }}'" class-style="block text-xs font-thin">
+            <time-stamp :timestamp="'{{ $notification->created_at->format('c') }}'"
+                class-style="block text-xs font-thin">
             </time-stamp>
         </div>
     </div>
