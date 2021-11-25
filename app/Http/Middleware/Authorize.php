@@ -22,6 +22,8 @@ class Authorize
             $request_id = $request->post->user->id;
         } else if ($request->comment) {
             $request_id = $request->comment->user->id;
+        } else if ($request->user) {
+            $request_id = $request->user->id;
         }
 
         if ((Auth::User()->id == $request_id) || Auth::User()->user_role == 'admin') {
