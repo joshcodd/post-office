@@ -4,7 +4,35 @@
 
 @section('content')
     <div class="relative text-center">
-        <img class="w-full h-96  object-cover " src={{ asset(rand(0, 3) . '.jpg') }} alt="">
+        <img id="create_post_img" class="w-full h-96 object-cover "
+            src={{ $user->header ? asset('storage/images' . $user->header->image_path) : asset('marble.jpg') }} alt="">
+
+        @if (Auth::User()->id == $user->id)
+            <div class="absolute headerEditDialog">
+                <form method="POST" enctype="multipart/form-data" class="inline-block"
+                    action="{{ route('users.header.upload', ['user' => $user->id]) }}">
+                    @csrf
+                    <label for="header_img_upload"
+                        class="cursor-pointer border rounded-3xl px-2 py-1.5 text-xs font-semibold 
+                        text-white border-white hover:bg-white hover:text-black">
+                        Upload header
+                    </label>
+                    <input type='file' name="image" onchange="this.form.submit()" id="header_img_upload"
+                        class="hidden" />
+                </form>
+
+                <form method="POST" action="{{ route('users.header.destroy', ['user' => $user->id]) }}"
+                    class="inline-block">
+                    @method('DELETE')
+                    @csrf
+                    <button type="submit"
+                        class="border rounded-3xl px-2 py-1.5 text-xs font-semibold 
+                        text-spotify border-spotify  hover:bg-spotify hover:text-white">
+                        Remove header
+                    </button>
+                </form>
+            </div>
+        @endif
 
         <h1 class=" absolute px-14 py-5  bg-gray-100 text-center text-3xl font-bold text-black rounded-sm name_title">
             {{ $user->first_name }}
