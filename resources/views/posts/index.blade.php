@@ -42,6 +42,10 @@
 
                     <comment-button :post-id="{{ $post->id }}" :num-comments="{{ $post->comments->count() }}">
                     </comment-button>
+
+                    <like-button :post-id="{{ $post->id }}" :num-likes="{{ $post->likes->count() }}"
+                        :post-liked="@json($post->likes->contains('user_id', Auth::user()->id))">
+                    </like-button>
                 </div>
 
                 <time-stamp timestamp="{{ $post->created_at->format('c') }}"

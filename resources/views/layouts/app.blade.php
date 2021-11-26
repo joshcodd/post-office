@@ -84,6 +84,9 @@
             profile_show: "{{ route('users.show', ['']) }}",
             add_tag: "{{ route('api.posts.tag.create', ['post' => 'first']) }}",
             delete_tag: "{{ route('api.posts.tag.delete', ['post' => 'first', 'tag' => 'second']) }}",
+            like: "{{ route('api.posts.like', ['post' => 'first']) }}",
+            unlike: "{{ route('api.posts.unlike', ['post' => 'first']) }}",
+            hasLiked: "{{ route('api.posts.hasLiked', ['post' => 'first']) }}",
             create_token: "{{ route('users.create.token') }}",
         }
     };

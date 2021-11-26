@@ -45,6 +45,11 @@ Vue.component(
     require("./components/EditTags.vue").default
 );
 
+Vue.component(
+    "like-button",
+    require("./components/LikeButton.vue").default
+);
+
 const app = new Vue({
     el: "#app",
 });
