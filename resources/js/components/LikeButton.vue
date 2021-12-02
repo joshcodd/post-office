@@ -1,16 +1,16 @@
 <template>
-  <div class="float-right mr-5">
+  <div class="h-full">
     <button
       :id="`like_btn_${postId}`"
       v-on:click="handleLikeBtnClick(postId)"
-      class="group mt-0.5 mb-2 inline-block relative"
+      class="group relative inline-block w-auto h-full"
     >
       <svg
-        height="32px"
+        height="100%"
         style="enable-background: new 0 0 512 512"
         version="1.1"
         viewBox="0 0 512 512"
-        width="32px"
+        width="100%"
         xml:space="preserve"
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -28,11 +28,11 @@
       </svg>
 
       <svg
-        height="32px"
+        height="100%"
         style="enable-background: new 0 0 512 512"
         version="1.1"
         viewBox="0 0 512 512"
-        width="32px"
+        width="100%"
         xml:space="preserve"
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -55,10 +55,11 @@
       </svg>
     </button>
 
-    <div class="ml-1 mt-1.5 inline-block float-right">
-      <div :id="'like_count_' + postId">
-        {{ currentNumLikes }}
-      </div>
+    <div
+      :id="'like_count_' + postId"
+      class="flex items-center float-right h-full ml-1"
+    >
+      {{ currentNumLikes }}
     </div>
   </div>
 </template>

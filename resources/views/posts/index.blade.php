@@ -43,9 +43,11 @@
                     <comment-button :post-id="{{ $post->id }}" :num-comments="{{ $post->comments->count() }}">
                     </comment-button>
 
-                    <like-button :post-id="{{ $post->id }}" :num-likes="{{ $post->likes->count() }}"
-                        :post-liked="@json($post->likes->contains('user_id', Auth::user()->id))">
-                    </like-button>
+                    <div class="h-7 mr-4 mt-1 float-right">
+                        <like-button :post-id="{{ $post->id }}" :num-likes="{{ $post->likes->count() }}"
+                            :post-liked="@json($post->likes->contains('user_id', Auth::user()->id))">
+                        </like-button>
+                    </div>
                 </div>
 
                 <time-stamp timestamp="{{ $post->created_at->format('c') }}"
