@@ -75,7 +75,7 @@
     var config = {
         token: "",
         routes: {
-            comments_index: "{{ route('api.comments.index') }}",
+            comments_index: "{{ route('api.comments.index', ['post' => 'first']) }}",
             comments_store: "{{ route('api.comments.store') }}",
             comments_update: "{{ route('api.comments.update', ['']) }}",
             comments_delete: "{{ route('api.comments.destroy', ['']) }}",

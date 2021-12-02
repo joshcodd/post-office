@@ -32,7 +32,7 @@
       </div>
 
       <div
-        v-for="comment in commentList[post.id]"
+        v-for="comment in commentList"
         :key="`cmnt_${comment.id}`"
         class="overflow-hidden bg-white"
         :class="[
@@ -250,20 +250,12 @@ export default {
   },
 
   mounted() {
+    let route = config.routes.comments_index;
+    route = route.replace("first", this.post.id);
     axios
-      .get(config.routes.comments_index)
+      .get(route)
       .then((response) => {
-        this.commentList = [];
-        for (let i = 0; i < response.data.length; i++) {
-          const current_post_id = response.data[i].post_id;
-          if (this.commentList[current_post_id] == undefined) {
-            this.commentList[current_post_id] = response.data.filter(
-              (comment) => {
-                return comment.post_id === current_post_id;
-              }
-            );
-          }
-        }
+        this.commentList = response.data;
       })
       .catch((response) => {
         console.log(response);
@@ -302,11 +294,10 @@ export default {
           },
         })
         .then((response) => {
-          const post_id = response.data.post_id;
-          const filtered_post = this.commentList[post_id].filter((comment) => {
-            return comment.id !== comment_id;
-          });
-          this.$set(this.commentList, post_id, filtered_post);
+          const comment_index = this.commentList.findIndex(
+            (comment) => comment.id == comment_id
+          );
+          this.commentList.splice(comment_index, 1);
           this.isConfirmOpen = false;
           let count = document.getElementById(
             `comment_count_${response.data.post_id}`
@@ -332,11 +323,7 @@ export default {
         })
         .then((response) => {
           // Add to comment list and increase comment count.
-          if (this.commentList[response.data.post_id] == undefined) {
-            this.commentList[response.data.post_id] = [response.data];
-          } else {
-            this.commentList[response.data.post_id].push(response.data);
-          }
+          this.commentList.push(response.data);
           this.commentContentText = "";
           let count = document.getElementById(
             `comment_count_${response.data.post_id}`
@@ -373,11 +360,8 @@ export default {
           content: this.commentEditText[comment_id],
         })
         .then((response) => {
-          const post_id = response.data.post_id;
-          const post = this.commentList[post_id];
-          post.find((x) => x.id === comment_id).content =
+          this.commentList.find((x) => x.id === comment_id).content =
             this.commentEditText[comment_id];
-
           let comment_content = document.getElementById(
             "comments_content_" + comment_id
           );

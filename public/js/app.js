@@ -4362,22 +4362,10 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios.get(config.routes.comments_index).then(function (response) {
-      _this.commentList = [];
-
-      var _loop = function _loop(i) {
-        var current_post_id = response.data[i].post_id;
-
-        if (_this.commentList[current_post_id] == undefined) {
-          _this.commentList[current_post_id] = response.data.filter(function (comment) {
-            return comment.post_id === current_post_id;
-          });
-        }
-      };
-
-      for (var i = 0; i < response.data.length; i++) {
-        _loop(i);
-      }
+    var route = config.routes.comments_index;
+    route = route.replace("first", this.post.id);
+    axios.get(route).then(function (response) {
+      _this.commentList = response.data;
     })["catch"](function (response) {
       console.log(response);
     });
@@ -4406,13 +4394,11 @@ __webpack_require__.r(__webpack_exports__);
           Authorization: "Bearer ".concat(config.token)
         }
       }).then(function (response) {
-        var post_id = response.data.post_id;
-
-        var filtered_post = _this2.commentList[post_id].filter(function (comment) {
-          return comment.id !== comment_id;
+        var comment_index = _this2.commentList.findIndex(function (comment) {
+          return comment.id == comment_id;
         });
 
-        _this2.$set(_this2.commentList, post_id, filtered_post);
+        _this2.commentList.splice(comment_index, 1);
 
         _this2.isConfirmOpen = false;
         var count = document.getElementById("comment_count_".concat(response.data.post_id));
@@ -4435,11 +4421,7 @@ __webpack_require__.r(__webpack_exports__);
         content: this.commentContentText
       }).then(function (response) {
         // Add to comment list and increase comment count.
-        if (_this3.commentList[response.data.post_id] == undefined) {
-          _this3.commentList[response.data.post_id] = [response.data];
-        } else {
-          _this3.commentList[response.data.post_id].push(response.data);
-        }
+        _this3.commentList.push(response.data);
 
         _this3.commentContentText = "";
         var count = document.getElementById("comment_count_".concat(response.data.post_id));
@@ -4474,9 +4456,7 @@ __webpack_require__.r(__webpack_exports__);
         },
         content: this.commentEditText[comment_id]
       }).then(function (response) {
-        var post_id = response.data.post_id;
-        var post = _this5.commentList[post_id];
-        post.find(function (x) {
+        _this5.commentList.find(function (x) {
           return x.id === comment_id;
         }).content = _this5.commentEditText[comment_id];
         var comment_content = document.getElementById("comments_content_" + comment_id);
@@ -24227,7 +24207,7 @@ var render = function () {
             0
           ),
           _vm._v(" "),
-          _vm._l(_vm.commentList[_vm.post.id], function (comment) {
+          _vm._l(_vm.commentList, function (comment) {
             return _c(
               "div",
               {
