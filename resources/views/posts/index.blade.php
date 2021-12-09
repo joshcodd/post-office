@@ -28,7 +28,8 @@
                 </div>
 
                 <div class="flow-root px-6 pt-4 pb-3">
-                    <a class="float-left rounded-full px-4 py-2 text-sm font-semibold mr-2 mb-2 border  text-black border-black  hover:bg-gray-700 hover:text-white"
+                    <a class="float-left rounded-full px-4 py-2 text-sm font-semibold mr-2 mb-2 border text-black border-black  
+                        hover:bg-gray-700 hover:text-white"
                         href="{{ route('posts.show', ['post' => $post->id]) }}">View post</a>
 
                     @if (Auth::User()->user_role == 'admin')
@@ -36,7 +37,8 @@
                             class-style="px-4 py-2 font-semibold text-sm" csfr-token="{{ csrf_token() }}">
                         </delete-confirm-state>
                     @elseif (Auth::User()->id == $post->user->id)
-                        <a class="float-left rounded-full px-4 py-2 text-sm font-semibold mr-2 mb-2 border  text-black border-black  hover:bg-gray-700 hover:text-white"
+                        <a class="float-left rounded-full px-4 py-2 text-sm font-semibold mr-2 mb-2 border text-black border-black 
+                        hover:bg-gray-700 hover:text-white"
                             href="{{ route('posts.edit', ['post' => $post->id]) }}">Edit post</a>
                     @endif
 
@@ -44,8 +46,8 @@
                     </comment-button>
 
                     <div class="h-7 mr-4 mt-1 float-right">
-                        <like-button :post-id="{{ $post->id }}" :num-likes="{{ $post->likes->count() }}"
-                            :post-liked="@json($post->likes->contains('user_id', Auth::user()->id))">
+                        <like-button :post-id="{{ $post->id }}" :likes="{{ $post->likes }}"
+                            :current-user-id={{ Auth::User()->id }}>
                         </like-button>
                     </div>
                 </div>

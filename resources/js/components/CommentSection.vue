@@ -41,9 +41,9 @@
             : 'py-3 border-b border-bg-gray-400',
         ]"
       >
-        <span
+        <div
           v-if="isBubbleStyle"
-          class="block font-semibold border-b border-bg-gray-400 mb-1.5"
+          class="border-bg-gray-400 flex items-center font-semibold border-b"
         >
           <a
             v-on:click="handleUserNameClick(comment.user_id)"
@@ -53,14 +53,25 @@
             {{ comment.user.surname }}
           </a>
 
-          <div class="float-right">
+          <div class="flex items-center justify-end flex-grow">
             <time-stamp
               :timestamp="comment.updated_at"
               class-style="inline font-thin text-sm"
             >
             </time-stamp>
 
-            <div class="inline relative bottom-0.5 text-xs">
+            <div class="flex items-center h-5 ml-3 text-xs">
+              <like-button
+                :post-id="post.id"
+                :comment-id="comment.id"
+                :is-comment="true"
+                :likes="comment.likes"
+                :current-user-id="userId"
+              >
+              </like-button>
+            </div>
+
+            <div class="flex items-center ml-2 text-xs">
               <span v-if="comment.user.id == userId">
                 <round-button
                   :click-func="() => handleCommentEditClick(comment.id)"
@@ -88,42 +99,55 @@
               </span>
             </div>
           </div>
-        </span>
+        </div>
 
-        <span v-else class="block font-semibold mb-1.5">
-          <a
-            v-on:click="handleUserNameClick(comment.user_id)"
-            class="hover:underline cursor-pointer"
-          >
-            {{ comment.user.first_name }}
-            {{ comment.user.surname }}
-          </a>
+        <div v-else class="block font-semibold mb-1.5">
+          <div class="flex items-center">
+            <a
+              v-on:click="handleUserNameClick(comment.user_id)"
+              class="hover:underline cursor-pointer"
+            >
+              {{ comment.user.first_name }}
+              {{ comment.user.surname }}
+            </a>
 
-          <div class="float-right inline relative bottom-0.5">
-            <span v-if="comment.user.id == userId">
-              <round-button
-                :click-func="() => handleCommentEditClick(comment.id)"
-                class="mr-1 px-1.5 py-0.1 text-xs"
-              >
-                Edit
-              </round-button>
-            </span>
+            <div class="flex items-center justify-end flex-grow">
+              <div class="h-5 mt-px text-xs">
+                <like-button
+                  :post-id="post.id"
+                  :comment-id="comment.id"
+                  :is-comment="true"
+                  :likes="comment.likes"
+                  :current-user-id="userId"
+                >
+                </like-button>
+              </div>
 
-            <span v-if="comment.user.id == userId || userRole == 'admin'">
-              <round-button
-                :click-func="() => toggleHidden(comment.id)"
-                class="
-                  px-1.5
-                  py-0.1
-                  text-spotify
-                  border-spotify
-                  hover:bg-spotify
-                  text-xs
-                "
-              >
-                X
-              </round-button>
-            </span>
+              <span v-if="comment.user.id == userId">
+                <round-button
+                  :click-func="() => handleCommentEditClick(comment.id)"
+                  class="mr-1 ml-3.5 px-1.5 py-0.1 text-xs"
+                >
+                  Edit
+                </round-button>
+              </span>
+
+              <span v-if="comment.user.id == userId || userRole == 'admin'">
+                <round-button
+                  :click-func="() => toggleHidden(comment.id)"
+                  class="
+                    px-1.5
+                    py-0.1
+                    text-spotify
+                    border-spotify
+                    hover:bg-spotify
+                    text-xs
+                  "
+                >
+                  X
+                </round-button>
+              </span>
+            </div>
           </div>
 
           <time-stamp
@@ -131,12 +155,13 @@
             class-style="block text-xs font-thin"
           >
           </time-stamp>
-        </span>
+        </div>
 
         <p
           :id="`comments_content_${comment.id}`"
           class="w-full break-all whitespace-pre-line"
-        >{{ comment.content }}
+        >
+          {{ comment.content }}
         </p>
 
         <div :id="`comments_edit_containter_${comment.id}`" class="hidden">
@@ -214,11 +239,12 @@
 <script>
 import common from "./common";
 import DeleteConfirm from "./DeleteConfirm.vue";
+import LikeButton from "./LikeButton.vue";
 import RoundButton from "./RoundButton.vue";
 import SquareButton from "./SquareButton.vue";
 
 export default {
-  components: { DeleteConfirm, RoundButton, SquareButton },
+  components: { DeleteConfirm, RoundButton, SquareButton, LikeButton },
   props: {
     post: {
       type: Object,
