@@ -2,9 +2,9 @@
   <div class="inline-block">
     <round-button
       :click-func="() => toggleHidden()"
+      class-style="text-spotify border-spotify hover:bg-spotify"
       :class="classStyle"
-      class-style="text-spotify border-spotify hover:bg-spotify px-3 py-1 text-xs"
-      >Delete post</round-button
+      >Delete</round-button
     >
     <delete-confirm
       :isVisible="isConfirmOpen"
@@ -31,6 +31,7 @@ export default {
 
     classStyle: {
       type: String,
+      default: "px-3 py-1 text-xs",
     },
   },
 

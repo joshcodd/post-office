@@ -86,16 +86,15 @@
                   :click-func="() => toggleHidden(comment.id)"
                   class="
                     z-10
-                    ml-1
+                    ml-0
                     px-1.5
                     py-0.1
                     text-spotify
                     border-spotify
                     hover:bg-spotify
                   "
+                  >X</round-button
                 >
-                  X
-                </round-button>
               </span>
             </div>
           </div>
@@ -142,10 +141,10 @@
                     border-spotify
                     hover:bg-spotify
                     text-xs
+                    ml-2
                   "
+                  >X</round-button
                 >
-                  X
-                </round-button>
               </span>
             </div>
           </div>

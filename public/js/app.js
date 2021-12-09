@@ -4335,7 +4335,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -4662,7 +4661,8 @@ __webpack_require__.r(__webpack_exports__);
       type: String
     },
     classStyle: {
-      type: String
+      type: String,
+      "default": "px-3 py-1 text-xs"
     }
   },
   data: function data() {
@@ -23803,7 +23803,7 @@ var render = function () {
                                           "round-button",
                                           {
                                             staticClass:
-                                              "\n                  z-10\n                  ml-1\n                  px-1.5\n                  py-0.1\n                  text-spotify\n                  border-spotify\n                  hover:bg-spotify\n                ",
+                                              "\n                  z-10\n                  ml-0\n                  px-1.5\n                  py-0.1\n                  text-spotify\n                  border-spotify\n                  hover:bg-spotify\n                ",
                                             attrs: {
                                               "click-func": function () {
                                                 return _vm.toggleHidden(
@@ -23812,11 +23812,7 @@ var render = function () {
                                               },
                                             },
                                           },
-                                          [
-                                            _vm._v(
-                                              "\n                X\n              "
-                                            ),
-                                          ]
+                                          [_vm._v("X")]
                                         ),
                                       ],
                                       1
@@ -23918,7 +23914,7 @@ var render = function () {
                                         "round-button",
                                         {
                                           staticClass:
-                                            "\n                  px-1.5\n                  py-0.1\n                  text-spotify\n                  border-spotify\n                  hover:bg-spotify\n                  text-xs\n                ",
+                                            "\n                  px-1.5\n                  py-0.1\n                  text-spotify\n                  border-spotify\n                  hover:bg-spotify\n                  text-xs\n                  ml-2\n                ",
                                           attrs: {
                                             "click-func": function () {
                                               return _vm.toggleHidden(
@@ -23927,11 +23923,7 @@ var render = function () {
                                             },
                                           },
                                         },
-                                        [
-                                          _vm._v(
-                                            "\n                X\n              "
-                                          ),
-                                        ]
+                                        [_vm._v("X")]
                                       ),
                                     ],
                                     1
@@ -24222,11 +24214,10 @@ var render = function () {
             "click-func": function () {
               return _vm.toggleHidden()
             },
-            "class-style":
-              "text-spotify border-spotify hover:bg-spotify px-3 py-1 text-xs",
+            "class-style": "text-spotify border-spotify hover:bg-spotify",
           },
         },
-        [_vm._v("Delete post")]
+        [_vm._v("Delete")]
       ),
       _vm._v(" "),
       _c("delete-confirm", {

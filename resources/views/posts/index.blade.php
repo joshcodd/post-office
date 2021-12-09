@@ -27,28 +27,29 @@
                     <p class="text-base text-gray-600 whitespace-pre-line">{{ $post->content }}</p>
                 </div>
 
-                <div class="flow-root px-6 pt-4 pb-3">
-                    <a class="float-left rounded-full px-4 py-2 text-sm font-semibold mr-2 mb-2 border text-black border-black  
-                        hover:bg-gray-700 hover:text-white"
-                        href="{{ route('posts.show', ['post' => $post->id]) }}">View post</a>
+                <div class="flex items-center px-6 pt-4 pb-3 mb-2">
+                    <div class="flex-grow items-center text-sm font-semibold text-black">
+                        <a class="rounded-full px-3.5 py-1.5 mr-2 border border-black hover:bg-gray-700 hover:text-white"
+                            href="{{ route('posts.show', ['post' => $post->id]) }}">View post</a>
 
-                    @if (Auth::User()->user_role == 'admin')
-                        <delete-confirm-state route="{{ route('posts.destroy', $post->id) }}"
-                            class-style="px-4 py-2 font-semibold text-sm" csfr-token="{{ csrf_token() }}">
-                        </delete-confirm-state>
-                    @elseif (Auth::User()->id == $post->user->id)
-                        <a class="float-left rounded-full px-4 py-2 text-sm font-semibold mr-2 mb-2 border text-black border-black 
-                        hover:bg-gray-700 hover:text-white"
-                            href="{{ route('posts.edit', ['post' => $post->id]) }}">Edit post</a>
-                    @endif
+                        @if (Auth::User()->user_role == 'admin')
+                            <delete-confirm-state route="{{ route('posts.destroy', $post->id) }}"
+                                class-style="px-3.5 py-1.5 font-semibold text-sm" csfr-token="{{ csrf_token() }}">
+                            </delete-confirm-state>
+                        @elseif (Auth::User()->id == $post->user->id)
+                            <a class="rounded-full px-3.5 py-1.5 mr-2 border border-black hover:bg-gray-700 hover:text-white"
+                                href="{{ route('posts.edit', ['post' => $post->id]) }}">Edit post</a>
+                        @endif
+                    </div>
 
-                    <comment-button :post-id="{{ $post->id }}" :num-comments="{{ $post->comments->count() }}">
-                    </comment-button>
-
-                    <div class="mr-4 mt-1 float-right">
+                    <div class="flex items-center">
                         <like-button :item-id="{{ $post->id }}" :likes="{{ $post->likes->load('user') }}"
                             :current-user-id={{ Auth::User()->id }} width="7">
                         </like-button>
+
+                        <comment-button :post-id="{{ $post->id }}" :num-comments="{{ $post->comments->count() }}"
+                            class="mt-1 ml-4">
+                        </comment-button>
                     </div>
                 </div>
 

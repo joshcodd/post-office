@@ -67,7 +67,7 @@
 
                             @if (Auth::User()->user_role == 'admin')
                                 <delete-confirm-state route="{{ route('posts.destroy', $post->id) }}"
-                                    csfr-token="{{ csrf_token() }}">
+                                    csfr-token="{{ csrf_token() }}" class-style="px-2 py-0.5 text-xs font-semibold">
                                 </delete-confirm-state>
                             @elseif (Auth::User()->id == $post->user->id)
                                 <a href="{{ route('posts.edit', ['post' => $post->id]) }}"
