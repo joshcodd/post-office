@@ -67,12 +67,40 @@ class CommentController extends Controller
 
     public function apiPostComments(Post $post)
     {
-        return $post->comments->load('user');
+        return $post->comments->load('user', 'likes');
     }
 
     public function apiDestroy(Comment $comment)
     {
         $comment->delete();
         return $comment->load('user');
+    }
+
+    public function apiLike(Post $post, Comment $comment)
+    {
+        $user_id = Auth::user()->id;
+        if (!$comment->likes->contains('user_id', $user_id)) {
+            $like = $comment->likes()->create(['user_id' => 1]);
+            return response()->json([
+                'like' => $like,
+            ], 200);
+        } else {
+            return response()->json([
+                'messages' => ["Post is already liked."],
+            ], 403);
+        }
+    }
+
+    public function apiUnlike(Post $post, Comment $comment)
+    {
+        $user_id = Auth::user()->id;
+        $like = $comment->likes->where('user_id', $user_id);
+        if ($like->count() > 0) {
+            $like->first()->delete();
+        } else {
+            return response()->json([
+                'messages' => ["Post does not exist."],
+            ], 404);
+        }
     }
 }

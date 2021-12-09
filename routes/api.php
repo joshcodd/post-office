@@ -36,7 +36,7 @@ Route::middleware('auth:sanctum', 'write.access')->post('posts/{post}/tags', [Po
 Route::middleware('auth:sanctum', 'write.access')->delete('posts/{post}/tags/{tag}', [PostController::class, 'apiTagRemove'])->name('api.posts.tag.delete');
 
 Route::middleware('auth:sanctum')->post('posts/{post}/like', [PostController::class, 'apiLike'])->name('api.posts.like');
-
 Route::middleware('auth:sanctum')->delete('posts/{post}/like', [PostController::class, 'apiUnlike'])->name('api.posts.unlike');
 
-Route::middleware('auth:sanctum')->get('posts/{post}/hasliked', [PostController::class, 'apiHasLiked'])->name('api.posts.hasLiked');
+Route::middleware('auth:sanctum')->post('posts/{post}/{comment}/like', [CommentController::class, 'apiLike'])->name('api.comment.like');
+Route::middleware('auth:sanctum')->delete('posts/{post}/{comment}/like', [CommentController::class, 'apiUnlike'])->name('api.comment.unlike');
