@@ -1,8 +1,8 @@
 <template>
   <div class="h-full">
     <button
-      :id="`like_btn_${postId}`"
-      v-on:click="handleLikeBtnClick(postId, commentId)"
+      :id="`like_btn_${itemId}`"
+      v-on:click="handleLikeBtnClick()"
       class="group relative inline-block w-auto h-full"
     >
       <svg
@@ -16,7 +16,7 @@
         xmlns:xlink="http://www.w3.org/1999/xlink"
         class="group-hover:visible relative"
         :class="currentHasLiked ? 'visible' : 'invisible '"
-        :id="`like_btn_fill_${postId}`"
+        :id="`like_btn_fill_${itemId}`"
       >
         <path
           d="M365.4,59.628c60.56,0,109.6,49.03,109.6,109.47c0,109.47-109.6,
@@ -38,7 +38,7 @@
         xmlns:xlink="http://www.w3.org/1999/xlink"
         class="absolute top-0"
         :class="currentHasLiked ? 'invisible ' : 'visible '"
-        :id="`like_btn_stroke_${postId}`"
+        :id="`like_btn_stroke_${itemId}`"
       >
         <path
           d="M255.937,461.368c-2.652,0-5.196-1.054-7.071-2.929 c-26.65-26.65-53.021-50.236-78.522-73.046C132.019,
@@ -56,7 +56,7 @@
     </button>
 
     <div
-      :id="'like_count_' + postId"
+      :id="'like_count_' + itemId"
       class="flex items-center float-right h-full ml-1"
     >
       {{ likes.length }}
@@ -67,11 +67,7 @@
 <script>
 export default {
   props: {
-    postId: {
-      type: Number,
-    },
-
-    commentId: {
+    itemId: {
       type: Number,
     },
 
@@ -96,80 +92,30 @@ export default {
   },
 
   methods: {
-    likePost: function (post_id) {
-      let route = config.routes.like;
-      route = route.replace("first", post_id);
-      axios
-        .post(route, {
-          headers: {
-            "Content-type": "application/json",
-            Authorization: `Bearer ${config.token}`,
-          },
-        })
-        .then((response) => {
-          this.currentHasLiked = true;
-          this.likes.push(response.data.like);
-        })
-        .catch((error) => {
-          if (error.response) {
-            console.log(error.response);
-          }
-        });
-    },
-
-    unlikePost: function (post_id) {
-      let route = config.routes.unlike;
-      route = route.replace("first", post_id);
-      axios
-        .delete(route, {
-          headers: {
-            "Content-type": "application/json",
-            Authorization: `Bearer ${config.token}`,
-          },
-        })
-        .then((response) => {
-          this.currentHasLiked = false;
-          const like_index = this.likes.findIndex(
-            (like) => like.user_id == this.currentUserId
-          );
-          this.likes.splice(like_index, 1);
-        })
-        .catch((error) => {
-          if (error.response) {
-            console.log(error.response);
-          }
-        });
-    },
-
-    handleLikeBtnClick: function (id, comment_id) {
-      const hasLiked = this.hasLiked();
-
-      if (this.isComment) {
-        if (hasLiked) {
-          this.unlikeComment(id, comment_id);
-        } else {
-          this.likeComment(id, comment_id);
-        }
+    handleLikeBtnClick: function () {
+      if (this.hasLiked()) {
+        this.unlikeItem();
       } else {
-        if (hasLiked) {
-          this.unlikePost(id);
-        } else {
-          this.likePost(id);
-        }
+        this.likeItem();
       }
     },
 
-    likeComment: function (post_id, comment_id) {
-      let route = config.routes.comment_like;
-      route = route.replace("first", post_id);
-      route = route.replace("second", comment_id);
-      axios;
+    likeItem: function () {
+      let comment_id = this.itemId;
+      let post_id = this.itemId;
+      if (this.isComment) {
+        post_id = null;
+      } else {
+        comment_id = null;
+      }
       axios
-        .post(route, {
+        .post(config.routes.like_store, {
           headers: {
             "Content-type": "application/json",
             Authorization: `Bearer ${config.token}`,
           },
+          post: post_id,
+          comment: comment_id,
         })
         .then((response) => {
           this.currentHasLiked = true;
@@ -182,11 +128,14 @@ export default {
         });
     },
 
-    unlikeComment: function (post_id, comment_id) {
-      let route = config.routes.comment_unlike;
-      route = route.replace("first", post_id);
-      route = route.replace("second", comment_id);
-      axios;
+    unlikeItem: function () {
+      const like_index = this.likes.findIndex(
+        (like) => like.user_id == this.currentUserId
+      );
+      const like_id = this.likes[like_index].id;
+
+      let route = config.routes.like_destroy;
+      route = route.replace("first", like_id);
       axios
         .delete(route, {
           headers: {
@@ -196,9 +145,6 @@ export default {
         })
         .then((response) => {
           this.currentHasLiked = false;
-          const like_index = this.likes.findIndex(
-            (like) => like.user_id == this.currentUserId
-          );
           this.likes.splice(like_index, 1);
         })
         .catch((error) => {

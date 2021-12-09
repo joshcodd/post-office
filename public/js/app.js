@@ -4334,8 +4334,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 
@@ -4910,10 +4908,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
-    postId: {
-      type: Number
-    },
-    commentId: {
+    itemId: {
       type: Number
     },
     isComment: {
@@ -4933,16 +4928,32 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    likePost: function likePost(post_id) {
+    handleLikeBtnClick: function handleLikeBtnClick() {
+      if (this.hasLiked()) {
+        this.unlikeItem();
+      } else {
+        this.likeItem();
+      }
+    },
+    likeItem: function likeItem() {
       var _this = this;
 
-      var route = config.routes.like;
-      route = route.replace("first", post_id);
-      axios.post(route, {
+      var comment_id = this.itemId;
+      var post_id = this.itemId;
+
+      if (this.isComment) {
+        post_id = null;
+      } else {
+        comment_id = null;
+      }
+
+      axios.post(config.routes.like_store, {
         headers: {
           "Content-type": "application/json",
           Authorization: "Bearer ".concat(config.token)
-        }
+        },
+        post: post_id,
+        comment: comment_id
       }).then(function (response) {
         _this.currentHasLiked = true;
 
@@ -4953,11 +4964,15 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    unlikePost: function unlikePost(post_id) {
+    unlikeItem: function unlikeItem() {
       var _this2 = this;
 
-      var route = config.routes.unlike;
-      route = route.replace("first", post_id);
+      var like_index = this.likes.findIndex(function (like) {
+        return like.user_id == _this2.currentUserId;
+      });
+      var like_id = this.likes[like_index].id;
+      var route = config.routes.like_destroy;
+      route = route.replace("first", like_id);
       axios["delete"](route, {
         headers: {
           "Content-type": "application/json",
@@ -4966,10 +4981,6 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         _this2.currentHasLiked = false;
 
-        var like_index = _this2.likes.findIndex(function (like) {
-          return like.user_id == _this2.currentUserId;
-        });
-
         _this2.likes.splice(like_index, 1);
       })["catch"](function (error) {
         if (error.response) {
@@ -4977,76 +4988,11 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    handleLikeBtnClick: function handleLikeBtnClick(id, comment_id) {
-      var hasLiked = this.hasLiked();
-
-      if (this.isComment) {
-        if (hasLiked) {
-          this.unlikeComment(id, comment_id);
-        } else {
-          this.likeComment(id, comment_id);
-        }
-      } else {
-        if (hasLiked) {
-          this.unlikePost(id);
-        } else {
-          this.likePost(id);
-        }
-      }
-    },
-    likeComment: function likeComment(post_id, comment_id) {
+    hasLiked: function hasLiked() {
       var _this3 = this;
 
-      var route = config.routes.comment_like;
-      route = route.replace("first", post_id);
-      route = route.replace("second", comment_id);
-      axios;
-      axios.post(route, {
-        headers: {
-          "Content-type": "application/json",
-          Authorization: "Bearer ".concat(config.token)
-        }
-      }).then(function (response) {
-        _this3.currentHasLiked = true;
-
-        _this3.likes.push(response.data.like);
-      })["catch"](function (error) {
-        if (error.response) {
-          console.log(error.response);
-        }
-      });
-    },
-    unlikeComment: function unlikeComment(post_id, comment_id) {
-      var _this4 = this;
-
-      var route = config.routes.comment_unlike;
-      route = route.replace("first", post_id);
-      route = route.replace("second", comment_id);
-      axios;
-      axios["delete"](route, {
-        headers: {
-          "Content-type": "application/json",
-          Authorization: "Bearer ".concat(config.token)
-        }
-      }).then(function (response) {
-        _this4.currentHasLiked = false;
-
-        var like_index = _this4.likes.findIndex(function (like) {
-          return like.user_id == _this4.currentUserId;
-        });
-
-        _this4.likes.splice(like_index, 1);
-      })["catch"](function (error) {
-        if (error.response) {
-          console.log(error.response);
-        }
-      });
-    },
-    hasLiked: function hasLiked() {
-      var _this5 = this;
-
       var hasLiked = this.likes.filter(function (like) {
-        return like.user_id === _this5.currentUserId;
+        return like.user_id === _this3.currentUserId;
       }).length > 0;
 
       if (hasLiked) {
@@ -23557,8 +23503,7 @@ var render = function () {
                               [
                                 _c("like-button", {
                                   attrs: {
-                                    "post-id": _vm.post.id,
-                                    "comment-id": comment.id,
+                                    "item-id": comment.id,
                                     "is-comment": true,
                                     likes: comment.likes,
                                     "current-user-id": _vm.userId,
@@ -23676,8 +23621,7 @@ var render = function () {
                                 [
                                   _c("like-button", {
                                     attrs: {
-                                      "post-id": _vm.post.id,
-                                      "comment-id": comment.id,
+                                      "item-id": comment.id,
                                       "is-comment": true,
                                       likes: comment.likes,
                                       "current-user-id": _vm.userId,
@@ -24216,10 +24160,10 @@ var render = function () {
       "button",
       {
         staticClass: "group relative inline-block w-auto h-full",
-        attrs: { id: "like_btn_" + _vm.postId },
+        attrs: { id: "like_btn_" + _vm.itemId },
         on: {
           click: function ($event) {
-            return _vm.handleLikeBtnClick(_vm.postId, _vm.commentId)
+            return _vm.handleLikeBtnClick()
           },
         },
       },
@@ -24238,7 +24182,7 @@ var render = function () {
               "xml:space": "preserve",
               xmlns: "http://www.w3.org/2000/svg",
               "xmlns:xlink": "http://www.w3.org/1999/xlink",
-              id: "like_btn_fill_" + _vm.postId,
+              id: "like_btn_fill_" + _vm.itemId,
             },
           },
           [
@@ -24265,7 +24209,7 @@ var render = function () {
               "xml:space": "preserve",
               xmlns: "http://www.w3.org/2000/svg",
               "xmlns:xlink": "http://www.w3.org/1999/xlink",
-              id: "like_btn_stroke_" + _vm.postId,
+              id: "like_btn_stroke_" + _vm.itemId,
             },
           },
           [
@@ -24283,7 +24227,7 @@ var render = function () {
       "div",
       {
         staticClass: "flex items-center float-right h-full ml-1",
-        attrs: { id: "like_count_" + _vm.postId },
+        attrs: { id: "like_count_" + _vm.itemId },
       },
       [_vm._v("\n    " + _vm._s(_vm.likes.length) + "\n  ")]
     ),
