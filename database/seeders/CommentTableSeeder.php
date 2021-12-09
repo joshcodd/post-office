@@ -34,7 +34,6 @@ class CommentTableSeeder extends Seeder
         $comment_three->content = 'I eat salad 7 times a week lol!';
         $comment_three->save();
 
-
         $comments = collect();
         for ($i = 0; $i <= 100; $i++) {
             $comments->push(Comment::factory()->hasLikes(rand(0, 10))->create());
