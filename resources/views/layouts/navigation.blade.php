@@ -1,4 +1,4 @@
-<nav class="bg-white shadow-lg sticky top-0 z-10">
+<nav class="bg-white shadow-lg sticky top-0 z-20">
     <div class="flex px-4">
         <div class="container mx-auto md:flex p-3 items-center">
             <a href="{{ route('posts.index') }}" id="title" class="flex py-4 px-2 font-garamond text-2xl">
