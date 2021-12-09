@@ -40,7 +40,7 @@
         </h1>
     </div>
 
-    <div class="p-10  sm:column-3 lg:column-4 mx-auto w-full">
+    <div class="p-10 sm:column-3 lg:column-4 mx-auto w-full">
         @foreach ($user->posts as $post)
             <div class="break-inside pb-10">
                 <div class="break-inside mx-1 md:mx-5 rounded-xl shadow-md overflow-hidden">
@@ -59,36 +59,35 @@
                             {{ implode(' ', array_slice(explode(' ', $post->content), 0, 50)) . '.......' }}</p>
                     </div>
 
-                    <div class="flex px-4 pt-2 pb-2">
-
-                        <div class="flex-grow">
+                    <div class="flex px-4 pt-2 pb-3 items-center">
+                        <div class="flex-grow items-center text-black">
                             <a href="{{ route('posts.show', ['post' => $post->id]) }}"
-                                class="float-left rounded-full px-2 py-1 text-xs font-semibold mr-2 mb-2 border  text-black border-black  hover:bg-gray-700 hover:text-white">View
-                                post
-                            </a>
+                                class="rounded-full px-2 py-0.5 text-xs font-semibold mr-1 border border-black 
+                                hover:bg-gray-700 hover:text-white">View</a>
 
                             @if (Auth::User()->user_role == 'admin')
                                 <delete-confirm-state route="{{ route('posts.destroy', $post->id) }}"
-                                    csfr-token="{{ csrf_token() }}" class-style="float-left">
+                                    csfr-token="{{ csrf_token() }}">
                                 </delete-confirm-state>
                             @elseif (Auth::User()->id == $post->user->id)
                                 <a href="{{ route('posts.edit', ['post' => $post->id]) }}"
-                                    class="float-left rounded-full px-2 py-1 text-xs font-semibold mr-2 mb-2 border  text-black border-black  hover:bg-gray-700 hover:text-white">Edit
-                                    post
-                                </a>
+                                    class="rounded-full px-2 py-0.5 text-xs font-semibold mr-1 border text-black border-black 
+                                    hover:bg-gray-700 hover:text-white">Edit</a>
                             @endif
                         </div>
 
-                        <div class="whitespace-nowrap float-right">
-                            <svg xmlns=" http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
-                                class="text-gray-700 mt-0.5 inline-block">
+                        <div class="flex items-center text-sm mt-px">
+                            <like-button :item-id="{{ $post->id }}" :likes="{{ $post->likes->load('user') }}"
+                                :current-user-id={{ Auth::User()->id }} width="6" class="ml-3.5">
+                            </like-button>
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                class="text-gray-700 ml-4 mr-1 mt-px">
                                 <path fill="#404040"
                                     d="M0 1v16.981h4v5.019l7-5.019h13v-16.981h-24zm13 12h-8v-1h8v1zm6-3h-14v-1h14v1zm0-3h-14v-1h14v1z"
                                     id={{ 'comment_btn_clear_' . $post->id }} />
                             </svg>
-                            <div class="ml-0.3 text-sm inline-block">
-                                {{ $post->comments->count() }}
-                            </div>
+                            {{ $post->comments->count() }}
                         </div>
                     </div>
                 </div>

@@ -50,6 +50,16 @@ Vue.component(
     require("./components/LikeButton.vue").default
 );
 
+Vue.component(
+    "heart-icon",
+    require("./components/HeartIcon.vue").default
+);
+
+Vue.component(
+    "heart-icon-outline",
+    require("./components/HeartIconOutline.vue").default
+);
+
 const app = new Vue({
     el: "#app",
 });

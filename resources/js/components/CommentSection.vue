@@ -60,12 +60,13 @@
             >
             </time-stamp>
 
-            <div class="flex items-center h-5 ml-3 text-xs">
+            <div class="flex items-center ml-3 text-xs">
               <like-button
                 :item-id="comment.id"
                 :is-comment="true"
                 :likes="comment.likes"
                 :current-user-id="userId"
+                width="5"
               >
               </like-button>
             </div>
@@ -111,12 +112,13 @@
             </a>
 
             <div class="flex items-center justify-end flex-grow">
-              <div class="h-5 mt-px text-xs">
+              <div class="mt-px text-xs">
                 <like-button
                   :item-id="comment.id"
                   :is-comment="true"
                   :likes="comment.likes"
                   :current-user-id="userId"
+                  width="5"
                 >
                 </like-button>
               </div>

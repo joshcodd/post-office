@@ -45,9 +45,9 @@
                     <comment-button :post-id="{{ $post->id }}" :num-comments="{{ $post->comments->count() }}">
                     </comment-button>
 
-                    <div class="h-7 mr-4 mt-1 float-right">
+                    <div class="mr-4 mt-1 float-right">
                         <like-button :item-id="{{ $post->id }}" :likes="{{ $post->likes->load('user') }}"
-                            :current-user-id={{ Auth::User()->id }}>
+                            :current-user-id={{ Auth::User()->id }} width="7">
                         </like-button>
                     </div>
                 </div>

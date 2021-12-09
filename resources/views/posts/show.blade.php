@@ -51,9 +51,15 @@
                 @endforeach
             </div>
 
-            <div class="flow-root  pt-4 pb-2">
+            <div class="flow-root pt-4 pb-2">
                 <comment-button :post-id="{{ $post->id }}" :num-comments="{{ $post->comments->count() }}">
                 </comment-button>
+
+                <div class="mr-4 mt-1 float-right">
+                    <like-button :item-id="{{ $post->id }}" :likes="{{ $post->likes->load('user') }}"
+                        :current-user-id={{ Auth::User()->id }} width="7">
+                    </like-button>
+                </div>
             </div>
 
             <comment-section :post="{{ $post }}" :user-id={{ Auth::User()->id }}
