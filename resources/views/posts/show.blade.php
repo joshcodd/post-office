@@ -35,7 +35,7 @@
             </div>
 
             @if ($post->image_path)
-                <img class="" src="{{ asset('storage/images' . $post->image_path) }}" alt="post_image">
+                <img class="w-full" src="{{ asset('storage/images' . $post->image_path) }}" alt="post_image">
             @endif
 
             <div class="py-5">
