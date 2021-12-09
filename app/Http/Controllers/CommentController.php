@@ -67,7 +67,7 @@ class CommentController extends Controller
 
     public function apiPostComments(Post $post)
     {
-        return $post->comments->load('user', 'likes');
+        return $post->comments->load('user', 'likes.user');
     }
 
     public function apiDestroy(Comment $comment)

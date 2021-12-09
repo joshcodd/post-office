@@ -46,7 +46,7 @@
                     </comment-button>
 
                     <div class="h-7 mr-4 mt-1 float-right">
-                        <like-button :item-id="{{ $post->id }}" :likes="{{ $post->likes }}"
+                        <like-button :item-id="{{ $post->id }}" :likes="{{ $post->likes->load('user') }}"
                             :current-user-id={{ Auth::User()->id }}>
                         </like-button>
                     </div>

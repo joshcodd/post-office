@@ -55,11 +55,61 @@
       </svg>
     </button>
 
-    <div
+    <button
       :id="'like_count_' + itemId"
-      class="flex items-center float-right h-full ml-1"
+      class="flex items-center float-right h-full ml-1 hover:underline"
+      v-on:click="isPopUpOpen = !isPopUpOpen"
     >
       {{ likes.length }}
+    </button>
+
+    <div
+      v-if="isPopUpOpen"
+      class="bg-opacity-70 fixed inset-0 z-50 text-sm text-center bg-white"
+    >
+      <div
+        class="
+          left-1/2 top-1/2 rounded-2xl fixed transform
+          -translate-x-1/2 -translate-y-1/2 bg-gray-100 shadow-md opacity-100
+        "
+      >
+        <div class="w-96 h-96 rounded-2xl pt-2.5 overflow-scroll">
+          <div
+            v-for="(like, index) in likes"
+            :key="`like_${index}`"
+            class="flex items-center w-full py-3 pl-6 border-b"
+          >
+            <div>
+              <svg height="15" width="15">
+                <circle
+                  cx="7.5"
+                  cy="7.5"
+                  r="6"
+                  stroke="black"
+                  stroke-width="1.5"
+                  fill="none"
+                />
+              </svg>
+            </div>
+            <div class="px-5">
+              Liked by
+              <a
+                :href="`users/${like.user_id}`"
+                class="hover:underline font-bold"
+              >
+                {{ like.user.first_name }}
+                {{ like.user.surname }}
+              </a>
+            </div>
+          </div>
+        </div>
+        <round-button
+          :click-func="() => (isPopUpOpen = !isPopUpOpen)"
+          class-style="px-3.5 py-1 text-sm my-3"
+        >
+          Close
+        </round-button>
+      </div>
     </div>
   </div>
 </template>
@@ -88,6 +138,7 @@ export default {
   data() {
     return {
       currentHasLiked: this.hasLiked(),
+      isPopUpOpen: false,
     };
   },
 

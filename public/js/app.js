@@ -4906,6 +4906,56 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     itemId: {
@@ -4924,7 +4974,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      currentHasLiked: this.hasLiked()
+      currentHasLiked: this.hasLiked(),
+      isPopUpOpen: false
     };
   },
   methods: {
@@ -24224,13 +24275,107 @@ var render = function () {
     ),
     _vm._v(" "),
     _c(
-      "div",
+      "button",
       {
-        staticClass: "flex items-center float-right h-full ml-1",
+        staticClass:
+          "flex items-center float-right h-full ml-1 hover:underline",
         attrs: { id: "like_count_" + _vm.itemId },
+        on: {
+          click: function ($event) {
+            _vm.isPopUpOpen = !_vm.isPopUpOpen
+          },
+        },
       },
       [_vm._v("\n    " + _vm._s(_vm.likes.length) + "\n  ")]
     ),
+    _vm._v(" "),
+    _vm.isPopUpOpen
+      ? _c(
+          "div",
+          {
+            staticClass:
+              "bg-opacity-70 fixed inset-0 z-50 text-sm text-center bg-white",
+          },
+          [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "\n        left-1/2 top-1/2 rounded-2xl fixed transform\n        -translate-x-1/2 -translate-y-1/2 bg-gray-100 shadow-md opacity-100\n      ",
+              },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass: "w-96 h-96 rounded-2xl pt-2.5 overflow-scroll",
+                  },
+                  _vm._l(_vm.likes, function (like, index) {
+                    return _c(
+                      "div",
+                      {
+                        key: "like_" + index,
+                        staticClass:
+                          "flex items-center w-full py-3 pl-6 border-b",
+                      },
+                      [
+                        _c("div", [
+                          _c("svg", { attrs: { height: "15", width: "15" } }, [
+                            _c("circle", {
+                              attrs: {
+                                cx: "7.5",
+                                cy: "7.5",
+                                r: "6",
+                                stroke: "black",
+                                "stroke-width": "1.5",
+                                fill: "none",
+                              },
+                            }),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "px-5" }, [
+                          _vm._v("\n            Liked by\n            "),
+                          _c(
+                            "a",
+                            {
+                              staticClass: "hover:underline font-bold",
+                              attrs: { href: "users/" + like.user_id },
+                            },
+                            [
+                              _vm._v(
+                                "\n              " +
+                                  _vm._s(like.user.first_name) +
+                                  "\n              " +
+                                  _vm._s(like.user.surname) +
+                                  "\n            "
+                              ),
+                            ]
+                          ),
+                        ]),
+                      ]
+                    )
+                  }),
+                  0
+                ),
+                _vm._v(" "),
+                _c(
+                  "round-button",
+                  {
+                    attrs: {
+                      "click-func": function () {
+                        return (_vm.isPopUpOpen = !_vm.isPopUpOpen)
+                      },
+                      "class-style": "px-3.5 py-1 text-sm my-3",
+                    },
+                  },
+                  [_vm._v("\n        Close\n      ")]
+                ),
+              ],
+              1
+            ),
+          ]
+        )
+      : _vm._e(),
   ])
 }
 var staticRenderFns = []
