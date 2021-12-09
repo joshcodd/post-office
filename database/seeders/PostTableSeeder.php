@@ -44,7 +44,11 @@ class PostTableSeeder extends Seeder
                 $comment->post->user->notify(new RecievedComment($comment));
             });
         });
-        $posts = Post::factory()->count(35)->create();
+
+        $posts = collect();
+        for ($i = 0; $i <= 35; $i++) {
+            $posts->push(Post::factory()->hasLikes(rand(0, 25))->create());
+        }
 
         $posts->each(function ($post) {
             Tag::all()->each(function ($tag) use ($post) {
