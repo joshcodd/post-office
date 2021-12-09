@@ -84,10 +84,8 @@
             profile_show: "{{ route('users.show', ['']) }}",
             add_tag: "{{ route('api.posts.tag.create', ['post' => 'first']) }}",
             delete_tag: "{{ route('api.posts.tag.delete', ['post' => 'first', 'tag' => 'second']) }}",
-            like: "{{ route('api.posts.like', ['post' => 'first']) }}",
-            unlike: "{{ route('api.posts.unlike', ['post' => 'first']) }}",
-            comment_like: "{{ route('api.comment.like', ['post' => 'first', 'comment' => 'second']) }}",
-            comment_unlike: "{{ route('api.comment.unlike', ['post' => 'first', 'comment' => 'second']) }}",
+            like_store: "{{ route('api.like.store') }}",
+            like_destroy: "{{ route('api.like.destroy', ['like' => 'first']) }}",
             create_token: "{{ route('users.create.token') }}",
         }
     };

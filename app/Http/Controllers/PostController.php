@@ -175,32 +175,4 @@ class PostController extends Controller
         $post->tags()->detach($tag);
         return $tag;
     }
-
-    public function apiLike(Post $post)
-    {
-        $user_id = Auth::user()->id;
-        if (!$post->likes->contains('user_id', $user_id)) {
-            $like = $post->likes()->create(['user_id' => 1]);
-            return response()->json([
-                'like' => $like,
-            ], 200);
-        } else {
-            return response()->json([
-                'messages' => ["Post is already liked."],
-            ], 403);
-        }
-    }
-
-    public function apiUnlike(Post $post)
-    {
-        $user_id = Auth::user()->id;
-        $like = $post->likes->where('user_id', $user_id);
-        if ($like->count() > 0) {
-            $like->first()->delete();
-        } else {
-            return response()->json([
-                'messages' => ["Post does not exist."],
-            ], 404);
-        }
-    }
 }
