@@ -180,7 +180,10 @@ class PostController extends Controller
     {
         $user_id = Auth::user()->id;
         if (!$post->likes->contains('user_id', $user_id)) {
-            $post->likes()->create(['user_id' => 1]);
+            $like = $post->likes()->create(['user_id' => 1]);
+            return response()->json([
+                'like' => $like,
+            ], 200);
         } else {
             return response()->json([
                 'messages' => ["Post is already liked."],
@@ -199,19 +202,5 @@ class PostController extends Controller
                 'messages' => ["Post does not exist."],
             ], 404);
         }
-    }
-
-    public function apiHasLiked(Post $post)
-    {
-        $user_id = Auth::user()->id;
-        if ($post->likes->contains('user_id', $user_id)) {
-            $hasLiked = true;
-        } else {
-            $hasLiked = false;
-        }
-
-        return response()->json([
-            'hasLiked' => $hasLiked,
-        ], 200);
     }
 }
