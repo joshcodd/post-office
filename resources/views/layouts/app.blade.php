@@ -86,7 +86,8 @@
             delete_tag: "{{ route('api.posts.tag.delete', ['post' => 'first', 'tag' => 'second']) }}",
             like: "{{ route('api.posts.like', ['post' => 'first']) }}",
             unlike: "{{ route('api.posts.unlike', ['post' => 'first']) }}",
-            hasLiked: "{{ route('api.posts.hasLiked', ['post' => 'first']) }}",
+            comment_like: "{{ route('api.comment.like', ['post' => 'first', 'comment' => 'second']) }}",
+            comment_unlike: "{{ route('api.comment.unlike', ['post' => 'first', 'comment' => 'second']) }}",
             create_token: "{{ route('users.create.token') }}",
         }
     };
