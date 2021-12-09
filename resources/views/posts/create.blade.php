@@ -21,7 +21,7 @@
                     <div class="flex items-center image_spacer border-gray-400 bg-gray-100 border-dashed border text-center">
                         <x-camera-icon>
                         </x-camera-icon>
-                        <img id="create_post_img" src="#" alt="" />
+                        <img id="create_post_img" class="z-10" src="#" alt="" />
                     </div>
 
                     <label for="create_img_upload"
