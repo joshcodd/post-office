@@ -11,11 +11,17 @@
                 {{ $notification->data['first_name'] }}
                 {{ $notification->data['surname'] }}
             </a>
-            commented on your
-
-            <a href="{{ $notification->data['post_link'] }}" class="font-bold hover:underline">
-                post
-            </a>
+            @if ($notification->type == 'App\Notifications\RecievedLike')
+                has liked your
+                <a href="{{ $notification->data['post_link'] }}" class="font-bold hover:underline">
+                    {{ $notification->data['type'] }}
+                </a>
+            @elseif($notification->type == "App\Notifications\RecievedComment")
+                commented on your
+                <a href="{{ $notification->data['post_link'] }}" class="font-bold hover:underline">
+                    post
+                </a>
+            @endif
 
             <time-stamp :timestamp="'{{ $notification->created_at->format('c') }}'"
                 class-style="block text-xs font-thin">

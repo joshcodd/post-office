@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Post;
+use App\Notifications\RecievedLike;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,7 +25,10 @@ class LikeController extends Controller
 
         $user_id = Auth::user()->id;
         if (!$item->likes->contains('user_id', $user_id)) {
-            $like = $item->likes()->create(['user_id' => 1]);
+            $like = $item->likes()->create(['user_id' => $user_id]);
+            $user = $like->likeable->user;
+            $user->notify(new RecievedLike($like));
+
             return response()->json([
                 'like' => $like,
             ], 200);
