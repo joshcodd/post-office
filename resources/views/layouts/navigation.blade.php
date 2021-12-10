@@ -15,16 +15,15 @@
                     </a>
 
                     @if (Auth::User()->user_role == 'user')
-                        <button class="hoverSplitContainer font-nunito m-50-important" onclick="notificationsClick(false)">
+                        <button class="hoverSplitContainer font-nunito m-50-important font-light"
+                            onclick="notificationsClick(false)">
                             @if (Auth::User()->unreadNotifications()->count() > 0)
                                 <div name="notification_count"
                                     class="w-5 h-5 absolute circle bg-spotify pt-0.5 text-xs font-bold ">
                                     {{ Auth::User()->unreadNotifications()->count() }}
                                 </div>
                             @endif
-                            <div class="topHalf">
-                                Notifications
-                            </div>
+                            <div class="topHalf ">Notifications</div>
                             <div class="bottomHalf">Notifications</div>
                         </button>
 
