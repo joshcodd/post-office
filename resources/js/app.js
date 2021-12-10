@@ -60,6 +60,21 @@ Vue.component(
     require("./components/HeartIconOutline.vue").default
 );
 
+Vue.component(
+    "notification-list",
+    require("./components/NotificationsList.vue").default
+);
+
+Vue.component(
+    "notification-count",
+    require("./components/NotificationCount.vue").default
+);
+
+Vue.component(
+    "notification-nav-link",
+    require("./components/NotificationNav.vue").default
+);
+
 const app = new Vue({
     el: "#app",
 });

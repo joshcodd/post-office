@@ -4,24 +4,6 @@ function handleHamBurgerClick() {
     mobile_menu.classList.toggle("hidden");
 }
 
-function notificationsClick(ismobile) {
-    const notifications = document.getElementById("notification_popup");
-    if (ismobile) {
-        window.location.href = config.routes.notifications;
-    }
-
-    console.log(notifications);
-
-    if (notifications.classList.contains('hidden')) {
-        axios.post(config.routes.clear_notifications);
-
-        document.getElementsByName('notification_count').forEach((e) => {
-            e.classList.add('hidden');
-        });
-    }
-    notifications.classList.toggle("hidden");
-}
-
 const titles = [
     "postoffice",
     "postOffice",
