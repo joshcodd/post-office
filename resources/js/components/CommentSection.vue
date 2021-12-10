@@ -348,7 +348,9 @@ export default {
         })
         .then((response) => {
           // Add to comment list and increase comment count.
-          this.commentList.push(response.data);
+          let new_comment = response.data;
+          new_comment.likes = [];
+          this.commentList.push(new_comment);
           this.commentContentText = "";
           let count = document.getElementById(
             `comment_count_${response.data.post_id}`

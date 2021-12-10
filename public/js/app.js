@@ -4437,7 +4437,10 @@ __webpack_require__.r(__webpack_exports__);
         content: this.commentContentText
       }).then(function (response) {
         // Add to comment list and increase comment count.
-        _this3.commentList.push(response.data);
+        var new_comment = response.data;
+        new_comment.likes = [];
+
+        _this3.commentList.push(new_comment);
 
         _this3.commentContentText = "";
         var count = document.getElementById("comment_count_".concat(response.data.post_id));
