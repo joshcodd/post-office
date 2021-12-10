@@ -54,13 +54,13 @@
           </a>
 
           <div class="flex items-center justify-end flex-grow">
-            <time-stamp
-              :timestamp="comment.updated_at"
-              class-style="inline font-thin text-sm"
-            >
-            </time-stamp>
-
             <div class="flex items-center ml-3 text-xs">
+              <time-stamp
+                :timestamp="comment.updated_at"
+                class-style="inline font-thin text-sm mr-2"
+              >
+              </time-stamp>
+
               <like-button
                 :item-id="comment.id"
                 :is-comment="true"
@@ -71,7 +71,7 @@
               </like-button>
             </div>
 
-            <div class="flex items-center ml-2 text-xs">
+            <div class="flex items-center text-xs">
               <span v-if="comment.user.id == userId">
                 <round-button
                   :click-func="() => handleCommentEditClick(comment.id)"
@@ -86,7 +86,7 @@
                   :click-func="() => toggleHidden(comment.id)"
                   class="
                     z-10
-                    ml-0
+                    ml-2
                     px-1.5
                     py-0.1
                     text-spotify
@@ -125,7 +125,7 @@
               <span v-if="comment.user.id == userId">
                 <round-button
                   :click-func="() => handleCommentEditClick(comment.id)"
-                  class="mr-1 ml-3.5 px-1.5 py-0.1 text-xs"
+                  class="mr-1 ml-2 px-1.5 py-0.1 text-xs"
                 >
                   Edit
                 </round-button>

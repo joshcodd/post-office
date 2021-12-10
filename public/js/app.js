@@ -23738,17 +23738,18 @@ var render = function () {
                               "flex items-center justify-end flex-grow",
                           },
                           [
-                            _c("time-stamp", {
-                              attrs: {
-                                timestamp: comment.updated_at,
-                                "class-style": "inline font-thin text-sm",
-                              },
-                            }),
-                            _vm._v(" "),
                             _c(
                               "div",
                               { staticClass: "flex items-center ml-3 text-xs" },
                               [
+                                _c("time-stamp", {
+                                  attrs: {
+                                    timestamp: comment.updated_at,
+                                    "class-style":
+                                      "inline font-thin text-sm mr-2",
+                                  },
+                                }),
+                                _vm._v(" "),
                                 _c("like-button", {
                                   attrs: {
                                     "item-id": comment.id,
@@ -23764,7 +23765,7 @@ var render = function () {
                             _vm._v(" "),
                             _c(
                               "div",
-                              { staticClass: "flex items-center ml-2 text-xs" },
+                              { staticClass: "flex items-center text-xs" },
                               [
                                 comment.user.id == _vm.userId
                                   ? _c(
@@ -23803,7 +23804,7 @@ var render = function () {
                                           "round-button",
                                           {
                                             staticClass:
-                                              "\n                  z-10\n                  ml-0\n                  px-1.5\n                  py-0.1\n                  text-spotify\n                  border-spotify\n                  hover:bg-spotify\n                ",
+                                              "\n                  z-10\n                  ml-2\n                  px-1.5\n                  py-0.1\n                  text-spotify\n                  border-spotify\n                  hover:bg-spotify\n                ",
                                             attrs: {
                                               "click-func": function () {
                                                 return _vm.toggleHidden(
@@ -23820,8 +23821,7 @@ var render = function () {
                                   : _vm._e(),
                               ]
                             ),
-                          ],
-                          1
+                          ]
                         ),
                       ]
                     )
@@ -23885,7 +23885,7 @@ var render = function () {
                                         "round-button",
                                         {
                                           staticClass:
-                                            "mr-1 ml-3.5 px-1.5 py-0.1 text-xs",
+                                            "mr-1 ml-2 px-1.5 py-0.1 text-xs",
                                           attrs: {
                                             "click-func": function () {
                                               return _vm.handleCommentEditClick(
