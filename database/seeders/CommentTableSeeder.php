@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Comment;
 use App\Models\User;
 use App\Notifications\RecievedComment;
+use App\Notifications\RecievedLike;
 use Illuminate\Database\Seeder;
 
 class CommentTableSeeder extends Seeder
@@ -36,7 +37,11 @@ class CommentTableSeeder extends Seeder
 
         $comments = collect();
         for ($i = 0; $i <= 100; $i++) {
-            $comments->push(Comment::factory()->hasLikes(rand(0, 10))->create());
+            $current_comment = Comment::factory()->hasLikes(rand(0, 10))->create();
+            $current_comment->likes->each(function ($like) use ($current_comment) {
+                $current_comment->user->notify(new RecievedLike($like));
+            });
+            $comments->push($current_comment);
         }
 
         $comment->post->user->notify(new RecievedComment($comment));

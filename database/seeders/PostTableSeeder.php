@@ -6,6 +6,7 @@ use App\Models\Comment;
 use App\Models\Post;
 use App\Models\Tag;
 use App\Notifications\RecievedComment;
+use App\Notifications\RecievedLike;
 use Illuminate\Database\Seeder;
 
 class PostTableSeeder extends Seeder
@@ -47,7 +48,12 @@ class PostTableSeeder extends Seeder
 
         $posts = collect();
         for ($i = 0; $i <= 35; $i++) {
-            $posts->push(Post::factory()->hasLikes(rand(0, 25))->create());
+            $current_post = Post::factory()->hasLikes(rand(0, 25))->create();
+            $current_post->likes->each(function ($like) use ($current_post) {
+                $current_post->user->notify(new RecievedLike($like));
+            });
+
+            $posts->push($current_post);
         }
 
         $posts->each(function ($post) {
