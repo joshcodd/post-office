@@ -4,6 +4,7 @@ namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -31,7 +32,7 @@ class RecievedComment extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail', 'database'];
+        return ['mail', 'database', 'broadcast'];
     }
 
     public function toDatabase($notifiable)
@@ -53,6 +54,11 @@ class RecievedComment extends Notification
             ->line(('You have recieved a comment on your post from ') . $first_name . " " . $surname . ".")
             ->action('View post', route('posts.show', ['post' => $this->comment_notification->post_id]))
             ->line('Thank you for using PostOffice!');
+    }
+
+    public function toBroadcast($notifiable)
+    {
+        return new BroadcastMessage(['data' => $notifiable->notifications()->find($this->id)]);
     }
 
     /**

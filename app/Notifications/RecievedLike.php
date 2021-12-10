@@ -3,11 +3,12 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class RecievedLike extends Notification
+class RecievedLike extends Notification implements ShouldBroadcast
 {
     use Queueable;
 
@@ -30,7 +31,7 @@ class RecievedLike extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail', 'database'];
+        return ['mail', 'database', 'broadcast'];
     }
 
     public function toDatabase($notifiable)
@@ -52,6 +53,11 @@ class RecievedLike extends Notification
             ->line($first_name . " " . $surname . ('has liked your post!'))
             ->action('View post', route('posts.show', ['post' => $this->like_notification->likeable->id]))
             ->line('Thank you for using PostOffice!');
+    }
+
+    public function toBroadcast($notifiable)
+    {
+        return new BroadcastMessage(['data' => $notifiable->notifications()->find($this->id)]);
     }
 
     /**
