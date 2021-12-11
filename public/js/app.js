@@ -5189,6 +5189,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     unreadNum: {
       type: Number
+    },
+    userId: {
+      type: Number
     }
   },
   data: function data() {
@@ -5201,7 +5204,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    Echo["private"]("App.Models.User.1").notification(function (notification) {
+    Echo["private"]("App.Models.User.".concat(this.userId)).notification(function (notification) {
       _this.unreadCount += 1;
 
       _this.notificationsList.push(notification.data);

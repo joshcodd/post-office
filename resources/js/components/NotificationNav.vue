@@ -47,6 +47,10 @@ export default {
     unreadNum: {
       type: Number,
     },
+
+    userId: {
+      type: Number,
+    },
   },
 
   data() {
@@ -58,10 +62,12 @@ export default {
   },
 
   mounted() {
-    Echo.private("App.Models.User.1").notification((notification) => {
-      this.unreadCount += 1;
-      this.notificationsList.push(notification.data);
-    });
+    Echo.private(`App.Models.User.${this.userId}`).notification(
+      (notification) => {
+        this.unreadCount += 1;
+        this.notificationsList.push(notification.data);
+      }
+    );
   },
 
   methods: {

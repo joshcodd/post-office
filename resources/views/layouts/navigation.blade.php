@@ -16,7 +16,8 @@
 
                     @if (Auth::User()->user_role == 'user')
                         <notification-nav-link :notifications="{{ Auth::User()->notifications }}"
-                            :unread-num="{{ Auth::User()->unreadNotifications()->count() }}">
+                            :unread-num="{{ Auth::User()->unreadNotifications()->count() }}"
+                            :user-id={{ Auth::User()->id }}>
                         </notification-nav-link>
 
                         <a class="hoverSplitContainer font-nunito m-50-important
