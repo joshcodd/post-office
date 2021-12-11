@@ -53,20 +53,11 @@
                     stroke="currentColor">
                     <path d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
-
-                @if (Auth::User()->unreadNotifications()->count() > 0)
-                    @if (Auth::User()->user_role == 'user')
-                        <div name="notification_count"
-                            class="w-5 h-5 absolute circle-mobile bg-spotify pt-0.5 text-xs font-bold">
-                            {{ Auth::User()->unreadNotifications()->count() }}
-                        </div>
-                    @endif
-                @endif
             </button>
         </div>
     </div>
 
-    <div id="mobile-menu" class="hidden mobile-menu">
+    <div id="mobile-menu" class="hidden mobile-menu md:hidden">
         <a href="{{ route('posts.index') }}">
             <div
                 class="hoverSplitContainer font-nunito hover:bg-spotify text-sm px-7 py-5 
@@ -77,16 +68,10 @@
         </a>
 
         @if (Auth::User()->user_role == 'user')
-            <button onclick="notificationsClick(true)"
+            <button onclick="window.location.href = config.routes.notifications"
                 class="hoverSplitContainer font-nunito hover:bg-spotify text-sm px-7 py-5 text-left min-w-full">
                 <div class="topHalf font-nunito">Notifications</div>
                 <div class="bottomHalf font-nunito">Notifications</div>
-                @if (Auth::User()->unreadNotifications()->count() > 0)
-                    <div name="notification_count"
-                        class="w-5 h-5 absolute circle-mobile-menu bg-spotify pt-0.5 text-xs font-bold text-center">
-                        {{ Auth::User()->unreadNotifications()->count() }}
-                    </div>
-                @endif
             </button>
 
             <a href="{{ route('posts.create') }}">

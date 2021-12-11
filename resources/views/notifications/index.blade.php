@@ -8,4 +8,7 @@
             @include('components.notification-panel')
         </div>
     </div>
+    @php
+    Auth::User()->unreadNotifications->markAsRead();
+    @endphp
 @endsection
