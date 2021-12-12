@@ -50,7 +50,7 @@ class RecievedLike extends Notification implements ShouldBroadcast
         $first_name = $this->like_notification->user->first_name;
         $surname = $this->like_notification->user->surname;
         return (new MailMessage)
-            ->line($first_name . " " . $surname . ('has liked your post!'))
+            ->line($first_name . " " . $surname . (' has liked your post!'))
             ->action('View post', route('posts.show', ['post' => $this->like_notification->likeable->id]))
             ->line('Thank you for using PostOffice!');
     }
