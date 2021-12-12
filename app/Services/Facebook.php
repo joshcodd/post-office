@@ -42,7 +42,7 @@ class Facebook
             'link' => $post_link
         ]);
 
-        if ($response->id) {
+        if ($response) {
             return true;
         }
         return false;
