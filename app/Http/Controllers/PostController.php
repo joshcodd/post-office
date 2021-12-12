@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Tag;
 use App\Rules\OneWord;
+use App\Services\Facebook;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -46,7 +47,7 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,  Facebook $fb)
     {
         $validated_post = $request->validate([
             'title' => 'required',
@@ -60,6 +61,8 @@ class PostController extends Controller
         $post->content = $validated_post['content'];
         $post->image_path = $this->uploadImage($request);
         $post->save();
+
+        $fb->postStatus($post);
 
         $request->session()->flash('message', 'Posted!');
         return redirect()->route('posts.index');
