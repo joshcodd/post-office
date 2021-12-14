@@ -21,11 +21,13 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
+    // Gets all the tags that are attatched to this post.
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
     }
 
+    // Gets all the likes that have been left on the post.
     public function likes()
     {
         return $this->morphMany(Like::class, 'likeable');
