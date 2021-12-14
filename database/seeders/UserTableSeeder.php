@@ -16,7 +16,8 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        $user = new User();
+        $user = User::factory()->has(Post::factory()->count(20))
+            ->create();
         $user->first_name = 'Josh';
         $user->surname = "Codd";
         $user->email = 'jjc21@live.co.uk';

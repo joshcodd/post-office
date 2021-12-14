@@ -14,9 +14,15 @@ class PostFactory extends Factory
      */
     public function definition()
     {
-        $dir = storage_path() . "/app/public/images";
-        $full_image_path = $this->faker->image($dir);
-        $file_name = substr($full_image_path, strlen($dir));
+
+        if (rand(0, 3) != 0) {
+            $dir = storage_path() . "/app/public/images";
+            $full_image_path = $this->faker->image($dir);
+            $file_name = substr($full_image_path, strlen($dir));
+        } else {
+            $file_name = null;
+        }
+
         return [
             'user_id' => User::where('user_role', '!=', 'admin')->inRandomOrder()->first()->id,
             'title' => $this->faker->realText(70),

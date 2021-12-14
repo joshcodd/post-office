@@ -41,7 +41,7 @@
     </div>
 
     <div class="p-10 sm:column-3 lg:column-4 mx-auto w-full">
-        @foreach ($user->posts as $post)
+        @foreach ($user->posts->reverse() as $post)
             <div class="break-inside pb-10">
                 <div class="break-inside mx-1 md:mx-5 rounded-xl shadow-md overflow-hidden">
                     @if ($post->image_path)
