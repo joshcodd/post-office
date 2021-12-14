@@ -4334,7 +4334,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -4694,6 +4693,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _RoundButton_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RoundButton.vue */ "./resources/js/components/RoundButton.vue");
+//
 //
 //
 //
@@ -34583,6 +34583,7 @@ var render = function () {
                   key: "message_" + index,
                   staticClass:
                     "bg-gray-50 z-50 block p-2 text-center border-b border-gray-400",
+                  attrs: { role: "alert" },
                 },
                 [
                   _c("p", { staticClass: "text-spotify inline" }, [
@@ -34863,7 +34864,7 @@ var render = function () {
                     staticClass: "w-full break-all whitespace-pre-line",
                     attrs: { id: "comments_content_" + comment.id },
                   },
-                  [_vm._v("\n        " + _vm._s(comment.content) + "\n      ")]
+                  [_vm._v(_vm._s(comment.content))]
                 ),
                 _vm._v(" "),
                 _c(
@@ -35274,6 +35275,7 @@ var render = function () {
                 {
                   key: "error" + index,
                   staticClass: "text-spotify block py-1 text-sm",
+                  attrs: { role: "alert" },
                 },
                 [_vm._v("\n        " + _vm._s(message) + "\n      ")]
               )

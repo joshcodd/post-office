@@ -59,6 +59,7 @@
           v-for="(message, index) in errorMessages"
           :key="`error${index}`"
           class="text-spotify block py-1 text-sm"
+          role="alert"
         >
           {{ message }}
         </div>
