@@ -55,8 +55,8 @@
                         <div class="font-bold mb-1 text-md">
                             {{ $post->title }}
                         </div>
-                        <p class="text-sm text-gray-600 whitespace-pre-line">
-                            {{ implode(' ', array_slice(explode(' ', $post->content), 0, 50)) . '.......' }}</p>
+                        <p class="text-sm text-gray-600 whitespace-pre-line">{{ implode(' ', array_slice(explode(' ', $post->content), 0, 50)) 
+                        . '.......' }}</p>
                     </div>
 
                     <div class="flex px-4 pt-2 pb-3 items-center">

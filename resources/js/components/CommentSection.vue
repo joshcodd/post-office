@@ -20,6 +20,7 @@
           v-for="(message, index) in errorMessages"
           :key="`message_${index}`"
           class="bg-gray-50 z-50 block p-2 text-center border-b border-gray-400"
+          role="alert"
         >
           <p class="text-spotify inline">{{ message }}</p>
           <button
@@ -159,9 +160,7 @@
         <p
           :id="`comments_content_${comment.id}`"
           class="w-full break-all whitespace-pre-line"
-        >
-          {{ comment.content }}
-        </p>
+        >{{ comment.content }}</p>
 
         <div :id="`comments_edit_containter_${comment.id}`" class="hidden">
           <textarea
