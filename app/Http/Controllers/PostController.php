@@ -35,8 +35,8 @@ class PostController extends Controller
     public function store(Request $request,  Facebook $fb)
     {
         $validated_post = $request->validate([
-            'title' => 'required',
-            'content' => 'required',
+            'title' => 'required|min:5',
+            'content' => 'required|min:10',
             'image' => 'mimes:jpeg,png',
         ]);
 
