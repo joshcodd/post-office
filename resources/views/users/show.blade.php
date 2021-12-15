@@ -55,8 +55,9 @@
                         <div class="font-bold mb-1 text-md">
                             {{ $post->title }}
                         </div>
-                        <p class="text-sm text-gray-600 whitespace-pre-line">{{ implode(' ', array_slice(explode(' ', $post->content), 0, 50)) 
-                        . '.......' }}</p>
+                        <p class="text-sm text-gray-600 whitespace-pre-line">
+                            {{ implode(' ', array_slice(explode(' ', $post->content), 0, 50)) . '.......' }}
+                        </p>
                     </div>
 
                     <div class="flex px-4 pt-2 pb-3 items-center">
@@ -78,7 +79,7 @@
 
                         <div class="flex items-center text-sm mt-px">
                             <like-button :item-id="{{ $post->id }}" :likes="{{ $post->likes->load('user') }}"
-                                :current-user-id={{ Auth::User()->id }} width="6" class="ml-3.5">
+                                :current-user-id={{ Auth::User()->id }} width="w-6" class="ml-3.5">
                             </like-button>
 
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"

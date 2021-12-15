@@ -45,7 +45,7 @@
 
                             <div class="flex items-center text-sm mt-px">
                                 <like-button :item-id="{{ $post->id }}" :likes="{{ $post->likes->load('user') }}"
-                                    :current-user-id={{ Auth::User()->id }} width="6" class="ml-3.5 mr-3">
+                                    :current-user-id={{ Auth::User()->id }} width="w-6" class="ml-3.5 mr-3">
                                 </like-button>
 
                                 <svg xmlns=" http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"

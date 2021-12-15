@@ -58,7 +58,7 @@
 
                 <div class="mr-4 mt-1 float-right">
                     <like-button :item-id="{{ $post->id }}" :likes="{{ $post->likes->load('user') }}"
-                        :current-user-id={{ Auth::User()->id }} width="7">
+                        :current-user-id={{ Auth::User()->id }} width="w-7">
                     </like-button>
                 </div>
             </div>

@@ -44,7 +44,7 @@
 
                     <div class="flex items-center">
                         <like-button :item-id="{{ $post->id }}" :likes="{{ $post->likes->load('user') }}"
-                            :current-user-id={{ Auth::User()->id }} width="7">
+                            :current-user-id={{ Auth::User()->id }} width="w-7">
                         </like-button>
 
                         <comment-button :post-id="{{ $post->id }}" :num-comments="{{ $post->comments->count() }}"

@@ -67,7 +67,7 @@
                 :is-comment="true"
                 :likes="comment.likes"
                 :current-user-id="userId"
-                width="5"
+                width="w-5"
               >
               </like-button>
             </div>
@@ -118,7 +118,7 @@
                   :is-comment="true"
                   :likes="comment.likes"
                   :current-user-id="userId"
-                  width="5"
+                  width="w-5"
                 >
                 </like-button>
               </div>

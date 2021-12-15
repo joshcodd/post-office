@@ -7,14 +7,14 @@
     >
       <div
         class="group-hover:visible relative"
-        :class="[currentHasLiked ? `visible` : `invisible`, `${widthStyle}`]"
+        :class="[currentHasLiked ? `visible` : `invisible`, width]"
       >
         <heart-icon></heart-icon>
       </div>
 
       <div
         class="absolute top-0"
-        :class="[currentHasLiked ? `invisible` : `visible`, `${widthStyle}`]"
+        :class="[currentHasLiked ? `invisible` : `visible`, width]"
       >
         <heart-icon-outline></heart-icon-outline>
       </div>
@@ -108,7 +108,6 @@ export default {
     return {
       currentHasLiked: this.hasLiked(),
       isPopUpOpen: false,
-      widthStyle: `w-${this.width}`,
     };
   },
 
