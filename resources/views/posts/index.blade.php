@@ -9,7 +9,7 @@
                 @if ($post->image_path)
                     <div class="w-100  h-96">
                         <img class="w-full h-full object-cover" src="{{ asset('storage/images' . $post->image_path) }}"
-                            alt="post_image">
+                            alt="An image for the post '{{ $post->title }}'">
                     </div>
                 @endif
 
