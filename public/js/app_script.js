@@ -4,26 +4,6 @@ function handleHamBurgerClick() {
     mobile_menu.classList.toggle("hidden");
 }
 
-const titles = [
-    "postoffice",
-    "postOffice",
-    "Yūbinkyoku",
-    "yūBiNkyOku",
-    "pOStOffic3",
-    "postoffice",
-    "PostOffice",
-];
-
-const glitch_length = 2000;
-const pause_length = 10000;
-
-const title = document.querySelector("#title");
-const delay_string = title.textContent;
-glitchText(title, titles, delay_string, glitch_length);
-setInterval(function () {
-    glitchText(title, titles, delay_string, glitch_length);
-}, glitch_length + pause_length);
-
 function contentTextAreaResize(element) {
     element.style.height = "auto";
     element.style.height = element.scrollHeight + "px";

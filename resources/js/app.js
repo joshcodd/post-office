@@ -75,6 +75,11 @@ Vue.component(
     require("./components/NotificationNav.vue").default
 );
 
+Vue.component(
+    "logo",
+    require("./components/Logo.vue").default
+);
+
 const app = new Vue({
     el: "#app",
 });
