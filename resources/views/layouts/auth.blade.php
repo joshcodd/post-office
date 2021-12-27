@@ -43,7 +43,7 @@
         </div>
 
         <div class="relative text-center h-full flex justify-center items-center  pt-0 bg-gray-100  sm:w-1/2 ">
-            <img class="w-full h-full  object-cover " src={{ asset('images/home-bg.jpg') }} alt="">
+            <img class="w-full h-full  object-cover " src={{ asset('images/home-bg.webp') }} alt="">
             <div class=" absolute text-center font-bold text-gray-100 ">
                 <div id="home_text_1" class="text-6xl p-4">
                     POSTOFFICE

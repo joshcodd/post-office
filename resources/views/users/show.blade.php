@@ -5,7 +5,7 @@
 @section('content')
     <div class="relative text-center">
         <img id="create_post_img" class="w-full h-96 object-cover"
-            src={{ $user->header ? $user->header->image_path : asset('marble.jpg') }} alt="">
+            src={{ $user->header ? $user->header->image_path : asset('marble.webp') }} alt="">
 
         @if (Auth::User()->id == $user->id)
             <div class="absolute headerEditDialog">
@@ -54,8 +54,9 @@
                         <div class="font-bold mb-1 text-md">
                             {{ $post->title }}
                         </div>
-                        <p class="text-sm text-gray-600 whitespace-pre-line">{{ implode(' ', 
-                        array_slice(explode(' ', $post->content), 0, 50)) . '.......' }}</p>
+                        <p class="text-sm text-gray-600 whitespace-pre-line">
+                            {{                             implode(' ', array_slice(explode(' ', $post->content), 0, 50)) . '.......' }}
+                        </p>
                     </div>
 
                     <div class="flex px-4 pt-2 pb-3 items-center">
