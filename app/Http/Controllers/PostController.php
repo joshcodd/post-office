@@ -8,6 +8,7 @@ use App\Rules\OneWord;
 use App\Services\Facebook;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
@@ -88,10 +89,10 @@ class PostController extends Controller
 
     public function uploadImage(Request $request)
     {
-        $dir = 'public/images';
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store($dir);
-            return substr($path, strlen($dir));
+            $path = $request->file('image')->store('images', 's3');
+            $filename = Storage::disk('s3')->url($path);
+            return $filename;
         } else {
             return null;
         }
