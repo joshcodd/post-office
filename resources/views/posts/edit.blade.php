@@ -24,7 +24,7 @@
                         </x-camera-icon>
 
                         <img id="create_post_img" class="z-10"
-                            src="{{ $post->image_path ? asset('storage/images' . $post->image_path) : '' }}" alt="">
+                            src="{{ $post->image_path ? $post->image_path : '' }}" alt="">
                     </div>
 
                     <label for="create_img_upload"

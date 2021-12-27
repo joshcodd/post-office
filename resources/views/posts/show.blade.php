@@ -35,8 +35,8 @@
             </div>
 
             @if ($post->image_path)
-                <img class="w-full" src="{{ asset('storage/images' . $post->image_path) }}"
-                    alt="An image for the post '{{ $post->title }}'">
+                <img class="w-full" src="{{ $post->image_path }}"
+                    alt=" An image for the post '{{ $post->title }}'">
             @endif
 
             <div class="py-5">
