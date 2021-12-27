@@ -27,7 +27,6 @@ export default {
 
   methods: {
     glitchText: function () {
-      console.log("hey");
       date = new Date();
       previous_time = date.getTime();
 
