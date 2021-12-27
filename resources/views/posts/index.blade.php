@@ -8,7 +8,7 @@
             <div class="sm:w-2/3 md:w-1/2 m-5 rounded-xl shadow-md overflow-hidden">
                 @if ($post->image_path)
                     <div class="w-100  h-96">
-                        <img class="w-full h-full object-cover" src="{{ asset('storage/images' . $post->image_path) }}"
+                        <img class="w-full h-full object-cover" src="{{ $post->image_path }}"
                             alt="An image for the post '{{ $post->title }}'">
                     </div>
                 @endif
