@@ -46,8 +46,7 @@
                 <div class="break-inside mx-1 md:mx-5 rounded-xl shadow-md overflow-hidden">
                     @if ($post->image_path)
                         <div class="w-100  h-100">
-                            <img class="w-full h-full  object-cover"
-                                src="{{ asset('storage/images' . $post->image_path) }}" alt="post_image">
+                            <img class="w-full h-full  object-cover" src="{{ $post->image_path }}" alt="post_image">
                         </div>
                     @endif
 

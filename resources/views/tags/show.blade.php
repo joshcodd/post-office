@@ -12,8 +12,7 @@
                 <div class="h-96  rounded-xl shadow-md overflow-hidden">
                     @if ($post->image_path)
                         <div class="w-100  h-40">
-                            <img class="w-full h-full  object-cover"
-                                src="{{ asset('storage/images' . $post->image_path) }}" alt="post_image">
+                            <img class="w-full h-full  object-cover" src="{{ $post->image_path }}" alt="post_image">
                         </div>
                     @endif
 
