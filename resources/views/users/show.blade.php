@@ -4,8 +4,8 @@
 
 @section('content')
     <div class="relative text-center">
-        <img id="create_post_img" class="w-full h-96 object-cover "
-            src={{ $user->header ? asset('storage/images' . $user->header->image_path) : asset('marble.jpg') }} alt="">
+        <img id="create_post_img" class="w-full h-96 object-cover"
+            src={{ $user->header ? $user->header->image_path : asset('marble.jpg') }} alt="">
 
         @if (Auth::User()->id == $user->id)
             <div class="absolute headerEditDialog">

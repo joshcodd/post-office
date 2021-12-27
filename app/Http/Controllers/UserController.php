@@ -6,6 +6,7 @@ use App\Models\Header;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -30,10 +31,11 @@ class UserController extends Controller
             $header->user_id = $user->id;
         }
 
-        $dir = 'public/images';
-        $path = $request->file('image')->store($dir);
-        $header->image_path = substr($path, strlen($dir));
-        $header->save();
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('images', 's3');
+            $header->image_path = Storage::disk('s3')->url($path);
+            $header->save();
+        }
 
         return redirect()->route('users.show.me');
     }
