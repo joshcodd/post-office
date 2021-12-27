@@ -4,6 +4,7 @@
       :id="`like_btn_${itemId}`"
       v-on:click="handleLikeBtnClick()"
       class="group relative"
+      aria-label="Like"
     >
       <div
         class="group-hover:visible relative"
@@ -24,6 +25,7 @@
       :id="'like_count_' + itemId"
       class="hover:underline ml-1"
       v-on:click="isPopUpOpen = !isPopUpOpen"
+      aria-label="Like count"
     >
       {{ likes.length }}
     </button>

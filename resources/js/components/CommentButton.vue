@@ -8,6 +8,7 @@
       :id="'comment_btn_' + postId"
       v-on:click="handleCommentBtnClick(postId)"
       class="group inline-block float-right mt-1.5 mb-2"
+      aria-label="Reveal comments"
     >
       <svg width="25" height="25" viewBox="0 0 24 24" class="text-gray-700">
         <path
