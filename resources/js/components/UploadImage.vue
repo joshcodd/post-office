@@ -3,9 +3,14 @@
     <div
       class="image_spacer flex items-center text-center bg-gray-100 border border-gray-400 border-dashed"
     >
-      <camera-icon></camera-icon>
+      <camera-icon v-if="imagePath == null"></camera-icon>
 
-      <img class="z-10" :src="imagePath != null ? imagePath : ''" alt="" />
+      <img
+        v-if="imagePath != null"
+        class="z-10 w-full"
+        :src="imagePath != null ? imagePath : ''"
+        alt=""
+      />
     </div>
 
     <label
@@ -20,7 +25,6 @@
       v-if="imagePath != null"
       class="mt-3 cursor-pointer border inline-block rounded px-5 py-2.5 text-sm font-semibold text-black border-black hover:bg-gray-700  
         hover:text-white"
-      id="create_remove_image"
       @click="removeImage()"
     >
       Remove Image
