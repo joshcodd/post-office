@@ -85,6 +85,17 @@ Vue.component(
     require("./components/Logo.vue").default
 );
 
+Vue.component(
+    "upload-image",
+    require("./components/UploadImage.vue").default
+);
+
+Vue.component(
+    "camera-icon",
+    require("./components/CameraIcon.vue").default
+);
+
+
 const app = new Vue({
     el: "#app",
 });
