@@ -95,15 +95,10 @@ class PostController extends Controller
 
             $resized = Image::make($file)->resize(600, null, function ($constraint) {
                 $constraint->aspectRatio();
-            });
-            // ->encode('webp', 90);
+            })->encode('webp', 90);
 
             $original_name = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-            $file_path = "images/" . md5(time()) . '_' . $original_name . ".jpg";
-
-            dd($original_name, $file_path);
-
-
+            $file_path = "images/" . md5(time()) . '_' . $original_name . ".webp";
             Storage::disk('s3')->put($file_path, (string)$resized, 'public');
 
             $s3_url = Storage::disk('s3')->url($file_path);
