@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
@@ -32,8 +33,17 @@ class UserController extends Controller
         }
 
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('images', 's3');
-            $header->image_path = Storage::disk('s3')->url($path);
+            $file = $request->file('image');
+            $resized = Image::make($file)->resize(1000, null, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            })->encode('webp', 90);
+
+            $original_name = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $file_path = "images/" . md5(time()) . '_' . $original_name . ".webp";
+            Storage::disk('s3')->put($file_path, (string)$resized, 'public');
+
+            $header->image_path = Storage::disk('s3')->url($file_path);
             $header->save();
         }
 
