@@ -49,6 +49,12 @@ class PostController extends Controller
         $post->image_path = $this->uploadImage($request);
         $post->save();
 
+        $tags = explode(',', $request['tags']);
+        foreach ($tags as $tag) {
+            $request->request->add(['name' => $tag]);
+            $this->apiTagAdd($request, $post);
+        }
+
         $fb->postStatus($post);
 
         $request->session()->flash('message', 'Posted!');

@@ -42,6 +42,7 @@
                     text-xl text-gray-600 whitespace-pre-line
                     form-textarea w-full border border-gray-400 outline-none rounded  focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
                     rows="5" placeholder="Write post content ..." name="content">{{ old('content') }}</textarea>
+                <add-tags></add-tags>
 
                 <div class="items-center mt-5 mb-20 float-right inline">
                     <button type="submit" value="submit"

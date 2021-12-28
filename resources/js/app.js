@@ -46,6 +46,11 @@ Vue.component(
 );
 
 Vue.component(
+    "add-tags",
+    require("./components/AddTags.vue").default
+);
+
+Vue.component(
     "like-button",
     require("./components/LikeButton.vue").default
 );
