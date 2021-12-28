@@ -42,7 +42,7 @@
 
         </div>
 
-        <div class="font-nunito text-gray-500 bg-gray-100 pt-5 pb-8 font-light " id="root">
+        <div class="font-nunito text-gray-600 bg-gray-100 pt-5 pb-8 font-light " id="root">
             <div class="text-center text-xl">
                 🏣
             </div>
