@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Intervention\Image\Facades\Image;
 
 class PostController extends Controller
 {
@@ -90,9 +91,18 @@ class PostController extends Controller
     public function uploadImage(Request $request)
     {
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('images', 's3');
-            $filename = Storage::disk('s3')->url($path);
-            return $filename;
+            $file = $request->file('image');
+
+            $resized = Image::make($file)->resize(600, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->encode('webp', 90);
+
+            $original_name = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $file_path = "images/" . md5(time()) . '_' . $original_name . ".webp";
+            Storage::disk('s3')->put($file_path, (string)$resized, 'public');
+
+            $s3_url = Storage::disk('s3')->url($file_path);
+            return $s3_url;
         } else {
             return null;
         }
