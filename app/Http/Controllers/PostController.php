@@ -81,7 +81,9 @@ class PostController extends Controller
 
         $post->title = $validated_post['title'];
         $post->content = $validated_post['content'];
-        $post->image_path = $this->uploadImage($request);
+        if ($request['hasUpdatedImage'] != null) {
+            $post->image_path = $this->uploadImage($request);
+        }
         $post->save();
 
         $request->session()->flash('message', 'Post has been edited!');
