@@ -92,7 +92,6 @@ class PostController extends Controller
     {
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-
             $resized = Image::make($file)->resize(600, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->encode('webp', 90);
