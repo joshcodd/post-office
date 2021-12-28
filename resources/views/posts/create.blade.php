@@ -18,7 +18,7 @@
                         focus:ring-gray-400 focus:border-transparent"
                     rows="1" placeholder="Write a title ..." name="title">{{ old('title') }}</textarea>
 
-                <upload-image image-path-default={{ null }}></upload-image>
+                <upload-image></upload-image>
 
                 <textarea oninput='contentTextAreaResize(this)'
                     class="
