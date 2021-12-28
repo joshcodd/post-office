@@ -102,6 +102,7 @@ class PostController extends Controller
             $file = $request->file('image');
             $resized = Image::make($file)->resize(600, null, function ($constraint) {
                 $constraint->aspectRatio();
+                $constraint->upsize();
             })->encode('webp', 90);
 
             $original_name = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
